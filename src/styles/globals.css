@@ -1,0 +1,43 @@
+@import './tailwindcss.css';
+@import './theme/color.css';
+@import './md/base.css';
+@import './md/code.css';
+@import '../../public/katex/katex.min.css';
+
+body {
+  /* color: rgb(var(--foreground-rgb)); */
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-geist-sans);
+  }
+
+  code {
+    font-family: var(--font-geist-mono);
+  }
+
+
+
+  /* 学习模板的代码 */
+  ::selection {
+    background-color: #47a3f3;
+    color: #fefefe;
+  }
+
+  html {
+    min-width: 360px;
+  }
+
+  /* 其他非 MDX 相关样式 */
+  .title {
+    text-wrap: balance;
+  }

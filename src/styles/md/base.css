@@ -1,0 +1,99 @@
+/* src/styles/md/base.css */
+
+.prose  .heading-container {
+  position: relative;
+}
+
+.prose .heading-container:hover .anchor,
+.prose .anchor:hover {
+  opacity: 1;
+}
+
+.prose .anchor {
+  @apply absolute no-underline;
+  top: 50%;
+  margin-left: -20px;
+  padding-right: 10px;
+  cursor: pointer;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease; /* 添加过渡效果 */
+  font-size: 1.25em; 
+  color: #707681; 
+}
+
+/* .prose .anchor:after {
+  @apply text-neutral-300 dark:text-neutral-700 ;
+  content: '#';
+} */
+
+.prose *:hover>.anchor {
+  @apply visible;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  @apply font-semibold mt-6 mb-4 leading-[1.25];
+}
+.prose h1,
+.prose h2{
+  @apply border-b pb-[.3em]
+}
+.prose h1 + .anchor,
+.prose h2 + .anchor {
+  @apply pb-[.3em]
+}
+
+.prose h1 {
+  @apply  tracking-tight;
+  font-size: 32px;
+}
+
+.prose h2 {
+  @apply tracking-tight;
+  font-size: 24px;
+}
+
+.prose h3 {
+  @apply text-xl tracking-tight;
+}
+
+.prose h4 {
+  @apply text-lg tracking-tight;
+}
+
+
+
+
+
+.prose img {
+  /* Don't apply styles to next/image */
+  @apply m-0;
+}
+
+.prose p {
+  @apply my-4 text-neutral-800 dark:text-neutral-200;
+}
+
+.prose strong {
+  @apply font-medium;
+}
+
+.prose ul {
+  @apply list-disc pl-6;
+}
+
+.prose ol {
+  @apply list-decimal pl-6;
+}
+
+.prose> :first-child .heading-element:first-child {
+  /* Override removing top margin, causing layout shift */
+  margin-top: 0 !important;
+  /* margin-bottom: 1.25em !important; */
+}
+
