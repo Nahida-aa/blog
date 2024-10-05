@@ -25,7 +25,7 @@ const Editor = ({ value, languageKey, path }: EditorProps) => {
     {
       paths: {
         // TODO: 
-        vs: 'http://localhost:3000/monaco/min/vs',
+        vs: 'https://blog.nahida-aa.us.kg/monaco/min/vs',
       },
     }
   );
