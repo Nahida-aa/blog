@@ -11,7 +11,7 @@ import StructuredData from './_components/StructuredData';
 // import { compileMDX } from 'next-mdx-remote/rsc';
 
 export async function generateStaticParams() {
-  let posts = getBlogPosts()
+  const posts = getBlogPosts()
 
   return posts.map((post) => ({
     slug: post.slug,
@@ -19,18 +19,18 @@ export async function generateStaticParams() {
 }
 
 export function generateMetadata({ params }: { params: { slug: string } }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug)
+  const post = getBlogPosts().find((post) => post.slug === params.slug)
   if (!post) {
     return
   }
 
-  let {
+  const {
     title,
     publishedAt: publishedTime,
     summary: description,
     image,
   } = post.metadata
-  let ogImage = image
+  const ogImage = image
     ? image
     : `${baseUrl}/og?title=${encodeURIComponent(title)}`
 
@@ -77,7 +77,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
 // };
 
 export default function Blog({ params }: { params: { slug: string } }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug)
+  const post = getBlogPosts().find((post) => post.slug === params.slug)
 
   if (!post) {
     notFound()

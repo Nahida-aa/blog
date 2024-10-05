@@ -3,7 +3,13 @@ import { Card } from '@/components/ui/card';
 import { CustomMDX } from '@/components/md/mdx';
 import MdxHeader from './MDX/MdxHeader';
 
-export default function BlogContent({ post }) {
+import type { Post } from '@/types/mdx';
+
+interface BlogContentProps {
+  post: Post;
+}
+
+export default function BlogContent({ post }: BlogContentProps) {
   // console.log(post.content);
   return (
     <Card className=' w-full'>

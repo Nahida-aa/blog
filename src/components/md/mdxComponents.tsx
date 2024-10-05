@@ -1,34 +1,35 @@
-import type { MDXComponents } from 'mdx/types'
-import { Code } from './code';
-import { Pre } from './pre/monacoPre';
-import { Table } from './gfm/table';
-import { createHeading } from './h_';
-import Link from 'next/link';
-import Image from 'next/image';
+// import type { MDXComponents } from 'mdx/types'
 import { MDXProvider } from '@mdx-js/react';
+// import { Code } from './code';
+import { Pre } from './pre/monacoPre';
+// import { Table } from './gfm/table';
+// import { createHeading } from './h_';
+// import Link from 'next/link';
+// import Image from 'next/image';
+// import { MDXProvider } from '@mdx-js/react';
 
-function CustomLink({ href, children, ...props }) {
-  if (href?.startsWith('/')) {
-    return (
-      <Link href={href} {...props}>
-        {children}
-      </Link>
-    );
-  }
+// function CustomLink({ href, children, ...props } : { href: string, children: React.ReactNode }) {
+//   if (href?.startsWith('/')) {
+//     return (
+//       <Link href={href} {...props}>
+//         {children}
+//       </Link>
+//     );
+//   }
 
-  if (href?.startsWith('#')) {
-    return <a href={href} {...props}>{children}</a>;
-  }
+//   if (href?.startsWith('#')) {
+//     return <a href={href} {...props}>{children}</a>;
+//   }
 
-  return <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>;
-}
+//   return <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>;
+// }
 
-function RoundedImage(props) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />;
-}
+// function RoundedImage(props: any) {
+//   return <Image alt={props.alt} className="rounded-lg" {...props} />;
+// }
 
 // export const MdxComponents: MDXComponents = {
-export const MdxComponents = {
+export const MdxComponents: React.ComponentProps<typeof MDXProvider>['components'] = {
   // 替换组件
   // p: mdxP,
   // strong: mdxStrong,

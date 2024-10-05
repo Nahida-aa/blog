@@ -1,7 +1,8 @@
 // src/components/StructuredData.tsx
 import React from 'react';
+import { Post } from '@/types/mdx';
 
-export default function StructuredData({ post, baseUrl }) {
+export default function StructuredData({ post, baseUrl }: { post: Post; baseUrl: string }) {
   return (
     <script
       type="application/ld+json"

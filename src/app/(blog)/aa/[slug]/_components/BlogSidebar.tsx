@@ -17,7 +17,7 @@ export default function BlogSidebar({ relatedPosts }: { relatedPosts: PostTreeNo
   const [sidebarWidth, setSidebarWidth] = useState(256);
   const [isDragging, setIsDragging] = useState(false);
   const [expandedNodes, setExpandedNodes] = useState<{ [key: string]: boolean }>({});
-  const sidebarRef = useRef(null);
+  const sidebarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -34,14 +34,15 @@ export default function BlogSidebar({ relatedPosts }: { relatedPosts: PostTreeNo
     };
   }, [isTocOpen, setSidebarOpen]);
 
-  const handleMouseDown = (e) => {
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (!sidebarRef.current) return; // 添加空值检查
     setIsDragging(true);
     document.body.classList.add('cursor-col-resize');
     document.body.style.userSelect = 'none'; // 禁用文本选择
     const startX = e.clientX;
     const startWidth = sidebarRef.current.offsetWidth;
 
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       const newWidth = startWidth + (e.clientX - startX);
       if (newWidth >= minWidth && newWidth <= maxWidth) {
         setSidebarWidth(newWidth);

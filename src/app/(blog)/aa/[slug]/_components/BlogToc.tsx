@@ -2,8 +2,15 @@
 "use client";
 import { Card } from '@/components/ui/card';
 import { useToc } from '@/context/TocContext';
+type TocItem = {
+  id: string;
+  title: string;
+};
 
-export default function BlogToc({ toc }) {
+interface BlogTocProps {
+  toc: TocItem[];
+}
+export default function BlogToc({ toc }: BlogTocProps) {
   const { isTocOpen } = useToc();
 
   if (!isTocOpen) {

@@ -1,16 +1,16 @@
-import { MDXRemote,type  MDXRemoteProps, compileMDX } from 'next-mdx-remote/rsc';
-import React from 'react';
+import { compileMDX, MDXRemoteProps } from 'next-mdx-remote/rsc';
+// import React from 'react';
 import { MdxComponents } from './mdxComponents';
 
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math' // 用于将 math 标记为 code and pre/code
 import rehypeKatex from 'rehype-katex'
-import rehypeMathjax from 'rehype-mathjax'
+// import rehypeMathjax from 'rehype-mathjax'
 import rehypeMdxCodeProps from 'rehype-mdx-code-props'
 
 
 // mdx2html: 工作流程是先将 MDX 源码解析为 JSX, 然后再根据需要切换和渲染自定义组件
-export async function CustomMDX(props: any) {
+export async function CustomMDX(props: MDXRemoteProps) {
   const options = {
     // made available to the arguments of any custom MDX component
     // scope: {},
@@ -37,6 +37,7 @@ export async function CustomMDX(props: any) {
       ...MdxComponents, 
       ...(props.components || {}) }
   })
+  console.log(frontmatter)
 
   return (content
     // <MDXRemote

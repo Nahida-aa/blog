@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "@/styles/globals.css";
 import localFont from "next/font/local";
 import { Navbar } from '@/components/layout/nav';
-import Footer from '@/components/layout/footer';
+// import Footer from '@/components/layout/footer';
 import { baseUrl } from '@/lib/sitemap';
 import { ThemeProvider } from "@/components/provider/theme-provider";
 

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, SetStateAction } from 'react';
 import { Image as ImageIcon, X, Repeat } from 'lucide-react';
 import Image from "next/image";
 
@@ -29,7 +29,7 @@ export default function BgToggle() {
   }, [bgImage]);
 
   useEffect(() => {
-    let interval;
+    let interval: string | number | NodeJS.Timeout | undefined;
     if (autoCycle) {
       interval = setInterval(() => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % (images.length - 2)); // 不包括 "none" 和 "auto"
@@ -45,7 +45,7 @@ export default function BgToggle() {
     }
   }, [currentImageIndex, autoCycle]);
 
-  const handleBgChange = (image) => {
+  const handleBgChange = (image: SetStateAction<string>) => {
     if (image === "auto") {
       setAutoCycle(true);
     } else {

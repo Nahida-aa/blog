@@ -14,3 +14,9 @@ export interface PostTreeNode {
   metadata: MdxMetadata
   children: PostTreeNode[]
 }
+
+export type Post = {
+  slug: string;
+  content: string;
+  metadata: MdxMetadata;
+};

@@ -3,8 +3,10 @@
 import { PanelLeftOpen } from 'lucide-react';
 import { useSidebar } from './context/SidebarContext';
 import { Button } from '@/components/ui/button';
-
-export default function Header({ slug }) {
+interface HeaderProps {
+  slug: string;
+}
+export default function Header({ slug }: HeaderProps) {
   const { isSidebarOpen, setSidebarOpen } = useSidebar();
 
   return (
