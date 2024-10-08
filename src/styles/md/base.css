@@ -38,6 +38,8 @@
 .prose h5,
 .prose h6 {
   @apply font-semibold mt-6 mb-4 leading-[1.25];
+  color: #fdfdfd;
+  text-shadow: 0 0 2px #001716, 0 0 3px #03edf975, 0 0 5px #03edf975, 0 0 8px #03edf975;
 }
 .prose h1,
 .prose h2{
@@ -67,6 +69,11 @@
 }
 
 
+.prose a {
+  @apply underline;
+  color: #f4edf7;
+  text-shadow: 0 0 2px #0e002000, 0 0 7px #780afe75, 0 0 5px #780afe75, 0 0 18px #780afe75;
+}
 
 
 
@@ -91,9 +98,11 @@
   @apply list-decimal pl-6;
 }
 
+.prose> :first-child,
 .prose> :first-child .heading-element:first-child {
   /* Override removing top margin, causing layout shift */
   margin-top: 0 !important;
   /* margin-bottom: 1.25em !important; */
 }
+
 

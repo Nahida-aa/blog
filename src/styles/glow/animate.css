@@ -1,0 +1,29 @@
+
+
+@keyframes light {
+    0% {
+      box-shadow: 0 0 4px #50afda;
+      -moz-box-shadow: 0 0 4px #50afda;
+      -webkit-box-shadow: 0 0 4px #50afda;
+    }
+    25% {
+      box-shadow: 0 0 30px #50afda;
+      -moz-box-shadow: 0 0 30px #50afda;
+      -webkit-box-shadow: 0 0 30px #50afda;
+    }
+    50% {
+      box-shadow: 0 0 4px #50afda;
+      -moz-box-shadow: 0 0 4px #50afda;
+      -webkit-box-shadow: 0 0 4px #50afda;
+    }
+    75% {
+      box-shadow: 0 0 30px #50afda;
+      -moz-box-shadow: 0 0 30px #50afda;
+      -webkit-box-shadow: 0 0 30px #50afda;
+    }
+    100% {
+      box-shadow: 0 0 4px #50afda;
+      -moz-box-shadow: 0 0 4px #50afda;
+      -webkit-box-shadow: 0 0 4px #50afda;
+    }
+  }

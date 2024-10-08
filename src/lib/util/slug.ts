@@ -8,3 +8,6 @@ export function slugify(str: string) {
     .replace(/[^\w\-]+/g, '') // Remove all non-word characters except for -
     .replace(/\-\-+/g, '-') // Replace multiple - with single -
 }
+export function text2slug(str: string) {
+  return str.toLowerCase().replace(/\s+/g, '-')
+}

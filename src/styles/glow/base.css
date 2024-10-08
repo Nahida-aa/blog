@@ -1,0 +1,19 @@
+/* ai写的 */
+.glow-cyan {
+    color: #f4edf7;
+    text-shadow: 0 0 2px #0e002000, 0 0 7px #00f6ff75, 0 0 5px #00f6ff75, 0 0 18px #00f6ff75;
+}
+.glow-cyan-box-shadow {
+    /* box-shadow: 0 0 10px #00f6ff75, 0 0 20px #00f6ff75, 0 0 30px #00f6ff75, 0 0 40px #00f6ff75, 0 0 50px #00f6ff75, 0 0 60px #00f6ff75, 0 0 70px #00f6ff75; */
+    box-shadow: 0 0 2px #0e002000, 0 0 7px #00f6ff75, 0 0 5px #00f6ff75, 0 0 18px #00f6ff75;
+}
+
+.glow-purple {
+    color: #f4edf7;
+    text-shadow: 0 0 2px #0e002000, 0 0 7px #780afe75, 0 0 5px #780afe75, 0 0 18px #780afe75;
+}
+
+    .glow-purple-box-shadow {
+        /* box-shadow: 0 0 10px #780afe75, 0 0 20px #780afe75, 0 0 30px #780afe75, 0 0 40px #780afe75, 0 0 50px #780afe75, 0 0 60px #780afe75, 0 0 70px #780afe75; */
+        box-shadow: 0 0 2px #0e002000, 0 0 7px #780afe75, 0 0 5px #780afe75, 0 0 18px #780afe75;
+    }

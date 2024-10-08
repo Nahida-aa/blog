@@ -1,14 +1,16 @@
+// "use server"
+// "use client";
 // import type { MDXComponents } from 'mdx/types'
-import { MDXProvider } from '@mdx-js/react';
+// import { MDXProvider } from '@mdx-js/react';
 // import { Code } from './code';
 import { Pre } from './pre/monacoPre';
 // import { Table } from './gfm/table';
-// import { createHeading } from './h_';
-// import Link from 'next/link';
+import { H1,H2,H3,H4,H5,H6 } from './h_';
 // import Image from 'next/image';
 // import { MDXProvider } from '@mdx-js/react';
 
-// function CustomLink({ href, children, ...props } : { href: string, children: React.ReactNode }) {
+// import Link from 'next/link';
+// function CustomLink({ href, children, ...props } : React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) {
 //   if (href?.startsWith('/')) {
 //     return (
 //       <Link href={href} {...props}>
@@ -29,7 +31,8 @@ import { Pre } from './pre/monacoPre';
 // }
 
 // export const MdxComponents: MDXComponents = {
-export const MdxComponents: React.ComponentProps<typeof MDXProvider>['components'] = {
+// export const MdxComponents: React.ComponentProps<typeof MDXProvider>['components'] = {
+export const MdxComponents = {
   // 替换组件
   // p: mdxP,
   // strong: mdxStrong,
@@ -37,18 +40,20 @@ export const MdxComponents: React.ComponentProps<typeof MDXProvider>['components
   // ul: mdxUl,
   // ol: mdxOl,
   // li: mdxLi,
-
-  // h1: createHeading(1),
-  // h2: createHeading(2),
-  // h3: createHeading(3),
-  // h4: createHeading(4),
-  // h5: createHeading(5),
-  // h6: createHeading(6),
-  // Image: RoundedImage,
   // a: CustomLink,
-  // code: Code,
+  
+  h1: H1,
+  h2: H2,
+  h3: H3,
+  h4: H4,
+  h5: H5,
+  h6: H6,
   pre: Pre,
+  // Image: RoundedImage,
+  // code: Code,
   
   // 添加组件
   // Table,
 }
+// console.log(`mdxMdxComponents: MdxComponents:`);
+// console.log(MdxComponents)

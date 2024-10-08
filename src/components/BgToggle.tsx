@@ -1,7 +1,8 @@
 "use client";
-import { useState, useEffect, SetStateAction } from 'react';
+// import { useState } from 'react';
 import { Image as ImageIcon, X, Repeat } from 'lucide-react';
 import Image from "next/image";
+import { useBackground } from '@/context/BackgroundContext'; // 引入 useBackground 钩子
 
 import {
   DropdownMenu,
@@ -19,39 +20,18 @@ const images = [
 ];
 
 export default function BgToggle() {
-  const [bgImage, setBgImage] = useState("/bg/cloud.webp"); // 设置默认壁纸
-  const [autoCycle, setAutoCycle] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { 
+    // bgImage,
+    setBgImage, 
+    // autoCycle, 
+    setAutoCycle } = useBackground();
 
-  useEffect(() => {
-    // 设置初始背景图片
-    document.body.style.backgroundImage = `url(${bgImage})`;
-  }, [bgImage]);
-
-  useEffect(() => {
-    let interval: string | number | NodeJS.Timeout | undefined;
-    if (autoCycle) {
-      interval = setInterval(() => {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % (images.length - 2)); // 不包括 "none" 和 "auto"
-      }, 3 * 60 * 1000); // 每30分钟切换一次
-    }
-    return () => clearInterval(interval);
-  }, [autoCycle]);
-
-  useEffect(() => {
-    if (autoCycle) {
-      const nextImage = images[currentImageIndex + 1].src;
-      document.body.style.backgroundImage = nextImage === "none" ? "none" : `url(${nextImage})`;
-    }
-  }, [currentImageIndex, autoCycle]);
-
-  const handleBgChange = (image: SetStateAction<string>) => {
+  const handleBgChange = (image: string) => {
     if (image === "auto") {
       setAutoCycle(true);
     } else {
       setAutoCycle(false);
       setBgImage(image);
-      document.body.style.backgroundImage = image === "none" ? "none" : `url(${image})`;
     }
   };
 

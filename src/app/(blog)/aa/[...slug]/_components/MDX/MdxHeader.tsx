@@ -4,6 +4,7 @@ import { Eye, Code, List } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { useState } from 'react';
 import { useToc } from '@/context/TocContext';
+import { Button } from '@/components/ui/button';
 
 export default function MdxHeader() {
   const [selectedOption, setSelectedOption] = useState('preview');
@@ -11,17 +12,18 @@ export default function MdxHeader() {
 
   return (
     <Card className='rounded-b-none p-2 flex justify-between items-center bg-muted'>
-      <ul className='flex h-7 items-center bg-[#262c36] rounded-md'>
-        <li className={`flex h-7 rounded-md items-center relative ${selectedOption === 'preview' ? 'bg-[#010409]' : ''}`}>
-          <button className="px-2" onClick={() => setSelectedOption('preview')}>
+      <ul className='flex h-7 items-center bg-[#37344b5e] rounded-md'>
+        <li className={`flex h-7 rounded-md items-center relative ${selectedOption === 'preview' ? 'bg-[#0601097a]' : ''}`}>
+          <Button variant='ghost' 
+          className="px-2 py-1.5 h-7 m-0 size-auto" onClick={() => setSelectedOption('preview')}>
             <Eye size={16} />
-          </button>
+          </Button>
           <span className="absolute right-0 h-4 w-px bg-[#3d444d]"></span>
         </li>
-        <li className={`flex h-7 rounded-md items-center ${selectedOption === 'code' ? 'bg-[#010409]' : ''}`}>
-          <button className="px-2" onClick={() => setSelectedOption('code')}>
+        <li className={`flex h-7 rounded-md items-center ${selectedOption === 'code' ? 'bg-[#04010947]' : ''}`}>
+          <Button variant='ghost' className="px-2 py-1.5 h-7 size-auto" onClick={() => setSelectedOption('code')}>
             <Code size={16} />
-          </button>
+          </Button>
         </li>
       </ul>
       

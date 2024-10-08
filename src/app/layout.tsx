@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
 import localFont from "next/font/local";
-import { Navbar } from '@/components/layout/nav';
+
 // import Footer from '@/components/layout/footer';
 import { baseUrl } from '@/lib/sitemap';
 import { ThemeProvider } from "@/components/provider/theme-provider";
@@ -54,6 +54,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode,
 }) {
+
+
   return (
     <html
       lang="en"
@@ -61,7 +63,11 @@ export default function RootLayout({
         geistSans.variable,
         geistMono.variable
       )}
+      // suppressHydrationWarning
     >
+      {/* <head>
+        <script src="/vscode/Comet.js" />
+      </head> */}
       <body className="antialiased mio-scroll">
         <ThemeProvider
           attribute="class"
@@ -70,7 +76,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <main>
-            <Navbar />
+            
             {children}
           </main>
         </ThemeProvider>

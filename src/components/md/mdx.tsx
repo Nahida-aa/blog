@@ -1,12 +1,25 @@
-import { compileMDX, MDXRemoteProps } from 'next-mdx-remote/rsc';
+"use server";
+// "use client";
+import { 
+  // MDXRemote, 
+  compileMDX,
+  MDXRemoteProps } from 'next-mdx-remote/rsc';
 // import React from 'react';
-import { MdxComponents } from './mdxComponents';
+// import { Pre } from './pre/monacoPre';
+
+import { MdxComponents } from './mdxComponents'
 
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math' // 用于将 math 标记为 code and pre/code
 import rehypeKatex from 'rehype-katex'
 // import rehypeMathjax from 'rehype-mathjax'
 import rehypeMdxCodeProps from 'rehype-mdx-code-props'
+
+// import rehypeSlug from 'rehype-slug';
+// import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+
+
+// import { Pre } from './pre/monacoPre';
 
 
 // mdx2html: 工作流程是先将 MDX 源码解析为 JSX, 然后再根据需要切换和渲染自定义组件
@@ -27,25 +40,31 @@ export async function CustomMDX(props: MDXRemoteProps) {
       // format: 'mdx',
     },
     // Indicates whether or not to parse the frontmatter from the MDX source
-    parseFrontmatter: false,
+    // parseFrontmatter: false,
   }
-  const { content, frontmatter } = await compileMDX({
+  const components = {
+    ...MdxComponents,
+    // pre: Pre,
+    // h1: createHeading(1),
+    ...(props.components || {})
+  };
+  const { content
+    // , frontmatter 
+  } = await compileMDX({
     ...props,
     source: props.source, 
     options: {...options, ...(props.options||{}) },
-    components:{
-      ...MdxComponents, 
-      ...(props.components || {}) }
+    components
   })
-  console.log(frontmatter)
+  // console.log(`content:`)
+  // console.log(content)
 
-  return (content
+  return (
+    content
     // <MDXRemote
     //   {...props}
     //   options={{...options, ...(props.options||{}) }}
-    //   components={{ 
-    //     ...MdxComponents, 
-    //     ...(props.components || {}) }}
+    //   components={components}
     // />
   );
 }

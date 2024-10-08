@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from 'tailwindcss/plugin';
 
 const config: Config = {
     darkMode: ["class"],
@@ -10,11 +11,11 @@ const config: Config = {
   theme: {
   	extend: {
   		colors: {
-  			background: 'hsl(var(--background))',
+  			background: 'hsl(var(--background)/0.2)',
   			foreground: 'hsl(var(--foreground))',
-				appHeader: 'hsl(var(--AppHeader-bg)/0.3)',
+				appHeader: 'hsl(var(--AppHeader-bg)/0.2)',
   			card: {
-  				DEFAULT: 'hsl(var(--card))',
+  				DEFAULT: 'hsl(var(--card)/0.2)',
   				foreground: 'hsl(var(--card-foreground))'
   			},
   			popover: {
@@ -30,7 +31,7 @@ const config: Config = {
   				foreground: 'hsl(var(--secondary-foreground))'
   			},
   			muted: {
-  				DEFAULT: 'hsl(var(--muted))',
+  				DEFAULT: 'hsl(var(--muted)/0.2)',
   				foreground: 'hsl(var(--muted-foreground))'
   			},
   			accent: {
@@ -62,6 +63,18 @@ const config: Config = {
 			},
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"),
+    // plugin(function ({ addUtilities }) {
+    //   const newUtilities = {
+    //     '.glow-cyan': '@apply glow-cyan;',
+    //     '.glow-purple': '@apply glow-purple;',
+    //   };
+
+    //   addUtilities(newUtilities, {
+    //     respectPrefix: false,
+    //     respectImportant: false,
+    //   });
+		// }),
+	],
 };
 export default config;

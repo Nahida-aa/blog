@@ -12,10 +12,13 @@ const TocContext = createContext<TocContextType | undefined>(undefined);
 export const TocProvider = ({ children }: { children: ReactNode }) => {
   const [isTocOpen, setTocOpen] = useState(false);
 
-  const toggleToc = () => setTocOpen(!isTocOpen);
+  const toggleToc = () => {
+    console.log('toggleToc');
+    setTocOpen(!isTocOpen);
+  }
 
   return (
-    <TocContext.Provider value={{ isTocOpen, toggleToc }}>
+    <TocContext.Provider value={{ isTocOpen,  toggleToc }}>
       {children}
     </TocContext.Provider>
   );

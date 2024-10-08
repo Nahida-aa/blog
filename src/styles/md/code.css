@@ -1,19 +1,20 @@
 .prose code {
-  @apply px-1 py-0.5 rounded-lg dark:bg-[#26233593];
+  @apply px-1 py-0.5 rounded-lg dark:bg-[#26233548];
 }
 
+.prose .katex-display,
 .prose pre {
-  @apply bg-neutral-50 dark:bg-[#26233593] rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-900 py-2 px-3 text-sm relative;
+  @apply bg-neutral-50 dark:bg-[#26233548] rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-900 my-2 text-sm relative p-0.5 ;
   counter-reset: line-number;
-  .copy-button{
-    @apply absolute top-2 right-2
-  }
+
+}
+.prose .katex-display{
+  @apply py-2;
 }
 
 .prose pre code {
-  @apply p-0 block;
+  @apply p-2 mx-0.5 block dark:bg-[#26233500];
   /* border: initial; */
-  line-height: 1.5;
 }
 
 .prose code span {

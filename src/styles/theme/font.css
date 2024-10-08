@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'XiaolaiMono';
+    /* src: url('/path/to/your/font.woff2') format('woff2'), */
+         /* url('/path/to/your/font.woff') format('woff'); */
+    src: url('http://127.0.0.1:3000/fonts/XiaolaiMonoSC-without-Hangul-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}

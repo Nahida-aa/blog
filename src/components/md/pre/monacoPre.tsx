@@ -1,134 +1,172 @@
 "use client";
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import MonacoEditor, { loader } from '@monaco-editor/react';
 import * as monaco_editor from 'monaco-editor';
+import { registerJsoncLanguage } from '@/lib/vscode/monaco/addLang/addJsonc';
+import { languageMap } from '@/lib/vscode/monaco/addLang/languageMap';
+import { Copy, Check } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import aaThemeConfig from '@/lib/vscode/monaco/theme/aaTheme';
 
-const languageMap: { [key: string]: string } = {
-  jsx: 'javascript',
-  js: 'javascript',
-  tsx: 'typescript',
-  ts: 'typescript',
-  py: 'python',
-  rb: 'ruby',
-  sh: 'shell',
-  // jsonc: 'json',
-};
-
-interface EditorProps {
+interface OnlyReadEditorProps {
   value: string;
-  languageKey: string;
+  language: string;
   path: string;
+  initialHeight: number;
+  loadingComponent?: ReactNode;
+  containerRef: React.RefObject<HTMLPreElement>;
 }
-const Editor = ({ value, languageKey, path }: EditorProps) => {
-  loader.config(
-    // { monaco_editor }
-    {
-      paths: {
-        // TODO: 
-        vs: 'https://blog.nahida-aa.us.kg/monaco/min/vs',
-      },
-    }
-  );
 
-  // useEffect(() => {
-  //   loader.init().then(monaco => {
-  //     monaco.editor.defineTheme('vs-dark', {
-  //       base: 'vs-dark',
-  //       inherit: true,
-  //       rules: [],
-  //       colors: {
-  //         'editor.background': '#1E1E1E',
-  //       },
-  //     });
-  //     if (editorRef.current) {
-  //       editorRef.current.updateOptions({ theme: 'vscode-dark' });
-  //     }
-  //   });
-  // }, []);
-  // 注册 jsonc 语言 ???
+const OnlyReadEditor = ({ value, language, path, initialHeight, loadingComponent, containerRef }: OnlyReadEditorProps) => {
+  const [editorHeight, setEditorHeight] = useState(initialHeight);
+  // const editorRef = useRef<monaco_editor.editor.IStandaloneCodeEditor | null>(null);
+
+  useEffect(() => {
+    const height = computerHandler(value, 20, 25);
+    setEditorHeight(height);
+  }, [value]);
+
+  loader.config({
+    paths: {
+      vs: `${process.env.NODE_ENV === "production" ? 'https://blog.nahida-aa.us.kg/' : 'http://localhost:3000'}/monaco/min/vs`,
+    },
+  });
+
   useEffect(() => {
     loader.init().then(monaco => {
-      monaco.languages.register({ id: 'jsonc' });
-      monaco.languages.setMonarchTokensProvider('jsonc', {
-        tokenizer: {
-          root: [
-            [/{/, 'delimiter.bracket'],
-            [/}/, 'delimiter.bracket'],
-            [/\[/, 'delimiter.array'],
-            [/\]/, 'delimiter.array'],
-            [/"/, 'string'],
-            [/:/, 'delimiter'],
-            [/,/, 'delimiter'],
-            [/\/\/.*$/, 'comment'],
-            [/\/\*.*\*\//, 'comment'],
-            [/\d+/, 'number'],
-            [/\b(true|false|null)\b/, 'keyword'],
-          ],
-        },
-      });
-      monaco.languages.setLanguageConfiguration('jsonc', {
-        comments: {
-          lineComment: '//',
-          blockComment: ['/*', '*/'],
-        },
-        brackets: [
-          ['{', '}'],
-          ['[', ']'],
-        ],
-        autoClosingPairs: [
-          { open: '{', close: '}' },
-          { open: '[', close: ']' },
-          { open: '"', close: '"', notIn: ['string'] },
-        ],
-        surroundingPairs: [
-          { open: '{', close: '}' },
-          { open: '[', close: ']' },
-          { open: '"', close: '"' },
-        ],
-      });
+      registerJsoncLanguage(monaco);
+      monaco.editor.defineTheme('aaTheme', aaThemeConfig);
     });
   }, []);
 
   const handleEditorDidMount = (editor: monaco_editor.editor.IStandaloneCodeEditor, monaco: typeof monaco_editor) => {
-    console.log('editorDidMount', editor, monaco);
-  }
+    // editorRef.current = editor;
+    // monaco.editor.defineTheme('aaTheme', aaThemeConfig);
+    console.log(monaco);
+    // 监听编辑器的滚动事件并传递给外部容器
+    editor.getDomNode()?.addEventListener('wheel', (e) => {
+      const container = containerRef.current;
+      if (container) {
+        container.scrollTop += e.deltaY;
+      }
+    });
+  };
 
-  const language = languageMap[languageKey] || languageKey;
-  console.log(`Editor language: ${language}`)
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        if (entry.target === containerRef.current) {
+          setEditorHeight(entry.contentRect.height - 32); // 32 is the height of the nav
+        }
+      }
+    });
+    const currentContainer = containerRef.current;
+    if (currentContainer) {
+      resizeObserver.observe(currentContainer);
+    }
+    return () => {
+      if (currentContainer) {
+        resizeObserver.unobserve(currentContainer);
+      }
+    };
+  }, [containerRef]);
+
   return (
-    <MonacoEditor
-      height="400px"
-      language={language}
-      value={value}
-      path={path}
-      theme="vs-dark"
-      onMount={handleEditorDidMount}
-    />
+    <>
+      <MonacoEditor
+        height={editorHeight}
+        language={language}
+        value={value}
+        path={path}
+        theme="aaTheme"
+        options={{
+          readOnly: true,
+          minimap: { enabled: false },
+          scrollBeyondLastLine: false,
+          hover: {
+            sticky: true,
+          },
+          fontSize: 14,
+          lineHeight: 20,
+          fontFamily: "CodeNewRoman Nerd Font Mono",
+          fontLigatures: "'calt', 'liga', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'ss09'",
+          cursorStyle: "block",
+          scrollbar: {
+            handleMouseWheel: false,
+            // alwaysConsumeMouseWheel: true,
+          },
+        }}
+        onMount={handleEditorDidMount}
+        loading={<div style={{ position: 'absolute', top: -8, left: 54 }}>{loadingComponent}</div>}
+      />
+    </>
   );
 };
 
-export default Editor;
+interface CodeBlockProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLPreElement>, HTMLPreElement> {
+  children: React.ReactElement;
+  name?: string;
+  path?: string;
+  filename?: string;
+  copy?: boolean;
+}
+const CodeBlock = ({ children, ...props }: CodeBlockProps) => {
+  const [copied, setCopied] = useState(false);
+  const containerRef = useRef<HTMLPreElement | null>(null);
+
+  const { className, children: codeString, ...rest } = children.props;
+  const languageKey = className.replace('language-', '');
+  const language = languageMap[languageKey] || languageKey;
+  const codeBlockName = props.name || props.path || props.filename || language;
+  const copy = props.copy || false;
+
+  const initialHeight = computerHandler(codeString.trim(), 20, 25);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(codeString.trim()).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }).catch(err => {
+      console.error('Failed to copy code: ', err);
+    });
+  };
+
+  return (
+    <pre ref={containerRef} className={`w-full max-h-[60vh] overflow-auto resize-y min-h-[${60}px] ${className}`} {...props}>
+      {codeBlockName && (
+        <nav className='flex items-center justify-between h-8'>
+          <div className=' ml-2 px-2 flex items-center'>
+            {codeBlockName}
+          </div>
+          {copy && (
+            <Button variant='ghost'
+              onClick={handleCopy}
+              className='h-6 m-2  p-1 rounded'
+            >
+              {copied ? <Check size={16} className='text-green-500' /> : <Copy size={16} className='text-gray-400' />}
+            </Button>
+          )}
+        </nav>
+      )}
+      <OnlyReadEditor value={codeString.trim()} language={language} path={codeBlockName} initialHeight={initialHeight} loadingComponent={children} containerRef={containerRef} {...rest} />
+    </pre>
+  );
+};
+
+type ComputerHandler = (codeString: string, lineHeight: number, maxLines: number) => number;
+const computerHandler: ComputerHandler = (codeString, lineHeight, maxLines) => {
+  const lineCount = codeString.split('\n').length;
+  return Math.min(lineCount, maxLines) * lineHeight + 10;
+};
 
 interface PreProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLPreElement>, HTMLPreElement> {
   children?: ReactNode;
   name?: string;
   path?: string;
   filename?: string;
+  copy?: boolean;
 }
-export const Pre = ({ children, ...props }:PreProps) => {
-  if (!children) return <pre {...props}>{children}</pre>
-  // 检查 children 是否是 <code> 元素
-  console.log(`Pre children: ${children}`)
-  console.log(`Pre props: ${props}`)
-  const codeBlockName = props.name || props.path || props.filename
-  console.log(`Pre codeBlockName: ${codeBlockName}`)
-  if (React.isValidElement(children) && children.props && children.type === 'code') {
-    const { className, children: codeString, ...rest } = children.props;
-    const languageKey = className.replace('language-', '');
-    return (
-      <pre {...props}><Editor value={codeString.trim()} languageKey={languageKey} path={codeBlockName} {...rest} />
-      </pre>
-    );
-  }
+export const Pre = ({ children, ...props }: PreProps) => {
+  if (React.isValidElement(children) && children.props && children.type === 'code') return <CodeBlock {...props}>{children}</CodeBlock>;
   return <pre {...props}>{children}</pre>;
 };

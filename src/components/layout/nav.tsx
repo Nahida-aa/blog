@@ -2,12 +2,14 @@
 import Link from 'next/link';
 import BgToggle from '@/components/BgToggle'; 
 import ThemeToggle from '@/components/ThemeToggle';
-import { Github, User } from 'lucide-react';
+import DayNightToggle from '@/components/Day-night/v2'
+import { User } from 'lucide-react';
+import  Github  from '@/components/svg/github';
 
 const navItems = {
   '/': { name: 'home' },
   '/aa': { name: 'blog' },
-  'https://vercel.com/templates/next.js/portfolio-starter-kit': { name: 'deploy' },
+  '/vscode': { name: 'vscode' },
 };
 
 export function Navbar() {
@@ -25,7 +27,8 @@ export function Navbar() {
           <div className="flex items-center space-x-1 pl-10 pr-1">
             <BgToggle />
             <ThemeToggle />
-            <Link href="https://github.com" target="_blank" className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-1 m-1">
+            <DayNightToggle size={1.5} />
+            <Link href="https://github.com/Nahida-aa" target="_blank" className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-1 m-1">
               <div className=" rounded-full p-1">
                 <Github size={24} />
               </div>
