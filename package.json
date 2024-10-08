@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && pnpm build-data",
+    "new-md": "bun scripts/new-md.ts",
     "build-data": "bun run scripts/generateData.ts",
+    "build": "next build && pnpm build-data",
     "start": "next start",
     "lint": "next lint"
   },
