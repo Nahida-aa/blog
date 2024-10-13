@@ -5,13 +5,13 @@ import { PanelLeftClose } from 'lucide-react';
 import { useSidebar } from './context/SidebarContext';
 import { useToc } from '@/context/TocContext';
 import { Button } from '@/components/ui/button';
-import { PostTreeNode } from '@/types/mdx';
+import { JsonDocMetadataTreeNode } from '@/types/mdx';
 import PostTree from './Sidebar/PostTree';
 
 const minWidth = 128;
 const maxWidth = 741;
 
-export default function BlogSidebar({ relatedPosts }: { relatedPosts: PostTreeNode[] }) {
+export default function BlogSidebar({ PostTrees }: { PostTrees: JsonDocMetadataTreeNode[] }) {
   const { isSidebarOpen, setSidebarOpen } = useSidebar();
   const { isTocOpen } = useToc();
   const [sidebarWidth, setSidebarWidth] = useState(256);
@@ -89,7 +89,7 @@ export default function BlogSidebar({ relatedPosts }: { relatedPosts: PostTreeNo
         {/* 搜索框，要求能搜索下面的li中的内容 */}
 
         <nav className='mr-4'>
-          <PostTree nodes={relatedPosts} depth={1} expandedNodes={expandedNodes} toggleNode={toggleNode} />
+          <PostTree nodes={PostTrees} depth={1} expandedNodes={expandedNodes} toggleNode={toggleNode} />
         </nav>
       </div>
       {/* 与其他区域之间的边界 */}

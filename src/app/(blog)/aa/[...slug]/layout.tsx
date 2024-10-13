@@ -1,6 +1,6 @@
 // src/app/(blog)/aa/[slug]/layout.tsx
 import { TocProvider } from '@/context/TocContext';
-import { SidebarProvider } from './_components/context/SidebarContext';
+// import { SidebarProvider } from './_components/context/SidebarContext';
 
 export default function BlogLayout({
   children
@@ -9,9 +9,9 @@ export default function BlogLayout({
 }) {
   return (
     <TocProvider>
-      <SidebarProvider>
+      {/* <SidebarProvider> */}
         {children}
-      </SidebarProvider>
+      {/* </SidebarProvider> */}
     </TocProvider>
   );
 }

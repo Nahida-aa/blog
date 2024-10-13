@@ -7,10 +7,11 @@ import { Eye, History as HistoryIco, Star } from 'lucide-react';
 import { MdxMetadata } from '@/types/mdx';
 
 interface InfoProps {
-  blog_path: string;
+  url_path: string;
   metadata: MdxMetadata
 }
-const Info: FC<InfoProps> = ({ blog_path, metadata }) => {
+const Info: FC<InfoProps> = ({ url_path, metadata }) => {
+  console.log(metadata)
   return(
     <Card className="mb-4">
       <CardContent className=" p-6 w-full">
@@ -18,7 +19,7 @@ const Info: FC<InfoProps> = ({ blog_path, metadata }) => {
           <div className="space-y-2 flex-grow">
             <div className="flex items-center space-x-2">
               <h3 className="text-lg font-semibold">
-                <Link href={`/${blog_path}`} className="hover:underline glow-cyan">
+                <Link href={`/${url_path}`} className="hover:underline glow-cyan">
                   {metadata.title}
                 </Link>
               </h3>
@@ -61,7 +62,7 @@ const Info: FC<InfoProps> = ({ blog_path, metadata }) => {
                 </span>
               )} */}
               <Link
-                href={`/${blog_path}/stargazers`}
+                href={`/${url_path}/stargazers`}
                 className="flex items-center hover:text-primary"
               >
                 <Star className="w-4 h-4 mr-1" />

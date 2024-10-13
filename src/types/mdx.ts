@@ -12,11 +12,7 @@ export type MdxMetadata = {
   draft: boolean
 }
 
-export interface PostTreeNode {
-  slug: string
-  metadata: MdxMetadata
-  children: PostTreeNode[]
-}
+
 
 export type Post = {
   slug: string;

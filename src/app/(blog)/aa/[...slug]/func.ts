@@ -1,84 +1,11 @@
-import { PostTreeNode } from "@/types/mdx";
+import { JsonDocMetadataTreeNode } from "@/types/mdx";
+import path from "path";
+import fs from 'fs';
 
-const relatedPosts: PostTreeNode[] = [
-  {
-    slug: "blog",
-    metadata: {
-      title: "blog with next+mdx+shadui",
-      pushed_at: "2023-01-01",
-      updated_at: "2023-01-01",
-      description: "Summary of parent post 1",
-      svg: "",
-      image: "path/to/image1.jpg",
-      tags: ["tag1", "tag2"],
-      authors: ["Author 1"],
-      draft: false
-    },
-    children: [
-      {
-        slug: "code-highlight",
-        metadata: {
-          title: "code-highlight",
-          pushed_at: "2023-01-02",
-          updated_at: "2023-01-02",
-          description: "Summary of child post 1-1",
-          svg: "",
-          image: "path/to/image2.jpg",
-          tags: ["tag3"],
-          authors: ["Author 2"],
-          draft: false
-        },
-        children: []
-      },
-      {
-        slug: "child-post-1-2",
-        metadata: {
-          title: "Child Post 1-2",
-          pushed_at: "2023-01-03",
-          updated_at: "2023-01-03",
-          description: "Summary of child post 1-2",
-          svg: "",
-          image: "path/to/image3.jpg",
-          tags: ["tag4"],
-          authors: ["Author 3"],
-          draft: false
-        },
-        children: [
-          {
-            slug: "grandchild-post-1-2-1",
-            metadata: {
-              title: "Grandchild Post 1-2-1",
-              pushed_at: "2023-01-04",
-              updated_at: "2023-01-04",
-              description: "Summary of grandchild post 1-2-1",
-              svg: "",
-              image: "path/to/image4.jpg",
-              tags: ["tag5"],
-              authors: ["Author 4"],
-              draft: false
-            },
-            children: []
-          }
-        ]
-      }
-    ]
-  },
-  {
-    slug: "aa-tree",
-    metadata: {
-      title: "aa-tree",
-      pushed_at: "2023-01-05",
-      updated_at: "2023-01-05",
-      description: "Summary of parent post 2",
-      svg: "",
-      image: "path/to/image5.jpg",
-      tags: ["tag6"],
-      authors: ["Author 5"],
-      draft: false
-    },
-    children: []
-  }
-];
+// 读取 metadata.json 文件
+const metadataFilePath = path.join(process.cwd(), 'public', 'data', 'metadata.json');
+const metadataFileContent = fs.readFileSync(metadataFilePath, 'utf8');
+const relatedPosts: JsonDocMetadataTreeNode[] = JSON.parse(metadataFileContent);
 
 export function getRelatedPosts(slug: string) {
   // 这里可以根据实际情况获取相关的文章数据

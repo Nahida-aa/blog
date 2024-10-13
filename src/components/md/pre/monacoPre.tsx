@@ -22,7 +22,7 @@ const OnlyReadEditor = ({ value, language, path, initialHeight, loadingComponent
   // const editorRef = useRef<monaco_editor.editor.IStandaloneCodeEditor | null>(null);
 
   useEffect(() => {
-    const height = computerHandler(value, 20, 25);
+    const height = computerHeader(value, 20, 25);
     setEditorHeight(height);
   }, [value]);
 
@@ -114,13 +114,14 @@ const CodeBlock = ({ children, ...props }: CodeBlockProps) => {
   const [copied, setCopied] = useState(false);
   const containerRef = useRef<HTMLPreElement | null>(null);
 
-  const { className, children: codeString, ...rest } = children.props;
+  const { className, children: codeStringProp, ...rest } = children.props;
+  const codeString = (codeStringProp || '').toString();
   const languageKey = className.replace('language-', '');
   const language = languageMap[languageKey] || languageKey;
   const codeBlockName = props.name || props.path || props.filename || language;
   const copy = props.copy || false;
 
-  const initialHeight = computerHandler(codeString.trim(), 20, 25);
+  const initialHeight = computerHeader(codeString.trim(), 20, 25);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(codeString.trim()).then(() => {
@@ -153,8 +154,8 @@ const CodeBlock = ({ children, ...props }: CodeBlockProps) => {
   );
 };
 
-type ComputerHandler = (codeString: string, lineHeight: number, maxLines: number) => number;
-const computerHandler: ComputerHandler = (codeString, lineHeight, maxLines) => {
+type ComputerHeader = (codeString: string, lineHeight: number, maxLines: number) => number;
+const computerHeader: ComputerHeader = (codeString, lineHeight, maxLines) => {
   const lineCount = codeString.split('\n').length;
   return Math.min(lineCount, maxLines) * lineHeight + 10;
 };

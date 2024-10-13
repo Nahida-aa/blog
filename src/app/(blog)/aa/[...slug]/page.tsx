@@ -119,9 +119,6 @@ export default function Blog({ params }: BlogPageProps) {
   if (!mdxContent){
     notFound()
   }
-  // if (!post) {
-  //   notFound()
-  // }
 
   // 获取相关的文章和目录数据
   const relatedPosts = getRelatedPosts(blog_path)
@@ -133,14 +130,14 @@ export default function Blog({ params }: BlogPageProps) {
         {/* 结构化数据的脚本 */}
         <StructuredData blog_path={blog_path} metadata={metadata}  baseUrl={baseUrl} />
         {/* 左侧：相关文章列表 */}
-        <BlogSidebar relatedPosts={relatedPosts} />
+        <BlogSidebar PostTrees={relatedPosts} />
         <div className='pb-10 flex-1 flex w-full'>
           <div className="w-full ">
             {/* 以及控制文章列表是否展开的按钮(展开时不显示)，文章路径等信息 */}
             <Header blog_path={blog_path} />
             <div className='m-4'>
               {/* 时间等信息 */}
-              <Info blog_path={blog_path} metadata={metadata} />
+              <Info url_path={`aa/blog_path`} metadata={metadata} />
 
               <div className='flex w-full'>
                 {/* 中间：文章header+content */}
