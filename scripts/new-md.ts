@@ -11,12 +11,11 @@ const getCurrentDateTime = (): string => {
 
 // 生成元数据
 const generateMetadata = (title: string) => {
-  const currentDateTime = getCurrentDateTime();
   return `---
 title: "${title}"
-created_at: "${currentDateTime}"
-pushed_at: "${currentDateTime}"
-updated_at: "${currentDateTime}"
+created_at: "${getCurrentDateTime()}"
+pushed_at: ""
+updated_at: ""
 authors:
   - name: "Your Name"
     github: "your-github"
