@@ -1,6 +1,6 @@
 // src/app/test/layout.tsx
 import { BackgroundProvider } from "@/context/BackgroundContext";
-import { Navbar } from '@/components/layout/nav';
+import { Navbar } from '@/components/layout/Nav';
 import BackgroundImage  from '@/components/bg/BackgroundImage'
 
 export default function BlogLayout({

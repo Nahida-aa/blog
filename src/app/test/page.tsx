@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 // import MonacoEditor from '@monaco-editor/react';
-import  DayNight from '@/components/Day-night/v2';
+// import  DayNight from '@/components/Day-night/v2';
 
 // const code = `
 // def my_function():

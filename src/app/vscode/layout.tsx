@@ -1,6 +1,6 @@
 // src/app/vscode/layout.tsx
 import { BackgroundProvider } from "@/context/BackgroundContext";
-import { Navbar } from '@/components/layout/nav';
+import { Navbar } from '@/components/layout/Nav';
 import BackgroundImage  from '@/components/bg/BackgroundImage'
 import Script from 'next/script'
 

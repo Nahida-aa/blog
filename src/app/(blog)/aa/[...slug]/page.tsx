@@ -5,7 +5,9 @@ import BlogSidebar from './_components/Sidebar';
 import Header from './_components/Header';
 import MDX from './_components/MDX'; 
 import BlogToc from './_components/BlogToc';
-import { getRelatedPosts,getBlogsMetaTreeData } from './func';
+import { 
+  // getRelatedPosts,
+  getBlogsMetaTreeData } from './func';
 import StructuredData from './_components/StructuredData'
 // import { compileMDX } from 'next-mdx-remote/rsc';
 // import { Post, JsonDocMetadataTreeNode } from '@/types/mdx';

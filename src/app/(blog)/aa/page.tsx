@@ -5,11 +5,11 @@ import BlogSidebar from './[...slug]/_components/Sidebar';
 import Header from './[...slug]/_components/Header';
 // import MDX from './[...slug]/_components/MDX'; 
 // import BlogToc from './[...slug]/_components/BlogToc';
-import { blogsMetaTreeData } from './[...slug]/func';
+import { getBlogsMetaTreeData } from './[...slug]/func';
 // import StructuredData from './[...slug]/_components/StructuredData'
 // import { compileMDX } from 'next-mdx-remote/rsc';
 // import { Post, JsonDocMetadataTreeNode } from '@/types/mdx';
-import Info from './[...slug]/_components/Info';
+// import Info from './[...slug]/_components/Info';
 // import { getBlog,getToc } from '@/lib/mdx/get';
 
 
@@ -29,7 +29,7 @@ export default function BlogList() {
   //   notFound()
   // }
 
-
+  const blogsMetaTreeData = getBlogsMetaTreeData()
   return (
     <div className="flex">
       <section className='flex flex-1 basis-full max-w-full'>

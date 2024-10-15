@@ -11,15 +11,25 @@ export const getMetadataTrees = (): JsonDocMetadataTree => {
 
 export const getBlog = (blog_path: string) => {
   const postsDirectory = path.join(process.cwd(), 'src', 'app', '(blog)', 'md', 'blog');
-  let filePath = path.join(postsDirectory, `${blog_path}.mdx`);
-  let fileContent: string;
+  const mdxFilePath = path.join(postsDirectory, `${blog_path}.mdx`);
+  const mdFilePath = path.join(postsDirectory, `${blog_path}.md`);
+  let filePath = '';
+  let fileContent = '';
+
+  if (fs.existsSync(mdxFilePath)) {
+    filePath = mdxFilePath;
+  } else if (fs.existsSync(mdFilePath)) {
+    filePath = mdFilePath;
+  } else {
+    console.error(`File not found: ${mdxFilePath} or ${mdFilePath}`);
+    return { metadata: null, mdxContent: null };
+  }
 
   try {
     fileContent = fs.readFileSync(filePath, 'utf8');
   } catch (err) {
-    // 如果读取 .mdx 文件失败，尝试读取 .md 文件
-    filePath = path.join(postsDirectory, `${blog_path}.md`);
-    fileContent = fs.readFileSync(filePath, 'utf8');
+    console.error(`Failed to read file: ${filePath}`, err);
+    return { metadata: null, mdxContent: null };
   }
 
   const { metadata, content: mdxContent } = parseFrontmatter(fileContent);

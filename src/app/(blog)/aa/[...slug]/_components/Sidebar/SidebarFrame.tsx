@@ -1,6 +1,8 @@
 // src/app/(blog)/aa/[...slug]/_components/Sidebar/SidebarFrame.tsx
 "use client";
-import React, { useRef, useState } from 'react';
+import React, { useRef
+  // , useState 
+} from 'react';
 import { useSidebar } from '../context/SidebarContext';
 
 const minWidth = 128;
