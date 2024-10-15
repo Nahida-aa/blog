@@ -1,11 +1,11 @@
 import { notFound } from 'next/navigation'
 // import { getBlogPosts } from '@/lib/mdx/utils'
 import { baseUrl } from '@/lib/sitemap'
-import BlogSidebar from './_components/BlogSidebar';
+import BlogSidebar from './_components/Sidebar';
 import Header from './_components/Header';
 import MDX from './_components/MDX'; 
 import BlogToc from './_components/BlogToc';
-import { getRelatedPosts } from './func';
+import { getRelatedPosts,getBlogsMetaTreeData } from './func';
 import StructuredData from './_components/StructuredData'
 // import { compileMDX } from 'next-mdx-remote/rsc';
 // import { Post, JsonDocMetadataTreeNode } from '@/types/mdx';
@@ -111,7 +111,7 @@ export default function Blog({ params }: BlogPageProps) {
   // console.log(blog_path)
   const { metadata, mdxContent } = getBlog(blog_path)
   // console.log(`metadata, mdxContent:${metadata}, ${mdxContent}`)
-  console.log(metadata)
+  // console.log(metadata)
   const toc = getToc(blog_path)
   // console.log(toc[0])
   // const post = getBlogPosts().find((post) => post.slug === params.slug)
@@ -121,7 +121,8 @@ export default function Blog({ params }: BlogPageProps) {
   }
 
   // 获取相关的文章和目录数据
-  const relatedPosts = getRelatedPosts(blog_path)
+  // const blogsMetaTreeData = getRelatedPosts(blog_path)
+  const blogsMetaTreeData = getBlogsMetaTreeData()
 
   return (
 
@@ -129,13 +130,14 @@ export default function Blog({ params }: BlogPageProps) {
       <section className='flex flex-1 basis-full max-w-full'>
         {/* 结构化数据的脚本 */}
         <StructuredData blog_path={blog_path} metadata={metadata}  baseUrl={baseUrl} />
-        {/* 左侧：相关文章列表 */}
-        <BlogSidebar PostTrees={relatedPosts} />
+        {/* 左侧：文件列表 */}
+        <BlogSidebar PostTrees={blogsMetaTreeData} />
+        {/* 右侧 内容等 */}
         <div className='pb-10 flex-1 flex w-full'>
           <div className="w-full ">
             {/* 以及控制文章列表是否展开的按钮(展开时不显示)，文章路径等信息 */}
-            <Header blog_path={blog_path} />
-            <div className='m-4'>
+            <Header url_path={`aa/${blog_path}`} />
+            <div className='m-4 max-w-full'>
               {/* 时间等信息 */}
               <Info url_path={`aa/blog_path`} metadata={metadata} />
 

@@ -1,3 +1,4 @@
+// src/components/Day-night/v2.tsx
 "use client";
 import React, { 
   // useCallback, 
@@ -39,7 +40,7 @@ export default function DayNightToggle({ size = 3, onThemeChange }: DayNightTogg
   const { theme,
     // setTheme,
     systemTheme } = useTheme()
-  console.log(theme)
+  console.log(`src/components/Day-night/v2.tsx: theme: ${theme}`)
   
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMoved, setIsMoved] = useState(false);

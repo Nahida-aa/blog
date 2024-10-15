@@ -33,7 +33,7 @@ const updateMetadata = (filePath: string, currentDate: string) => {
     console.error(`No metadata found in ${filePath}`);
     return;
   }
-  console.log(data);
+  // console.log(data);
 
   // 更新元数据
   data.updated_at = currentDate;

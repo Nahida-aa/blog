@@ -13,7 +13,7 @@ export const TocProvider = ({ children }: { children: ReactNode }) => {
   const [isTocOpen, setTocOpen] = useState(false);
 
   const toggleToc = () => {
-    console.log('toggleToc');
+    console.log('src/context/TocContext.tsx: toc');
     setTocOpen(!isTocOpen);
   }
 

@@ -1,6 +1,6 @@
 {
   "MDX Metadata": {
-    "prefix": "mdxmeta",
+    "prefix": "mdmeta",
     "body": [
       "---",
       "title: ${1:Title}",

@@ -10,23 +10,28 @@ export const getMetadataTrees = (): JsonDocMetadataTree => {
 };
 
 export const getBlog = (blog_path: string) => {
-  const postsDirectory = path.join(process.cwd(), 'src', 'md', 'blog');
-  const filePath = path.join(postsDirectory, `${blog_path}.mdx`);
-  const fileContent = fs.readFileSync(filePath, 'utf8');
+  const postsDirectory = path.join(process.cwd(), 'src', 'app', '(blog)', 'md', 'blog');
+  let filePath = path.join(postsDirectory, `${blog_path}.mdx`);
+  let fileContent: string;
+
+  try {
+    fileContent = fs.readFileSync(filePath, 'utf8');
+  } catch (err) {
+    // 如果读取 .mdx 文件失败，尝试读取 .md 文件
+    filePath = path.join(postsDirectory, `${blog_path}.md`);
+    fileContent = fs.readFileSync(filePath, 'utf8');
+  }
+
   const { metadata, content: mdxContent } = parseFrontmatter(fileContent);
-  // const ret = { metadata, mdxContent }
-  // // console.log(ret)
-  // const { metadata: retmd, mdxContent: mc } = ret;
-  // console.log(retmd)
   return { metadata, mdxContent };
 };
-
 
 interface TocEntry {
   path: string;
   toc: MdTreeToc;
   children: TocEntry[];
 }
+
 export const getToc = (blog_path: string): MdTreeToc => {
   const tocFilePath = path.join(process.cwd(), 'public', 'data', 'toc.json');
   const tocData: TocEntry[] = JSON.parse(fs.readFileSync(tocFilePath, 'utf8'));

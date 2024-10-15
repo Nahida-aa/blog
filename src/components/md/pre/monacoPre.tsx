@@ -74,6 +74,7 @@ const OnlyReadEditor = ({ value, language, path, initialHeight, loadingComponent
   return (
     <>
       <MonacoEditor
+        width="100%"
         height={editorHeight}
         language={language}
         value={value}
@@ -83,6 +84,11 @@ const OnlyReadEditor = ({ value, language, path, initialHeight, loadingComponent
           readOnly: true,
           minimap: { enabled: false },
           scrollBeyondLastLine: false,
+          // lineNumbers: 'off', // 隐藏行号
+          glyphMargin: false, // 隐藏左侧空白
+          // folding: false, // 隐藏代码折叠
+          lineDecorationsWidth: 0, // 隐藏行号右侧空白
+          lineNumbersMinChars: 0, // 隐藏行号左侧空白
           hover: {
             sticky: true,
           },
@@ -97,7 +103,7 @@ const OnlyReadEditor = ({ value, language, path, initialHeight, loadingComponent
           },
         }}
         onMount={handleEditorDidMount}
-        loading={<div style={{ position: 'absolute', top: -8, left: 54 }}>{loadingComponent}</div>}
+        loading={<div style={{ position: 'absolute', top: -8, left: 22 }}>{loadingComponent}</div>}
       />
     </>
   );
@@ -116,7 +122,7 @@ const CodeBlock = ({ children, ...props }: CodeBlockProps) => {
 
   const { className, children: codeStringProp, ...rest } = children.props;
   const codeString = (codeStringProp || '').toString();
-  const languageKey = className.replace('language-', '');
+  const languageKey = className ? className.replace('language-', '') : 'plaintext'
   const language = languageMap[languageKey] || languageKey;
   const codeBlockName = props.name || props.path || props.filename || language;
   const copy = props.copy || false;

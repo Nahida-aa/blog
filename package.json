@@ -6,7 +6,7 @@
     "dev": "next dev",
     "new-md": "bun scripts/new-md.ts",
     "build-data": "bun run scripts/generateData.ts",
-    "build": "next build && pnpm build-data",
+    "build": "pnpm build-data && next build",
     "start": "next start",
     "lint": "next lint"
   },

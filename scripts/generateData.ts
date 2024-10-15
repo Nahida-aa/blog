@@ -1,11 +1,11 @@
 // scripts/generateData.ts
-import fs from 'fs';
-import path from 'path';
+import fs from 'fs'
+import path from 'path'
 import  generateTreeToc from '../src/lib/mdx/toc/generateTreeToc';
 import { parseFrontmatter } from '../src/lib/mdx/parseMatter';
 import { MdxMetadata, MdTreeToc, JsonDocMetadataTreeNode, JsonDocTocTreeNode } from '../src/types/mdx';
 
-const postsDirectory = path.join(process.cwd(), 'src', 'md', 'blog');
+const postsDirectory = path.join(process.cwd(), 'src','app','(blog)', 'md', 'blog');
 const outputDirectory = path.join(process.cwd(), 'public', 'data');
 const metadataFilePath = path.join(outputDirectory, 'metadata.json');
 const tocFilePath = path.join(outputDirectory, 'toc.json');
@@ -21,17 +21,17 @@ const generateTreeData = (directory: string, basePath: string = ''): { metadataT
     if (entry.isDirectory()) {
       const { metadataTree, tocTree, staticParams } = generateTreeData(fullPath, relativePath);
       acc.metadataTree.push({
-        path: relativePath.replace(/\\/g, '/'),
+        path: relativePath.replace(/\\/g, '/') + '/', // 目录以斜杠结尾
         metadata: {} as MdxMetadata,
         children: metadataTree,
       });
       acc.tocTree.push({
-        path: relativePath.replace(/\\/g, '/'),
+        path: relativePath.replace(/\\/g, '/') + '/', // 目录以斜杠结尾
         toc: [] as MdTreeToc,
         children: tocTree,
       });
       acc.staticParams.push(...staticParams);
-    } else if (entry.isFile() && entry.name.endsWith('.mdx')) {
+    } else if (entry.isFile() && (entry.name.endsWith('.mdx') || entry.name.endsWith('.md'))) {
       const fileContent = fs.readFileSync(fullPath, 'utf8');
       const { metadata, content } = parseFrontmatter(fileContent);
       const toc = generateTreeToc(content);
@@ -48,6 +48,7 @@ const generateTreeData = (directory: string, basePath: string = ''): { metadataT
       });
       acc.staticParams.push({
         slug: relativePath.replace(/\\/g, '/').replace(/\.mdx?$/, '').split('/'),
+        // slug: relativePath.replace(/\\/g, '/').replace(/\.(mdx|md)$/, '').split('/'),
       });
     }
     return acc;

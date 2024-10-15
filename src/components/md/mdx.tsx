@@ -14,6 +14,7 @@ import remarkMath from 'remark-math' // 用于将 math 标记为 code and pre/co
 import rehypeKatex from 'rehype-katex'
 // import rehypeMathjax from 'rehype-mathjax'
 import rehypeMdxCodeProps from 'rehype-mdx-code-props'
+import mdxErrorHandler from '@/lib/mdx/parse/error-handler'
 
 // import rehypeSlug from 'rehype-slug';
 // import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -31,7 +32,7 @@ export async function CustomMDX(props: MDXRemoteProps) {
     // https://mdxjs.com/packages/mdx/#compilefile-options
     mdxOptions: {
       // jsx: true,
-      remarkPlugins: [ remarkGfm,remarkMath],
+      remarkPlugins: [ mdxErrorHandler,remarkGfm,remarkMath],
       rehypePlugins: [
         rehypeKatex,
         // rehypeMathjax,

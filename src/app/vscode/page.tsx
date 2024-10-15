@@ -43,7 +43,7 @@ function greet() {
 
 greet();`}
         options={{
-          readOnly: true, // 设置为只读模式
+          // readOnly: true, // 设置为只读模式
           minimap: { enabled: false },
           scrollBeyondLastLine: false,
           hover: { sticky: true },

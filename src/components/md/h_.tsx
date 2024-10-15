@@ -5,10 +5,12 @@ import { Heading1, Heading2, Heading3, Heading4, Heading5, Heading6 } from 'luci
 
 function createHeading(level: number) {
   const Heading = ({ children, ...props }: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>) => {
-    const slug = text2slug(children as string);
+    const content = children || ''; // 如果 children 为空，则使用空字符串
+    const slug = text2slug(content as string);
+
     return (
       <div className="heading-container">
-        {React.createElement(`h${level}`, { id: slug, className: 'heading-element', ...props }, children)}
+        {React.createElement(`h${level}`, { id: slug, className: 'heading-element', ...props }, content)}
         <a href={`#${slug}`} className="anchor">
           {level === 1 && <Heading1 size={16} />}
           {level === 2 && <Heading2 size={16} />}
@@ -25,7 +27,6 @@ function createHeading(level: number) {
 
   return Heading;
 }
-
 
 export const H1 = createHeading(1);
 export const H2 = createHeading(2);
