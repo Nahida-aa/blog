@@ -8,8 +8,14 @@
 @import './glow/cursor.css';
 @import './glow/animate.css';
 
+@font-face {
+  font-family: 'XiaolaiMonoSC';
+  src: url('/fonts/XiaolaiMonoSC-Regular.ttf') format('truetype');
+  font-weight: normal; /* 默认权重: 400 | bold:700 | bolder: 比父元素更粗 */ 
+  font-style: normal; /* 默认样式 */
+}
 body {
-  font-family: var(--font-geist-sans), monospace;
+  font-family: 'XiaolaiMonoSC', monospace;
   font-feature-settings: 'calt', 'liga', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'ss09';
   /* color: rgb(var(--foreground-rgb)); */
   background: linear-gradient(
@@ -18,6 +24,10 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+:root {
+  --sidebar-width: 256px; /* 默认宽度 */
 }
 /* body {
   font-family: Arial, Helvetica, sans-serif;

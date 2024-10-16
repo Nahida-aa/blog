@@ -1,0 +1,314 @@
+---
+title: "code-highlight"
+pushed_at: "2024-10-04"
+updated_at: "2024-10-05"
+tags: ['mdx', 'sugar-high']
+description: 'mdx代码高亮, Monaco Editor 使用 TextMate 语法高亮规则和 Tree-sitter 解析器来解析和高亮代码'
+---
+
+# code-highlight with monaco-editor
+
+使用 Monaco Editor 实现代码高亮和语法解析。
+
+> Monaco Editor 使用 TextMate 语法高亮规则和 Tree-sitter 解析器来解析和高亮代码。
+
+## test
+
+```md
+# code-highlight with monaco-editor
+> Monaco Editor 使用 TextMate 语法高亮规则和 Tree-sitter 解析器来解析和高亮代码。
+```
+```mdx
+# code-highlight with monaco-editor
+> Monaco Editor 使用 TextMate 语法高亮规则和 Tree-sitter 解析器来解析和高亮代码。
+```
+
+```html
+<!--  -->
+```
+
+$y = sin(x)$
+
+$$
+y = e^x
+$$
+
+要在 MDX 渲染的前端代码块中实现代码提示效果，可以使用以下工具和库：
+
+1. **Prism.js**:
+   - Prism.js 是一个轻量级、可扩展的语法高亮库，适用于现代 web 开发。它支持多种语言和插件，能提供良好的代码高亮效果。
+   - 官网：[Prism.js](https://prismjs.com)
+
+2. **react-syntax-highlighter**:
+   - 这是一个基于 React 的语法高亮组件，支持多种语法高亮库（包括 Prism.js 和 Highlight.js）。
+   - GitHub 仓库：[react-syntax-highlighter](https://github.com/react-syntax-highlighter/react-syntax-highlighter)
+
+3. **Monaco Editor**:
+   - Monaco Editor 是 Visual Studio Code 使用的代码编辑器，支持丰富的代码提示和语法高亮功能。可以嵌入到 web 应用中。
+   - 官网：[Monaco Editor](https://microsoft.github.io/monaco-editor/)
+
+4. **CodeMirror**:
+   - CodeMirror 是一个用于在浏览器中实现代码编辑功能的库，支持多种语言的语法高亮和代码提示。
+   - 官网：[CodeMirror](https://codemirror.net/)
+
+### 示例代码
+
+以下是一个使用 `react-syntax-highlighter` 和 `Prism.js` 实现代码高亮的示例：
+
+```jsx name="CodeBlock.jsx"
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { okaidia } from 'react-syntax-highlighter/dist/esm/styles/prism';
+
+const codeString = `
+/// <reference types="node" />
+const fs = require('fs');
+`;
+
+const CodeBlock = () => (
+  <SyntaxHighlighter language="javascript" style={okaidia}>
+    {codeString}
+  </SyntaxHighlighter>
+);
+
+export default CodeBlock;
+```
+
+将上述代码块嵌入到你的 MDX 文件中即可实现代码高亮效果。你可以根据需要选择不同的语法高亮库和样式。
+
+```sh
+npm install @monaco-editor/react
+```
+
+## mdx
+
+### compile time
+
+### runtime
+
+````mdx
+```py copy="true" path="example.py"
+def foo():
+  return 'bar'
+```
+to
+```jsx
+<>
+<pre copy="true" path="example.py"><code class="language-py">def foo():
+  return 'bar'
+</code></pre>
+</>
+```
+````
+
+
+
+```py copy="true" path="example.py"
+def foo():
+  return 'bar'
+```
+
+## vscode-theme
+
+### VS Code 主题
+
+1. **配置文件**：
+   - VS Code 主题通常使用 JSON 文件来定义颜色和样式。
+   - 主题文件通常位于 `.vscode` 文件夹中，或者作为 VS Code 扩展的一部分发布。
+
+2. **作用范围**：
+   - VS Code 主题不仅影响代码编辑器，还影响整个 VS Code 界面，包括侧边栏、状态栏、活动栏等。
+
+3. **语法高亮**：
+   - VS Code 使用 TextMate 语法定义文件（通常是 `.tmLanguage` 或 `.plist` 文件）来定义语法高亮规则。
+   - 主题文件中可以指定不同语法元素的颜色和样式。
+
+4. **扩展性**：
+   - 可以通过 VS Code 扩展市场发布和分享主题。
+   - 可以使用 VS Code API 来动态更改主题设置。
+
+### Monaco Editor 主题
+
+1. **配置文件**：
+   - Monaco Editor 主题通常使用 JavaScript 或 JSON 文件来定义颜色和样式。
+   - 主题文件通常直接在代码中定义，并通过 Monaco Editor 的 API 应用。
+
+2. **作用范围**：
+   - Monaco Editor 主题仅影响代码编辑器本身，不影响其他 UI 元素。
+
+3. **语法高亮**：
+   - Monaco Editor 使用内置的语法解析器和高亮规则。
+   - 可以通过 Monaco Editor 的 API 自定义语法高亮规则。
+
+4. **扩展性**：
+   - 主题通常作为应用的一部分，而不是单独的扩展。
+   - 可以通过 Monaco Editor 的 API 动态更改主题设置。
+
+### 示例
+
+#### VS Code 主题示例
+
+```ts copy="ture" path="type.ts" onOpen={props.openDemo} {...props}
+type vscodeThemeJSON = {
+  name: string
+  type: 'dark' | 'light'
+  semanticHighlighting: boolean // 是否启用语义高亮(即将使用语言服务器提供的语义信息来高亮)
+  colors: {
+    [key: string]: string
+  };
+  tokenColors: {
+    name?: string
+    scope: string | string[]
+    settings: {
+      [key: string]: string
+    };
+  }[];
+};
+```
+
+```jsonc copy="ture" path="aa-theme.json"  onOpen={props.openDemo} {...props}
+{
+  "name": "aa Theme",
+  "type": "dark",
+  "colors": {
+    "editor.background": "#1E1E1E", // 编辑器背景颜色
+    "editor.foreground": "#D4D4D4", // 编辑器前景颜色（默认文本颜色）
+    "editor.lineHighlightBackground": "#3A3D41", // 当前行高亮背景颜色
+    "editor.selectionBackground": "#264F78", // 选中文本背景颜色
+    "editorCursor.foreground": "#528BFF", // 光标颜色
+    "editorWhitespace.foreground": "#3B3A32", // 空白字符颜色
+    "editorIndentGuide.background": "#3B3A32", // 缩进指导线颜色
+    "editorLineNumber.foreground": "#858585", // 行号颜色
+  },
+  "tokenColors": [
+    {
+      "scope": "comment",
+      "settings": {
+        "foreground": "#848bbd",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "scope": "keyword",
+      "settings": {
+        "foreground": "#569CD6"
+      }
+    }
+  ]
+}
+```
+
+#### Monaco Editor 主题示例
+
+```js
+monaco.editor.defineTheme('myCoolTheme', {
+  base: 'vs-dark',
+  inherit: true,
+  rules: [
+    { token: 'comment', foreground: '6A9955' },
+    { token: 'keyword', foreground: '569CD6' }
+  ],
+  colors: {
+    'editor.background': '#1E1E1E',
+    'editor.foreground': '#D4D4D4'
+  }
+});
+
+monaco.editor.setTheme('myCoolTheme');
+```
+
+
+
+### code-demo
+
+#### python
+    
+```py
+# 这是一个单行注释 NOTE|XXX|HACK|FIXME|BUG|TODO
+#NOTE|XXX|HACK|FIXME|BUG|TODO
+#这是NOTE|XXX|HACK|FIXME|BUG|TODO
+# type: python xxx
+#type: python
+"""
+这是一个多行注释（文档字符串）
+"""
+; # type: ignore
+a = 'a'  # type: str
+# keyword.control.import.python 	
+# keyword.control.flow.python
+# from, as 可能来自于扩展
+from xxlimited import foo
+import numpy as np  # 导入模块
+# 导入变量, 函数, 类,模块
+from numpy import exp, array, random
+import scrapy
+
+with open('file.txt', 'r') as file:  # 打开文件
+    for line in file:  # 循环
+        print(line)  # 打印
+
+async def bar():
+    pass
+
+class MyClass(object):  # 类声明
+    """
+    usage:
+    >>> my_instance = MyClass(10)
+    """
+    def __init__(self, value):  # 函数声明
+        self.value = value  # 赋值操作符
+        self.attribute = 0  # 赋值操作符
+
+    def my_method(self):  # 函数声明
+        # 生成器表达式
+        return (x * x for x in range(10))
+
+    @staticmethod
+    def static_method():  # 静态方法
+        pass
+
+    @classmethod
+    def class_method(cls):  # 类方法
+        pass
+
+    @property
+    def my_property(self):  # 属性
+        return self.value
+
+# 语句关键字
+if __name__ == "__main__":
+    PI = 3.14159  # 变量声明
+    my_instance = MyClass(10)  # 赋值操作符
+    print(my_instance.my_method())  # 函数调用
+    print(my_instance.my_property)  # 属性访问
+
+    # 使用分号分隔语句
+    a = 1; b = 2; c = a + b
+
+    # 文档字符串
+    def example_function():
+        """
+        这是一个文档字符串
+        """
+        pass
+
+    # 装饰器
+    @example_function
+    def decorated_function():
+        pass
+
+    # 生成器
+    def generator():
+        yield 1
+        yield 2
+        yield 3
+
+    for value in generator():
+        print(value)
+```
+
+#### tsx
+```tsx
+<EmptyLines count="2" />
+
+<EmptyLines count="2" />
+```

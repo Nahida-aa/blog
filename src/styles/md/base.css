@@ -87,7 +87,8 @@
 }
 
 .prose strong {
-  @apply font-medium;
+  /* @apply font-medium; */
+  /* font-weight: bolder; */
 }
 
 .prose ul {

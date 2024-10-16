@@ -22,7 +22,7 @@ const OnlyReadEditor = ({ value, language, path, initialHeight, loadingComponent
   // const editorRef = useRef<monaco_editor.editor.IStandaloneCodeEditor | null>(null);
 
   useEffect(() => {
-    const height = computerHeader(value, 20, 25);
+    const height = computerHeight(value, 20, 25);
     setEditorHeight(height);
   }, [value]);
 
@@ -74,14 +74,13 @@ const OnlyReadEditor = ({ value, language, path, initialHeight, loadingComponent
   return (
     <>
       <MonacoEditor
-        width="100%"
         height={editorHeight}
         language={language}
         value={value}
         path={path}
         theme="aaTheme"
         options={{
-          readOnly: true,
+          // readOnly: true,
           minimap: { enabled: false },
           scrollBeyondLastLine: false,
           // lineNumbers: 'off', // 隐藏行号
@@ -89,9 +88,7 @@ const OnlyReadEditor = ({ value, language, path, initialHeight, loadingComponent
           // folding: false, // 隐藏代码折叠
           lineDecorationsWidth: 0, // 隐藏行号右侧空白
           lineNumbersMinChars: 0, // 隐藏行号左侧空白
-          hover: {
-            sticky: true,
-          },
+          hover: { sticky: true },
           fontSize: 14,
           lineHeight: 20,
           fontFamily: "CodeNewRoman Nerd Font Mono",
@@ -114,7 +111,7 @@ interface CodeBlockProps extends React.DetailedHTMLProps<React.HTMLAttributes<HT
   name?: string;
   path?: string;
   filename?: string;
-  copy?: boolean;
+  copy?: string;
 }
 const CodeBlock = ({ children, ...props }: CodeBlockProps) => {
   const [copied, setCopied] = useState(false);
@@ -125,9 +122,9 @@ const CodeBlock = ({ children, ...props }: CodeBlockProps) => {
   const languageKey = className ? className.replace('language-', '') : 'plaintext'
   const language = languageMap[languageKey] || languageKey;
   const codeBlockName = props.name || props.path || props.filename || language;
-  const copy = props.copy || false;
+  const copy = props.copy !== '0'
 
-  const initialHeight = computerHeader(codeString.trim(), 20, 25);
+  const initialHeight = computerHeight(codeString.trim(), 20, 25);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(codeString.trim()).then(() => {
@@ -139,7 +136,7 @@ const CodeBlock = ({ children, ...props }: CodeBlockProps) => {
   };
 
   return (
-    <pre ref={containerRef} className={`w-full max-h-[60vh] overflow-auto resize-y min-h-[${60}px] ${className}`} {...props}>
+    <pre ref={containerRef} className={` flex flex-col w-full max-h-[60vh]  resize-y min-h-[${60}px] ${className}`} {...props}>
       {codeBlockName && (
         <nav className='flex items-center justify-between h-8'>
           <div className=' ml-2 px-2 flex items-center'>
@@ -160,8 +157,8 @@ const CodeBlock = ({ children, ...props }: CodeBlockProps) => {
   );
 };
 
-type ComputerHeader = (codeString: string, lineHeight: number, maxLines: number) => number;
-const computerHeader: ComputerHeader = (codeString, lineHeight, maxLines) => {
+type ComputerHeight = (codeString: string, lineHeight: number, maxLines: number) => number;
+const computerHeight: ComputerHeight = (codeString, lineHeight, maxLines) => {
   const lineCount = codeString.split('\n').length;
   return Math.min(lineCount, maxLines) * lineHeight + 10;
 };
@@ -171,7 +168,7 @@ interface PreProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLPreE
   name?: string;
   path?: string;
   filename?: string;
-  copy?: boolean;
+  copy?: string
 }
 export const Pre = ({ children, ...props }: PreProps) => {
   if (React.isValidElement(children) && children.props && children.type === 'code') return <CodeBlock {...props}>{children}</CodeBlock>;

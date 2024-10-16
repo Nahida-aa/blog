@@ -8,15 +8,15 @@ import { ThemeProvider } from "@/components/provider/theme-provider";
 
 const geistSans = localFont({
   // src: "../../public/fonts/GeistVF.woff",
-  src: "../../public/fonts/XiaolaiMonoSC-without-Hangul-Regular.ttf",
+  src: "../../public/fonts/XiaolaiMonoSC-Regular.ttf",
   variable: "--font-geist-sans",
-  weight: "100 900",
+  // weight: "100 900",
 });
 const geistMono = localFont({
   // src: "../../public/fonts/GeistMonoVF.woff",
-  src: "../../public/fonts/XiaolaiMonoSC-without-Hangul-Regular.ttf",
+  src: "../../public/fonts/XiaolaiMonoSC-Regular.ttf",
   variable: "--font-geist-mono",
-  weight: "100 900",
+  // weight: "100 900",
 });
 
 export const metadata: Metadata = {

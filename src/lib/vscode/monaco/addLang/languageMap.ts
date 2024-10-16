@@ -1,4 +1,5 @@
 export const languageMap: { [key: string]: string } = {
+  md: 'markdown',
   jsx: 'javascript',
   js: 'javascript',
   mjs: 'javascript',

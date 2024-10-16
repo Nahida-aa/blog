@@ -106,16 +106,20 @@ export async function generateStaticParams() {
 interface BlogPageProps {
   params: {
     slug: string[];
-  };
+  },
+  searchParams: {
+    plain?: string
+  }
 }
-export default function Blog({ params }: BlogPageProps) {
+export default function Blog({ params, searchParams }: BlogPageProps) {
+  console.log(`searchParams: ${JSON.stringify(searchParams, null, 2)}`)
   const blog_path = params.slug.join('/');
   // console.log(blog_path)
   const { metadata, mdxContent } = getBlog(blog_path)
   // console.log(`metadata, mdxContent:${metadata}, ${mdxContent}`)
   // console.log(metadata)
   const toc = getToc(blog_path)
-  // console.log(toc[0])
+  // console.log(`toc: ${JSON.stringify(toc, null, 2)}`)
   // const post = getBlogPosts().find((post) => post.slug === params.slug)
 
   if (!mdxContent){
@@ -135,7 +139,7 @@ export default function Blog({ params }: BlogPageProps) {
         {/* 左侧：文件列表 */}
         <BlogSidebar PostTrees={blogsMetaTreeData} />
         {/* 右侧 内容等 */}
-        <div className='pb-10 flex-1 flex w-full'>
+        <div className='pb-10 flex-1 flex w-[calc(100%-var(--sidebar-width)-1px)]'>
           <div className="w-full ">
             {/* 以及控制文章列表是否展开的按钮(展开时不显示)，文章路径等信息 */}
             <Header url_path={`aa/${blog_path}`} />
@@ -145,7 +149,7 @@ export default function Blog({ params }: BlogPageProps) {
 
               <div className='flex w-full'>
                 {/* 中间：文章header+content */}
-                <MDX content={mdxContent} />
+                <MDX content={mdxContent} searchParams={searchParams} />
                 {/* 右侧：文章内部大纲 */}
                 <BlogToc toc={toc} />
               </div>

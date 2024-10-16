@@ -5,14 +5,16 @@ import { JsonDocMetadataTreeNode } from '@/types/mdx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef } from 'react';
-import { useSidebarExpandedNodes } from '../context/SidebarExpandedNodesContext';
+import { useSidebarExpandedNodes } from '../context/SidebarExpandedNodesContext'
+import { highlightText } from '../../_util/highlightText'
 
 interface PostNodeProps {
   nodes: JsonDocMetadataTreeNode[];
   depth: number;
+  searchTerm: string;
 }
 
-const PostNode: React.FC<PostNodeProps> = ({ nodes, depth }) => {
+const PostNode: React.FC<PostNodeProps> = ({ nodes, depth, searchTerm }) => {
   const { expandedNodes, toggleNode, setExpandedNodes } = useSidebarExpandedNodes();
   const currentPath = usePathname();
   const initialRender = useRef(true);
@@ -45,9 +47,27 @@ const PostNode: React.FC<PostNodeProps> = ({ nodes, depth }) => {
     return 0;
   });
 
+  const filterNodes = (nodes: JsonDocMetadataTreeNode[], searchTerm: string): JsonDocMetadataTreeNode[] => {
+    return nodes
+      .map(node => {
+        const filteredChildren = filterNodes(node.children, searchTerm);
+        const displayName = node.path.split('/').filter(Boolean).pop()?.replace(/\.mdx$/, '') || node.path;
+        if (displayName.toLowerCase().includes(searchTerm.toLowerCase()) || filteredChildren.length > 0) {
+          return {
+            ...node,
+            children: filteredChildren,
+          };
+        }
+        return null;
+      })
+      .filter(node => node !== null) as JsonDocMetadataTreeNode[];
+  };
+
+  const filteredNodes = filterNodes(sortedNodes, searchTerm);
+
   return (
     <ul>
-      {sortedNodes.map((node) => {
+      {filteredNodes.map((node) => {
         const isActive = currentPath === `/aa/${node.path.replace(/\.mdx?$/, '')}`;
         const isDirectory = node.path.endsWith('/');
         const displayName = node.path.split('/').filter(Boolean).pop()?.replace(/\.mdx$/, '') || node.path;
@@ -81,11 +101,11 @@ const PostNode: React.FC<PostNodeProps> = ({ nodes, depth }) => {
                 ) : (
                   <BookMarked size={16} className='w-4 h-4 min-w-4' />
                 )}
-                <span className='truncate flex-grow'>{node.metadata.title || displayName}</span>
+                <span className='truncate flex-grow'>{highlightText(displayName, searchTerm)}</span>
               </Link>
             </div>
             {expandedNodes[node.path] && isDirectory && (
-              <PostNode nodes={node.children} depth={depth + 1} />
+              <PostNode nodes={node.children} depth={depth + 1} searchTerm={searchTerm} />
             )}
           </li>
         );
@@ -94,8 +114,8 @@ const PostNode: React.FC<PostNodeProps> = ({ nodes, depth }) => {
   );
 };
 
-const PostTree: React.FC<{ nodes: JsonDocMetadataTreeNode[], depth: number }> = ({ nodes, depth }) => {
-  return <PostNode nodes={nodes} depth={depth} />;
+const PostTree: React.FC<{ nodes: JsonDocMetadataTreeNode[], depth: number, searchTerm: string }> = ({ nodes, depth, searchTerm }) => {
+  return <PostNode nodes={nodes} depth={depth} searchTerm={searchTerm} />;
 };
 
 export default PostTree;

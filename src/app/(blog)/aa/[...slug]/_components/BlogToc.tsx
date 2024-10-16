@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { MdTreeToc, MdTocTreeNode } from '@/types/mdx';
 import { ChevronRight, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
+import { highlightText } from '../_util/highlightText'
 
 interface BlogTocProps {
   toc: MdTreeToc;
@@ -78,15 +79,21 @@ export default function BlogToc({ toc }: BlogTocProps) {
 
   const filterToc = (nodes: MdTocTreeNode[], searchTerm: string): MdTocTreeNode[] => {
     return nodes
-      .filter(node => node.text.toLowerCase().includes(searchTerm.toLowerCase()))
-      .map(node => ({
-        ...node,
-        children: filterToc(node.children, searchTerm),
-      }));
+      .map(node => {
+        const filteredChildren = filterToc(node.children, searchTerm);
+        if (node.text.toLowerCase().includes(searchTerm.toLowerCase()) || filteredChildren.length > 0) {
+          return {
+            ...node,
+            children: filteredChildren,
+          };
+        }
+        return null;
+      })
+      .filter(node => node !== null) as MdTocTreeNode[];
   };
 
+
   const handleNavClick = () => {
-    // console.log('handleNavClick');
     if (isMobile) {
       toggleToc();
     }
@@ -114,7 +121,7 @@ export default function BlogToc({ toc }: BlogTocProps) {
                 <span className='w-4 h-full' />
               )}
               <Link href={`#${node.anchor}`} className='flex items-center gap-2 p-1.5' style={{ width: 'calc(100% - 16px)' }} onClick={handleNavClick}>
-                <span className='truncate flex-grow'>{node.text}</span>
+                <span className='truncate flex-grow'>{highlightText(node.text, searchTerm)}</span>
               </Link>
             </div>
             {expandedNodes.has(node.anchor) && hasChildren && renderToc(node.children, depth + 1)}

@@ -15,3 +15,7 @@ description: python base, list, tuple
 draft: false
 ---
 # python-base
+```py
+def hello():
+    print('hello world')
+```
