@@ -1,16 +1,33 @@
 "use server";
 import React from 'react';
 import { text2slug } from '@/lib/util/slug';
-import { Heading1, Heading2, Heading3, Heading4, Heading5, Heading6 } from 'lucide-react'
+import { Heading1, Heading2, Heading3, Heading4, Heading5, Heading6 } from 'lucide-react';
 
 function createHeading(level: number) {
   const Heading = ({ children, ...props }: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>) => {
-    const content = children || ''; // 如果 children 为空，则使用空字符串
-    const slug = text2slug(content as string);
+    // console.log('src/components/md/h_.tsx: createHeading: Heading: children:', children);
+
+    // 辅助函数：递归地将 children 转换为字符串，同时保留其 HTML 结构
+    const convertChildrenToString = (children: React.ReactNode): string => {
+      if (typeof children === 'string') {
+        return children;
+      }
+      if (React.isValidElement(children)) {
+        return convertChildrenToString(children.props.children);
+      }
+      if (Array.isArray(children)) {
+        return children.map(convertChildrenToString).join('');
+      }
+      return '';
+    };
+
+    const content = convertChildrenToString(children ?? '');
+
+    const slug = text2slug(content);
 
     return (
       <div className="heading-container">
-        {React.createElement(`h${level}`, { id: slug, className: 'heading-element', ...props }, content)}
+        {React.createElement(`h${level}`, { id: slug, className: 'heading-element', ...props }, children)}
         <a href={`#${slug}`} className="anchor">
           {level === 1 && <Heading1 size={16} />}
           {level === 2 && <Heading2 size={16} />}

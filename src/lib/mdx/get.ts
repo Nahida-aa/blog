@@ -8,23 +8,17 @@ export const getMetadataTrees = (): JsonDocMetadataTree => {
   const metadataFilePath = path.join(process.cwd(), 'public', 'data', 'metadata.json');
   const metadataTree: JsonDocMetadataTree = JSON.parse(fs.readFileSync(metadataFilePath, 'utf8'));
   return metadataTree;
-};
+}
 
 export const getBlog = (blog_path: string) => {
   const postsDirectory = path.join(process.cwd(), 'src', 'app', '(blog)', 'md', 'blog');
-  const mdxFilePath = path.join(postsDirectory, `${blog_path}.mdx`);
-  const mdFilePath = path.join(postsDirectory, `${blog_path}.md`);
-  let filePath = '';
+  const filePath = path.join(postsDirectory, `${blog_path}`)
   let fileContent = '';
 
-  if (fs.existsSync(mdxFilePath)) {
-    filePath = mdxFilePath;
-  } else if (fs.existsSync(mdFilePath)) {
-    filePath = mdFilePath;
-  } else {
-    console.error(`File not found: ${mdxFilePath} or ${mdFilePath}`);
+  if (!fs.existsSync(filePath)) {
+    console.error(`File not found: ${filePath}`);
     return { metadata: null, mdxContent: null };
-  }
+  } 
 
   try {
     fileContent = fs.readFileSync(filePath, 'utf8');
@@ -67,18 +61,12 @@ export const getToc_from_tocsJson = (blog_path: string): MdTreeToc => {
 }
 export const getToc_from_md = (blog_path: string): MdTreeToc => {
   const postsDirectory = path.join(process.cwd(), 'src', 'app', '(blog)', 'md', 'blog');
-  const mdxFilePath = path.join(postsDirectory, `${blog_path}.mdx`);
-  const mdFilePath = path.join(postsDirectory, `${blog_path}.md`);
-  let filePath = '';
+  const filePath = path.join(postsDirectory, `${blog_path}`)
   let fileContent = '';
 
-  if (fs.existsSync(mdxFilePath)) {
-    filePath = mdxFilePath;
-  } else if (fs.existsSync(mdFilePath)) {
-    filePath = mdFilePath;
-  } else {
-    console.error(`File not found: ${mdxFilePath} or ${mdFilePath}`);
-    return [];
+  if (!fs.existsSync(filePath)) {
+    console.error(`File not found: ${filePath}`);
+    return []
   }
 
   try {

@@ -9,5 +9,6 @@ export function slugify(str: string) {
     .replace(/\-\-+/g, '-') // Replace multiple - with single -
 }
 export function text2slug(str: string) {
+  // console.log(`DEBUG:text2slug: ${str}`)
   return str.toLowerCase().replace(/\s+/g, '-')
 }

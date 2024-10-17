@@ -20,7 +20,7 @@ export default function Code({ content }: CodeViewerProps) {
     });
   }, []);
   return (
-    <div className="max-w-[1012px] mx-auto rounded-md h-[90vh] overflow-hidden">
+    <div className="max-w-[1012px] mx-auto rounded-md h-[90vh] ">
       <Script src="/vscode/Comet.js" strategy="lazyOnload" />
       <MonacoEditor
         theme='aaTheme'
@@ -36,8 +36,9 @@ export default function Code({ content }: CodeViewerProps) {
           fontLigatures: "'calt', 'liga', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'ss09'",
           cursorStyle: 'block',
           scrollbar: {
-            vertical: 'hidden',
-            horizontal: 'hidden'
+            // vertical: 'hidden',
+            // horizontal: 'hidden',
+            alwaysConsumeMouseWheel: false, // 不总是 消耗鼠标滚轮事件,即当滚动条到底部时，继续滚动鼠标滚轮，页面也会滚动
           }
         }}
       />

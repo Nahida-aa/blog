@@ -47,8 +47,9 @@ const generateTreeData = (directory: string, basePath: string = ''): { metadataT
         children: [],
       });
       acc.staticParams.push({
-        slug: relativePath.replace(/\\/g, '/').replace(/\.mdx?$/, '').split('/'),
+        // slug: relativePath.replace(/\\/g, '/').replace(/\.mdx?$/, '').split('/'),
         // slug: relativePath.replace(/\\/g, '/').replace(/\.(mdx|md)$/, '').split('/'),
+        slug: relativePath.replace(/\\/g, '/').split('/')
       });
     }
     return acc;

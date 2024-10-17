@@ -51,7 +51,7 @@ const PostNode: React.FC<PostNodeProps> = ({ nodes, depth, searchTerm }) => {
     return nodes
       .map(node => {
         const filteredChildren = filterNodes(node.children, searchTerm);
-        const displayName = node.path.split('/').filter(Boolean).pop()?.replace(/\.mdx$/, '') || node.path;
+        const displayName = node.path.split('/').filter(Boolean).pop() || node.path
         if (displayName.toLowerCase().includes(searchTerm.toLowerCase()) || filteredChildren.length > 0) {
           return {
             ...node,
@@ -68,14 +68,14 @@ const PostNode: React.FC<PostNodeProps> = ({ nodes, depth, searchTerm }) => {
   return (
     <ul>
       {filteredNodes.map((node) => {
-        const isActive = currentPath === `/aa/${node.path.replace(/\.mdx?$/, '')}`;
+        const isActive = currentPath === `/aa/${node.path}`;
         const isDirectory = node.path.endsWith('/');
-        const displayName = node.path.split('/').filter(Boolean).pop()?.replace(/\.mdx$/, '') || node.path;
+        const displayName = node.path.split('/').filter(Boolean).pop() || node.path;
 
         // 如果是目录，链接导向对应目录下的 readme.mdx
         const linkPath = isDirectory
-          ? `/aa/${node.path}readme`.replace(/\/\//g, '/')
-          : `/aa/${node.path.replace(/\.mdx?$/, '')}`;
+          ? `/aa/${node.path}readme.md`.replace(/\/\//g, '/')
+          : `/aa/${node.path}`;
 
         return (
           <li key={node.path}>

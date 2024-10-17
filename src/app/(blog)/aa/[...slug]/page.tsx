@@ -42,7 +42,7 @@ export async function generateStaticParams() {
   const staticParamsFilePath = path.join(process.cwd(), 'public', 'data', 'staticParams.json');
   const staticParams = JSON.parse(fs.readFileSync(staticParamsFilePath, 'utf8'));
   // console.log(staticParams)
-  return staticParams;
+  return staticParams
 }
 
 // export function generateMetadata({ params }: { params: { slug: string } }) {
@@ -112,17 +112,17 @@ interface BlogPageProps {
   }
 }
 export default function Blog({ params, searchParams }: BlogPageProps) {
-  console.log(`searchParams: ${JSON.stringify(searchParams, null, 2)}`)
+  console.log(`searchParams: ${JSON.stringify({ params, searchParams }, null, 2)}`)
   const blog_path = params.slug.join('/');
   // console.log(blog_path)
   const { metadata, mdxContent } = getBlog(blog_path)
-  // console.log(`metadata, mdxContent:${metadata}, ${mdxContent}`)
+  // console.log(`metadata, mdxContent:${JSON.stringify({ metadata, mdxContent }, null, 2)}`)
   // console.log(metadata)
   const toc = getToc(blog_path)
   // console.log(`toc: ${JSON.stringify(toc, null, 2)}`)
   // const post = getBlogPosts().find((post) => post.slug === params.slug)
 
-  if (!mdxContent){
+  if (mdxContent==null){
     notFound()
   }
 

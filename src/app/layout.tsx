@@ -1,23 +1,11 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
-import localFont from "next/font/local";
-
+// import localFont from "next/font/local";
+import { SpeedInsights } from '@vercel/speed-insights/next'
 // import Footer from '@/components/layout/footer';
 import { baseUrl } from '@/lib/sitemap';
 import { ThemeProvider } from "@/components/provider/theme-provider";
 
-const geistSans = localFont({
-  // src: "../../public/fonts/GeistVF.woff",
-  src: "../../public/fonts/XiaolaiMonoSC-Regular.ttf",
-  variable: "--font-geist-sans",
-  // weight: "100 900",
-});
-const geistMono = localFont({
-  // src: "../../public/fonts/GeistMonoVF.woff",
-  src: "../../public/fonts/XiaolaiMonoSC-Regular.ttf",
-  variable: "--font-geist-mono",
-  // weight: "100 900",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -59,10 +47,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cx(
-        geistSans.variable,
-        geistMono.variable
-      )}
+      className={cx()}
       // suppressHydrationWarning
     >
       {/* <head>
@@ -78,6 +63,7 @@ export default function RootLayout({
           <main>
             
             {children}
+            <SpeedInsights />
           </main>
         </ThemeProvider>
       </body>

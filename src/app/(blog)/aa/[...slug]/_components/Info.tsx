@@ -40,7 +40,7 @@ const Info: FC<InfoProps> = ({ url_path, metadata }) => {
             {/* 左侧第三行(不过内容可能较多, 导致显示多行, 暂时不管) */}
             <p className="text-sm text-muted-foreground">{metadata.description}</p>
             <div className="flex flex-wrap gap-2">
-              {metadata.tags.map((tag) => (
+              {metadata.tags?.map((tag) => (
                 <Link
                   key={tag}
                   href={`/tags/${tag}`}

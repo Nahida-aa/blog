@@ -6,7 +6,7 @@
 import { Pre } from './pre/monacoPre';
 // import { Table } from './gfm/table';
 import { H1,H2,H3,H4,H5,H6 } from './h_';
-// import Image from 'next/image';
+import CustomImage from './Image';
 // import { MDXProvider } from '@mdx-js/react';
 
 // import Link from 'next/link';
@@ -54,6 +54,7 @@ export const MdxComponents = {
   
   // 添加组件
   // Table,
+  Image: CustomImage,
 }
 // console.log(`mdxMdxComponents: MdxComponents:`);
 // console.log(MdxComponents)

@@ -7,31 +7,7 @@ description: 开发 blog with next+mdx+shadui,
 tags: [next, mdx, shadui]
 ---
 
-# blog with next+mdx+shadui
-## design
-### blog page
-```
-<h3 style={{backgroundColor: 'violet', padding: '1rem'}}>
-你好`h3`
-</h3>
-```
-```tsx
 
-```
-
-### blogs tree (files-tree, sidebar)
-开发时从文件系统获得 metadata tree
-生产时从 从 `public/metadata.json` 获取
-### blog header
-### mdx metadata
-### mdx content
-.md -(remark)-> AST -(rehype)-> .html
-### mdx content toc (toc-tree)
-
-### 从文件系统获取 metadata and content
-这样可以保证一边写一边预览,
-### view_count
-### 
 ## insatll dependencies
 ### h3
 #### h4

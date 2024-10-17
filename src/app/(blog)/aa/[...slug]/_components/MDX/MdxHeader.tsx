@@ -1,10 +1,10 @@
 // src/app/(blog)/aa/[slug]/_components/MDX/MdxHeader.tsx
-"use client";
-import { Eye, Code, List } from 'lucide-react';
+"use client"
+import { Eye, Code, List } from 'lucide-react'
 // import { Card } from '@/components/ui/card';
-import { useEffect, useState } from 'react';
-import { useToc } from '@/context/TocContext';
-import { Button } from '@/components/ui/button';
+import { useEffect, useState } from 'react'
+import { useToc } from '@/context/TocContext'
+import { Button } from '@/components/ui/button'
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation'
 

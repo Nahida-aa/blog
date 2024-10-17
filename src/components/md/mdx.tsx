@@ -1,5 +1,5 @@
-"use server";
-// "use client";
+// "use server"
+// "use client"
 import { 
   // MDXRemote, 
   compileMDX,
@@ -47,6 +47,7 @@ export async function CustomMDX(props: MDXRemoteProps) {
     ...MdxComponents,
     // pre: Pre,
     // h1: createHeading(1),
+    // Image,
     ...(props.components || {})
   };
   const { content

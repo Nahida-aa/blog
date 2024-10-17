@@ -95,7 +95,7 @@ const OnlyReadEditor = ({ value, language, path, initialHeight, loadingComponent
           fontLigatures: "'calt', 'liga', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'ss09'",
           cursorStyle: "block",
           scrollbar: {
-            handleMouseWheel: false,
+            handleMouseWheel: false, // 禁用滚动条鼠标滚轮事件
             // alwaysConsumeMouseWheel: true,
           },
         }}
