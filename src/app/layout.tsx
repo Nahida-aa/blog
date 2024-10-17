@@ -5,7 +5,9 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 // import Footer from '@/components/layout/footer';
 import { baseUrl } from '@/lib/sitemap';
 import { ThemeProvider } from "@/components/provider/theme-provider";
-
+import { GoogleAnalytics
+  // , GoogleTagManager 
+} from "@next/third-parties/google"
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -66,6 +68,7 @@ export default function RootLayout({
             <SpeedInsights />
           </main>
         </ThemeProvider>
+        {process.env.GA_TRACKING_ID && <GoogleAnalytics gaId={process.env.GA_TRACKING_ID} />}
       </body>
     </html>
   );
