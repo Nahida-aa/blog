@@ -7,7 +7,7 @@ import MDX from './_components/MDX';
 import BlogToc from './_components/BlogToc';
 import { 
   // getRelatedPosts,
-  getBlogsMetaTreeData } from './func';
+  getFilesMetaTreeData } from './func';
 import StructuredData from './_components/StructuredData'
 // import { compileMDX } from 'next-mdx-remote/rsc';
 // import { Post, JsonDocMetadataTreeNode } from '@/types/mdx';
@@ -17,108 +17,29 @@ import path from 'path';
 import fs from 'fs';
 
 export async function generateStaticParams() {
-  // const posts: Post[] = getBlogPosts()
-  // return posts.map((post) => ({
-  //   slug: post.slug,
-  // }))
-
-  // const metadataTree = getMetadataTree();
-  // // console.log(metadataTree)
-
-  // const getPaths = (nodes: JsonDocMetadataTreeNode[]): string[] => {
-  //   return nodes.flatMap((node) => {
-  //     if (node.children.length > 0) {
-  //       return getPaths(node.children);
-  //     }
-  //     return node.path.replace(/\.mdx?$/, '');
-  //   });
-  // };
-
-  // const paths = getPaths(metadataTree).map((slug) => ({
-  //   slug: slug.split('/'),
-  // }));
-  // return paths;
   
   const staticParamsFilePath = path.join(process.cwd(), 'public', 'data', 'staticParams.json');
   const staticParams = JSON.parse(fs.readFileSync(staticParamsFilePath, 'utf8'));
-  // console.log(staticParams)
   return staticParams
 }
 
-// export function generateMetadata({ params }: { params: { slug: string } }) {
-//   const post = getBlogPosts().find((post) => post.slug === params.slug)
-//   if (!post) {
-//     return
-//   }
-//   const {
-//     title,
-//     pushed_at: pushed_atTime,
-//     description: description,
-//     image,
-//   } = post.metadata
-//   const ogImage = image
-//     ? image
-//     : `${baseUrl}/og?title=${encodeURIComponent(title)}`
 
-//   return {
-//     title,
-//     description,
-//     openGraph: {
-//       title,
-//       description,
-//       type: 'article',
-//       pushed_atTime,
-//       url: `${baseUrl}/aa/${post.slug}`,
-//       images: [
-//         {
-//           url: ogImage,
-//         },
-//       ],
-//     },
-//     twitter: {
-//       card: 'summary_large_image',
-//       title,
-//       description,
-//       images: [ogImage],
-//     },
-//   }
-// }
-
-// export const getStaticProps = async ({ params }) => {
-  // const { content, frontmatter } = await compileMDX({
-  //   source: props.source, 
-  //   options: options,
-  //   components:{
-  //     // ...MdxComponents, 
-  //     ...(props.components || {}) }
-  // })
-  // console.log(content)
-
-//   return {
-//     props: {
-//       content: content,
-//       // frontMatter: data,
-//     },
-//   };
-// };
-
-
-interface BlogPageProps {
+interface FilePageProps {
   params: {
-    slug: string[];
+    slug: string[]
   },
   searchParams: {
     plain?: string
   }
 }
-export default function Blog({ params, searchParams }: BlogPageProps) {
+export default function FilePage({ params, searchParams }: FilePageProps) {
   console.log(`searchParams: ${JSON.stringify({ params, searchParams }, null, 2)}`)
-  const blog_path = params.slug.join('/');
+  const file_path = params.slug.join('/');
   // console.log(blog_path)
-  const { metadata, mdxContent } = getBlog(blog_path)
+  const { metadata, mdxContent } = getBlog(file_path)
   // console.log(`metadata, mdxContent:${JSON.stringify({ metadata, mdxContent }, null, 2)}`)
   // console.log(metadata)
-  const toc = getToc(blog_path)
+  const toc = getToc(file_path)
   // console.log(`toc: ${JSON.stringify(toc, null, 2)}`)
   // const post = getBlogPosts().find((post) => post.slug === params.slug)
 
@@ -127,22 +48,21 @@ export default function Blog({ params, searchParams }: BlogPageProps) {
   }
 
   // 获取相关的文章和目录数据
-  // const blogsMetaTreeData = getRelatedPosts(blog_path)
-  const blogsMetaTreeData = getBlogsMetaTreeData()
+  const filesMeta = getFilesMetaTreeData()
 
   return (
 
     <div className="flex">
       <section className='flex flex-1 basis-full max-w-full'>
         {/* 结构化数据的脚本 */}
-        <StructuredData blog_path={blog_path} metadata={metadata}  baseUrl={baseUrl} />
+        <StructuredData file_path={file_path} metadata={metadata}  baseUrl={baseUrl} />
         {/* 左侧：文件列表 */}
-        <BlogSidebar PostTrees={blogsMetaTreeData} />
+        <BlogSidebar filesMeta={filesMeta} />
         {/* 右侧 内容等 */}
         <div className='pb-10 flex-1 flex w-[calc(100%-var(--sidebar-width)-1px)]'>
           <div className="w-full ">
             {/* 以及控制文章列表是否展开的按钮(展开时不显示)，文章路径等信息 */}
-            <Header url_path={`aa/${blog_path}`} />
+            <Header url_path={`aa/${file_path}`} />
             <div className='m-4 max-w-full'>
               {/* 时间等信息 */}
               <Info url_path={`aa/blog_path`} metadata={metadata} />

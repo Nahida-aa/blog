@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { PanelLeftClose, Search } from 'lucide-react'
 import { useSidebar } from '../context/SidebarContext'
 
-export default function BlogSidebar({ PostTrees }: { PostTrees: JsonDocMetadataTreeNode[] }) {
+export default function BlogSidebar({ filesMeta }: { filesMeta: JsonDocMetadataTreeNode[] }) {
   const { setSidebarOpen } = useSidebar();
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -38,7 +38,7 @@ export default function BlogSidebar({ PostTrees }: { PostTrees: JsonDocMetadataT
         </span>
       </div>
       <nav className='px-4 overflow-y-auto !max-h-full'>
-        <PostTree nodes={PostTrees} depth={1} searchTerm={searchTerm} />
+        <PostTree nodes={filesMeta} depth={1} searchTerm={searchTerm} />
       </nav>
     </SidebarFrame>
   );

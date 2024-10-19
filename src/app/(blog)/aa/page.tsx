@@ -5,7 +5,7 @@ import BlogSidebar from './[...slug]/_components/Sidebar';
 import Header from './[...slug]/_components/Header';
 // import MDX from './[...slug]/_components/MDX'; 
 // import BlogToc from './[...slug]/_components/BlogToc';
-import { getBlogsMetaTreeData } from './[...slug]/func';
+import { getFilesMetaTreeData } from './[...slug]/func';
 // import StructuredData from './[...slug]/_components/StructuredData'
 // import { compileMDX } from 'next-mdx-remote/rsc';
 // import { Post, JsonDocMetadataTreeNode } from '@/types/mdx';
@@ -29,14 +29,14 @@ export default function BlogList() {
   //   notFound()
   // }
 
-  const blogsMetaTreeData = getBlogsMetaTreeData()
+  const blogsMetaTreeData = getFilesMetaTreeData()
   return (
     <div className="flex">
       <section className='flex flex-1 basis-full max-w-full'>
         {/* 结构化数据的脚本 */}
         {/* <StructuredData blog_path={"aa"} metadata={"aa"}  baseUrl={baseUrl} /> */}
         {/* 左侧：文章目录tree */}
-        <BlogSidebar PostTrees={blogsMetaTreeData} />
+        <BlogSidebar filesMeta={blogsMetaTreeData} />
         <div className='pb-10 flex-1 flex w-full'>
           <div className="w-full ">
             {/* 以及控制文章列表是否展开的按钮(展开时不显示)，文章路径等信息 */}

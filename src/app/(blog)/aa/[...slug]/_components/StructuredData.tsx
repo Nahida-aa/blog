@@ -2,7 +2,7 @@
 import React from 'react';
 
 type StructuredDataProps = {
-  blog_path: string;
+  file_path: string;
   metadata: {
     title: string;
     pushed_at: string;
@@ -12,7 +12,7 @@ type StructuredDataProps = {
   baseUrl: string;
 };
 
-export default function StructuredData({ blog_path, metadata, baseUrl }: StructuredDataProps) {
+export default function StructuredData({ file_path, metadata, baseUrl }: StructuredDataProps) {
   return (
     <script
       type="application/ld+json"
@@ -28,7 +28,7 @@ export default function StructuredData({ blog_path, metadata, baseUrl }: Structu
           image: metadata.image
             ? `${baseUrl}${metadata.image}`
             : `/og?title=${encodeURIComponent(metadata.title)}`,
-          url: `${baseUrl}/aa/${blog_path}`,
+          url: `${baseUrl}/aa/${file_path}`,
           author: {
             '@type': 'Person',
             name: 'My Portfolio',

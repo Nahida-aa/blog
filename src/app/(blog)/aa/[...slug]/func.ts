@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'production') {
   const metadataFileContent = fs.readFileSync(metadataFilePath, 'utf8');
   blogsMetaTreeData = JSON.parse(metadataFileContent);
 }
-export function getBlogsMetaTreeData(): JsonDocMetadataTreeNode[] {
+export function getFilesMetaTreeData(): JsonDocMetadataTreeNode[] {
   if (process.env.NODE_ENV === 'production') {
     return blogsMetaTreeData;
   } else {
