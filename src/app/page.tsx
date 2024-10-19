@@ -1,8 +1,14 @@
 import Image from "next/image";
 import { BackgroundProvider } from "@/context/BackgroundContext";
 import { Navbar } from '@/components/layout/Nav';
+import { headers } from 'next/headers';
+
 
 export default function Home() {
+  const headersList = headers();
+  const isMobile = headersList.get('sec-ch-ua-mobile') === '?1';
+
+  console.log('isMobile:', isMobile);
   return (
     <BackgroundProvider>
     <Navbar />

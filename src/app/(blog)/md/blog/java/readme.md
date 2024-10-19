@@ -1,0 +1,351 @@
+---
+title: java
+created_at: 2024-10-19T11:27:32Z
+pushed_at: 
+updated_at: 2024-10-19T11:27:32Z
+authors:
+  - name: aa
+    github: Nahida-aa
+    twitter: 
+private: false
+svg: 
+image: 
+tags: []
+description: 
+draft: false
+---
+# java
+
+## base
+
+### env
+
+JDK (Java Development Kit) 是 Java 语言的软件开发工具包（SDK）。
+
+```bat
+setx JAVA_HOME "D:\Program\Java\jdk-17.0.12"
+setx PATH "%JAVA_HOME%\bin;%PATH%"
+java -version
+```
+
+```bat
+rem /M 为所有用户（系统变量）
+setx MAVEN_HOME "D:\Program\Java\apache-maven-3.8.4" /M
+
+```
+
+### javac
+
+```java
+// Run.java
+// src/Run.java
+public class Run {
+    // 静态方法
+    public static void main(String[] args) {
+        System.out.println("自定义运行");
+    }
+}
+```
+
+```sh
+# 使用 javac 命令编译 Java 源代码, 这将生成一个 Run.class 文件
+javac -encoding UTF-8 Run.java
+javac -encoding UTF-8 src/Run.java
+# 使用 java 命令运行编译后的 Java 程序
+java Run
+java -cp src Run
+```
+
+### javaProject
+
+```yaml
+javaProject/:
+  - hello_module/:
+    - src/:
+      - hello_package/:
+        - Hello.java
+    - out/ # 编译后的文件(有的是build)
+    - hello_module.iml(if use idea)
+    - build.gradle(if use gradle)
+    - pom.xml(if use maven)
+  - ...
+  - pom.xml(if use maven)
+  - build.gradle(if use gradle)
+  # 多模块项目中,定义项目的根目录和包含的子项目,对于简单的单模块项目，settings.gradle 文件可能是可选的，但在多模块项目中是必需的
+  - settings.gradle(if use gradle)
+  - javaProject.iml(if use idea)
+```
+or
+```yaml
+javaProject/:
+  - src/:
+    - hello_package/:
+      - Hello.java
+  - out/ # 编译后的文件(有的是build)
+  - pom.xml(if use maven)
+  - build.gradle(if use gradle)
+  # 多模块项目中,定义项目的根目录和包含的子项目,对于简单的单模块项目，settings.gradle 文件可能是可选的，但在多模块项目中是必需的
+  - settings.gradle(if use gradle)
+  - javaProject.iml(if use idea)
+```
+
+## spingboot
+
+### maven
+
+```sh
+mvn -v
+mvn spring-boot:run
+mvn archetype:generate -DgroupId=com.example -DartifactId=demo -Dversion=1.0-SNAPSHOT -Dpackage=com.example.demo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+cd demo
+
+mvn compile
+mvn test
+
+mvn package
+java -jar target/demo-1.0-SNAPSHOT.jar
+
+# 安装到本地仓库：
+mvn install
+mvn clean
+```
+项目结构
+```yml
+mavenProject/:
+  - src/:
+    - main/:
+      - java/:
+        - com/:
+          - example/:
+            - demo/:
+              - DemoApplication.java
+      - resources/:
+        - application.properties # or application.yml
+    - test/:
+      - java/:
+        - com/:
+          - example/:
+            - demo/:
+              - DemoApplicationTests.java
+      - resources/:
+        - application.properties
+  - target/ # 编译后的文件
+  - pom.xml # maven 配置文件
+```
+#### 配置 db
+```yml path="src/main/resources/application.pyml"
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+```
+#### run
+
+你可以通过以下几种方式运行 Spring Boot 项目：
+
+##### 使用 IDE 运行
+
+- 在 IDE 中找到主类（通常是带有 `@SpringBootApplication` 注解的类）
+- 右键点击主类并选择 "Run" 或 "Debug"
+
+##### 使用 Maven 运行
+
+在项目根目录下打开终端，运行以下命令：
+
+```bash
+mvn spring-boot:run
+```
+
+##### 打包并运行
+
+你可以使用 Maven 将项目打包为一个可执行的 JAR 文件，然后运行该 JAR 文件。
+
+```bash
+# 打包项目
+mvn clean package
+
+# 运行 JAR 文件
+java -jar target/your-project-name-0.0.1-SNAPSHOT.jar
+```
+
+#### 访问应用
+
+默认情况下，Spring Boot 应用会在 `http://localhost:8080` 运行。你可以在浏览器中访问该地址，查看应用是否正常运行。
+
+### gradle
+
+```sh
+gradle -v
+
+gradle init
+gradle build
+gradle test
+gradle clean
+# 运行应用程序（需要配置 application 插件）
+gradle run
+```
+
+```yml
+gradleProject/:
+  - src/:
+    - main/:
+      - java/:
+        - com/:
+          - example/:
+            - demo/:
+              - DemoApplication.java
+      - resources/:
+        - application.properties
+    - test/:
+      - java/:
+        - com/:
+          - example/:
+            - demo/:
+              - DemoApplicationTests.java
+      - resources/:
+        - application.properties
+  - build/ # 编译后的文件
+  - build.gradle # gradle 配置文件
+  - gradlew
+  - gradlew.bat
+  - settings.gradle
+```
+
+## mc
+```yml
+Enigma-master/:
+  .gradle/:
+  enigma/:
+    - src/
+    - build.gradle
+  enigma-cli/:
+    - src/
+    - build.gradle
+  enigma-server/:
+  enigma-swing/:
+  gradle/:
+    wrapper/:
+      - gradle-wrapper.jar
+      - gradle-wrapper.properties
+  build.gradle
+  checkstyle.xml
+  gradlew
+  gradlew.bat
+  settings.gradle
+```
+
+```sh
+# 项目中包含 gradlew 和 gradlew.bat 文件，这些是 Gradle Wrapper 脚本。使用 Gradle Wrapper 可以确保你使用的是项目指定的 Gradle 版本
+./gradlew build
+# cmd
+gradlew.bat build
+```
+
+settings.gradle
+```groovy
+include 'enigma'
+include 'enigma-swing'
+include 'enigma-server'
+include 'enigma-cli'
+```
+build.gradle
+```groovy
+plugins {
+	id 'maven-publish'
+	id 'com.github.johnrengelman.shadow' version '8.1.1' apply false
+}
+
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'maven-publish'
+	apply plugin: 'checkstyle'
+
+	repositories {
+		mavenLocal()
+		mavenCentral()
+        maven { 
+            url 'https://maven.fabricmc.net/'
+        }
+	}
+
+	dependencies {
+		implementation 'com.google.guava:guava:32.1.2-jre'
+		implementation 'com.google.code.gson:gson:2.10.1'
+		implementation 'net.fabricmc:mapping-io:0.6.1'
+		
+		compileOnly 'org.jetbrains:annotations:24.0.1'
+
+		testImplementation 'junit:junit:4.13.2'
+		testImplementation 'org.hamcrest:hamcrest:2.2'
+	}
+
+	group = 'cuchaz'
+	version = '2.5.1'
+
+	version = version + (System.getenv("GITHUB_ACTIONS") ? "" : "+local")
+
+	java {
+		withSourcesJar()
+		sourceCompatibility = JavaVersion.VERSION_17
+		targetCompatibility = JavaVersion.VERSION_17
+	}
+
+	tasks.withType(JavaCompile).configureEach {
+		it.options.encoding = "UTF-8"
+
+		it.options.release = 17
+	}
+
+	checkstyle {
+		configFile = rootProject.file('checkstyle.xml')
+		toolVersion = '10.12.4'
+	}
+
+	publishing {
+		publications {
+			"$project.name"(MavenPublication) {
+				groupId project.group
+				artifactId project.name
+				version project.version
+				from components.java
+			}
+		}
+	}
+}
+
+allprojects {
+	publishing {
+		repositories {
+			mavenLocal()
+
+			def ENV = System.getenv()
+			if (ENV.MAVEN_URL) {
+				maven {
+					url ENV.MAVEN_URL
+					credentials {
+						username ENV.MAVEN_USERNAME
+						password ENV.MAVEN_PASSWORD
+					}
+				}
+			}
+		}
+	}
+}
+
+// A task to ensure that the version being released has not already been released.
+task checkVersion {
+	doFirst {
+		def xml = new URL("https://maven.fabricmc.net/cuchaz/enigma/maven-metadata.xml").text
+		def metadata = new XmlSlurper().parseText(xml)
+		def versions = metadata.versioning.versions.version*.text();
+		if (versions.contains(version)) {
+			throw new RuntimeException("${version} has already been released!")
+		}
+	}
+}
+
+publish.mustRunAfter checkVersion
+```

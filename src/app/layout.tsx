@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
 // import localFont from "next/font/local";
-import { SpeedInsights } from '@vercel/speed-insights/next'
+// import { SpeedInsights } from '@vercel/speed-insights/next'
 // import Footer from '@/components/layout/footer';
 import { baseUrl } from '@/lib/sitemap';
 import { ThemeProvider } from "@/components/provider/theme-provider";
@@ -65,7 +65,7 @@ export default function RootLayout({
           <main>
             
             {children}
-            <SpeedInsights />
+            {/* <SpeedInsights /> */}
           </main>
         </ThemeProvider>
         {process.env.GA_TRACKING_ID && <GoogleAnalytics gaId={process.env.GA_TRACKING_ID} />}

@@ -11,13 +11,15 @@ import aaThemeConfig from '@/lib/vscode/monaco/theme/aaTheme';
 interface OnlyReadEditorProps {
   value: string;
   language: string;
-  path: string;
+  // path: string;
   initialHeight: number;
   loadingComponent?: ReactNode;
   containerRef: React.RefObject<HTMLPreElement>;
 }
 
-const OnlyReadEditor = ({ value, language, path, initialHeight, loadingComponent, containerRef }: OnlyReadEditorProps) => {
+const OnlyReadEditor = ({ value, language, 
+  // path, 
+  initialHeight, loadingComponent, containerRef }: OnlyReadEditorProps) => {
   const [editorHeight, setEditorHeight] = useState(initialHeight);
   // const editorRef = useRef<monaco_editor.editor.IStandaloneCodeEditor | null>(null);
 
@@ -77,12 +79,12 @@ const OnlyReadEditor = ({ value, language, path, initialHeight, loadingComponent
         height={editorHeight}
         language={language}
         value={value}
-        path={path}
+        // path={path}
         theme="aaTheme"
         options={{
           // readOnly: true,
           minimap: { enabled: false },
-          scrollBeyondLastLine: false,
+          scrollBeyondLastLine: false, // 禁止滚动超过最后一行
           // lineNumbers: 'off', // 隐藏行号
           glyphMargin: false, // 隐藏左侧空白
           // folding: false, // 隐藏代码折叠
@@ -138,7 +140,7 @@ const CodeBlock = ({ children, ...props }: CodeBlockProps) => {
   return (
     <pre ref={containerRef} className={` flex flex-col w-full max-h-[60vh]  resize-y min-h-[${60}px] ${className}`} {...props}>
       {codeBlockName && (
-        <nav className='flex items-center justify-between h-8'>
+        <nav className='flex items-center justify-between h-[32px]'>
           <div className=' ml-2 px-2 flex items-center'>
             {codeBlockName}
           </div>
@@ -152,7 +154,9 @@ const CodeBlock = ({ children, ...props }: CodeBlockProps) => {
           )}
         </nav>
       )}
-      <OnlyReadEditor value={codeString.trim()} language={language} path={codeBlockName} initialHeight={initialHeight} loadingComponent={children} containerRef={containerRef} {...rest} />
+      <OnlyReadEditor value={codeString.trim()} language={language} 
+      // path={codeBlockName}
+      initialHeight={initialHeight} loadingComponent={children} containerRef={containerRef} {...rest} />
     </pre>
   );
 };
