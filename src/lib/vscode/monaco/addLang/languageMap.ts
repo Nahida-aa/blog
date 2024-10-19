@@ -8,5 +8,6 @@ export const languageMap: { [key: string]: string } = {
   py: 'python',
   rb: 'ruby',
   sh: 'shell',
+  bash: 'shell',
   yml: 'yaml',
 };

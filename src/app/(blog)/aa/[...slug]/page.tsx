@@ -23,7 +23,6 @@ export async function generateStaticParams() {
   return staticParams
 }
 
-
 interface FilePageProps {
   params: {
     slug: string[]
@@ -40,14 +39,12 @@ export default function FilePage({ params, searchParams }: FilePageProps) {
   // console.log(`metadata, mdxContent:${JSON.stringify({ metadata, mdxContent }, null, 2)}`)
   // console.log(metadata)
   const toc = getToc(file_path)
-  // console.log(`toc: ${JSON.stringify(toc, null, 2)}`)
-  // const post = getBlogPosts().find((post) => post.slug === params.slug)
 
   if (mdxContent==null){
     notFound()
   }
 
-  // 获取相关的文章和目录数据
+  // 获取相关的files和目录数据
   const filesMeta = getFilesMetaTreeData()
 
   return (
@@ -65,7 +62,7 @@ export default function FilePage({ params, searchParams }: FilePageProps) {
             <Header url_path={`aa/${file_path}`} />
             <div className='m-4 max-w-full'>
               {/* 时间等信息 */}
-              <Info url_path={`aa/blog_path`} metadata={metadata} />
+              <Info url_path={`aa/${file_path}`} metadata={metadata} />
 
               <div className='flex w-full'>
                 {/* 中间：文章header+content */}
