@@ -73,7 +73,7 @@ const PostNode: React.FC<PostNodeProps> = ({ nodes, depth, searchTerm }) => {
         const displayName = node.path.split('/').filter(Boolean).pop() || node.path;
 
         // 如果是目录，链接导向对应目录下的 readme.mdx
-        const linkPath = `aa/${node.path}${isDirectory ? 'readme.mdx' : ''}`;
+        const linkPath = `/aa/${node.path}${isDirectory ? 'readme.mdx' : ''}`;
 
         return (
           <li key={node.path}>

@@ -2,7 +2,7 @@
 "use client"
 import { useState } from 'react'
 import { JsonDocMetadataTreeNode } from '@/types/mdx'
-import PostTree from './PostTree'
+import FileTree from './PostTree'
 import SidebarFrame from './SidebarFrame'
 import { Button } from '@/components/ui/button'
 import { PanelLeftClose, Search } from 'lucide-react'
@@ -14,8 +14,8 @@ export default function BlogSidebar({ filesMeta }: { filesMeta: JsonDocMetadataT
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-  };
+    setSearchTerm(e.target.value)
+  }
 
   return (
     <SidebarFrame>
@@ -40,7 +40,7 @@ export default function BlogSidebar({ filesMeta }: { filesMeta: JsonDocMetadataT
         </span>
       </div>
       <nav className='px-4 overflow-y-auto !max-h-full'>
-        <PostTree nodes={filesMeta} depth={1} searchTerm={searchTerm} />
+        <FileTree nodes={filesMeta} depth={1} searchTerm={searchTerm} />
       </nav>
     </SidebarFrame>
   );
