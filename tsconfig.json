@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/tools/mdx/editor.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/tools/mdx/editor.jsx", "src/app/(blog)/md/blog/ts/readme.mdx"],
   "exclude": ["node_modules"]
 }

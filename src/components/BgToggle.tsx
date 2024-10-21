@@ -16,6 +16,7 @@ const images = [
   { src: "/bg/cloud.webp", label: "cloud", thumbnail: "/bg/thumbnail/cloud-24.webp" },
   { src: "/bg/mountain_lake.webp", label: "mountain_lake", thumbnail: "/bg/thumbnail/mountain_lake-24.webp" },
   { src: "/bg/pink_dream.webp", label: "pink_dream", thumbnail: "/bg/thumbnail/pink_dream-24.webp" },
+  { src: "/bg/mengde_ye.webp", label: "mengde_ye" , thumbnail: "/bg/thumbnail/mengde_ye-24.webp"},
   { src: "auto", label: "Auto Cycle", icon: Repeat }
 ];
 

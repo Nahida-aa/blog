@@ -24,6 +24,7 @@ const images = [
   { src: "/bg/cloud.webp", label: "cloud" },
   { src: "/bg/mountain_lake.webp", label: "mountain_lake" },
   { src: "/bg/pink_dream.webp", label: "pink_dream" },
+  { src: "/bg/mengde_ye.webp", label: "mengde_ye" },
   { src: "auto", label: "Auto Cycle" }
 ];
 

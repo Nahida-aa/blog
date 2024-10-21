@@ -33,7 +33,9 @@ interface FilePageProps {
 }
 export default function FilePage({ params, searchParams }: FilePageProps) {
   // console.log(`params: ${JSON.stringify({ params, searchParams }, null, 2)}`)
-  const file_path = params.slug.join('/');
+  let file_path = params.slug.join('/')
+  // /%E5%BB%BA%E8%AE%AE.mdx 转中文
+  file_path = decodeURI(file_path)
   // console.log(`file_path: ${file_path}`)
   const fileFormat = file_path.split('.').pop() || 'md'
   // console.log(`fileFormat: ${fileFormat}`)
