@@ -1,13 +1,13 @@
 // src/lib/mdx/toc/convertListToTree.ts
 // TODO: 可能暂时用不上(暂时直接生成 tree)
-import { MdListTocNode, MdTocTreeNode } from '@/types/mdx';
+import { FileListTocNode, FileTocTreeNode } from '@/types/mdx';
 
-const convertListToTree = (list: MdListTocNode[]): MdTocTreeNode[] => {
-  const tree: MdTocTreeNode[] = [];
-  const stack: MdTocTreeNode[] = [];
+const convertListToTree = (list: FileListTocNode[]): FileTocTreeNode[] => {
+  const tree: FileTocTreeNode[] = [];
+  const stack: FileTocTreeNode[] = [];
 
   list.forEach((item) => {
-    const newNode: MdTocTreeNode = { ...item, children: [] };
+    const newNode: FileTocTreeNode = { ...item, children: [] };
 
     while (stack.length > 0 && stack[stack.length - 1].level >= item.level) {
       stack.pop();

@@ -1,20 +1,20 @@
 import { notFound } from 'next/navigation'
-// import { getBlogPosts } from '@/lib/mdx/utils'
 import { baseUrl } from '@/lib/sitemap'
-import BlogSidebar from './_components/Sidebar';
+import FileSidebar from './_components/Sidebar';
 import Header from './_components/Header';
 import MDX from './_components/MDX'; 
-import BlogToc from './_components/BlogToc';
+import FileToc from './_components/FileToc'
 import { 
   // getRelatedPosts,
   getFilesMetaTreeData } from './func';
 import StructuredData from './_components/StructuredData'
-// import { compileMDX } from 'next-mdx-remote/rsc';
-// import { Post, JsonDocMetadataTreeNode } from '@/types/mdx';
 import Info from './_components/Info';
-import { getBlog,getToc } from '@/lib/mdx/get';
+import { getFile,getToc } from '@/lib/mdx/get';
 import path from 'path';
-import fs from 'fs';
+import fs from 'fs'
+
+import PasswordPrompt from './_components/PasswordPrompt'
+import { cookies } from 'next/headers'
 
 export async function generateStaticParams() {
   
@@ -32,44 +32,54 @@ interface FilePageProps {
   }
 }
 export default function FilePage({ params, searchParams }: FilePageProps) {
-  console.log(`searchParams: ${JSON.stringify({ params, searchParams }, null, 2)}`)
+  // console.log(`params: ${JSON.stringify({ params, searchParams }, null, 2)}`)
   const file_path = params.slug.join('/');
-  // console.log(blog_path)
-  const { metadata, mdxContent } = getBlog(file_path)
-  // console.log(`metadata, mdxContent:${JSON.stringify({ metadata, mdxContent }, null, 2)}`)
-  // console.log(metadata)
-  const toc = getToc(file_path)
+  // console.log(`file_path: ${file_path}`)
+  const fileFormat = file_path.split('.').pop() || 'md'
+  // console.log(`fileFormat: ${fileFormat}`)
+  const { metadata, content, rawContent } = getFile(file_path)
+  // console.log(`getFileED`)
 
-  if (mdxContent==null){
+  const isAuthenticated = cookies().get('authenticated')?.value === 'true'
+
+  // console.log(`metadata, content:${JSON.stringify({ metadata, content }, null, 2)}`)
+  const toc = getToc(file_path)
+  // console.log(`toc: ${JSON.stringify(toc, null, 2)}`)
+
+  if (content==null){
     notFound()
   }
 
-  // 获取相关的files和目录数据
   const filesMeta = getFilesMetaTreeData()
 
   return (
-
     <div className="flex">
       <section className='flex flex-1 basis-full max-w-full'>
         {/* 结构化数据的脚本 */}
         <StructuredData file_path={file_path} metadata={metadata}  baseUrl={baseUrl} />
-        {/* 左侧：文件列表 */}
-        <BlogSidebar filesMeta={filesMeta} />
+        {/* 左侧：files tree */}
+        <FileSidebar filesMeta={filesMeta} />
         {/* 右侧 内容等 */}
         <div className='pb-10 flex-1 flex w-[calc(100%-var(--sidebar-width)-1px)]'>
           <div className="w-full ">
-            {/* 以及控制文章列表是否展开的按钮(展开时不显示)，文章路径等信息 */}
+            {/* 以及控制 files tree 是否显示的按钮，file路径等信息 */}
             <Header url_path={`aa/${file_path}`} />
             <div className='m-4 max-w-full'>
-              {/* 时间等信息 */}
-              <Info url_path={`aa/${file_path}`} metadata={metadata} />
+            {metadata.private && !isAuthenticated ? (
+                <PasswordPrompt filePath={file_path}  />
+              ) : (
+                <>
+                  {/* file metadata */}
+                  <Info url_path={`aa/${file_path}`} metadata={metadata} />
 
-              <div className='flex w-full'>
-                {/* 中间：文章header+content */}
-                <MDX content={mdxContent} searchParams={searchParams} />
-                {/* 右侧：文章内部大纲 */}
-                <BlogToc toc={toc} />
-              </div>
+                  <div className="flex w-full">
+                    {/* 中间 content header+content */}
+                    <MDX format={fileFormat} content={rawContent} searchParams={searchParams} />
+                    {/* 右侧：file 内部大纲 */}
+                    <FileToc toc={toc} />
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>

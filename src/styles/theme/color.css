@@ -13,17 +13,19 @@
 	--sh-comment: #a19595;
 	--sh-jsxliterals: #6266d1;
 	--sh-property: #e25a1c;
-	--sh-entity: #e25a1c;
+	--sh-entity: hsl(19, 78%, 50%);
 }
 
 .dark {
 	/* dark color */
-	--background: 216 27.78% 7.06%;
+	/* --background: 216 27.78% 7.06%; */
+	--background: 250 20% 17%;
+	--background-res: hsl(250, 20%, 17%);
 	/* #0d1117 */
 	--foreground: 210 40% 98%;
 	--AppHeader-bg: 217.5 80% 1.96%;
 	/* #010409 */
-	--card: 216 27.78% 7.06%;
+	--card: 250 20% 17%;
 	--card-foreground: 210 40% 98%;
 	--popover: 222.2 84% 4.9%;
 	--popover-foreground: 210 40% 98%;

@@ -1,12 +1,12 @@
 // components/Toc.tsx
 import React, { useState } from 'react';
-import { MdTocTreeNode } from '@/types/mdx';
+import { FileTocTreeNode } from '@/types/mdx';
 
 interface TocProps {
-  toc: MdTocTreeNode[];
+  toc: FileTocTreeNode[];
 }
 
-const TocItem: React.FC<{ node: MdTocTreeNode }> = ({ node }) => {
+const TocItem: React.FC<{ node: FileTocTreeNode }> = ({ node }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const handleToggle = () => {

@@ -78,7 +78,7 @@ const PostNode: React.FC<PostNodeProps> = ({ nodes, depth, searchTerm }) => {
         return (
           <li key={node.path}>
             <div
-              className={`flex cursor-pointer items-center h-8 w-full hover:bg-gray-700 rounded-md transition-colors duration-200 ${isActive ? 'bg-gray-600' : ''}`}
+              className={`flex cursor-pointer items-center h-8 w-full hover:bg-opacity-25 hover:bg-gray-600 rounded-md transition-colors duration-200 ${isActive ? 'bg-gray-500 bg-opacity-25' : ''}`}
               style={{ paddingLeft: `${(depth - 1) * 8}px` }}
             >
               {isDirectory ? (

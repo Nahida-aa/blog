@@ -4,11 +4,11 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Eye, History as HistoryIco, Star } from 'lucide-react';
-import { MdxMetadata } from '@/types/mdx';
+import { FileMetadata } from '@/types/mdx';
 
 interface InfoProps {
   url_path: string;
-  metadata: MdxMetadata
+  metadata: FileMetadata
 }
 const Info: FC<InfoProps> = ({ url_path, metadata }) => {
   // console.log(metadata)

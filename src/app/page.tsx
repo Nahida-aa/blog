@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { BackgroundProvider } from "@/context/BackgroundContext";
+import { BackgroundProvider } from "@/context/BackgroundContext"
 import { Navbar } from '@/components/layout/Nav';
 import { headers } from 'next/headers';
 

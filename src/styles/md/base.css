@@ -40,6 +40,10 @@
   @apply font-semibold mt-6 mb-4 leading-[1.25];
   color: #fdfdfd;
   text-shadow: 0 0 2px #001716, 0 0 3px #03edf975, 0 0 5px #03edf975, 0 0 8px #03edf975;
+  mark{
+    /* @apply bg-yellow-200 dark:bg-yellow-400; */
+    color: inherit;
+  }
 }
 .prose h1,
 .prose h2{
@@ -90,7 +94,12 @@
   /* @apply font-medium; */
   /* font-weight: bolder; */
 }
-
+.prose mark {
+  /* @apply bg-yellow-200 dark:bg-yellow-400; */
+  /* @apply bg-yellow-200 ; */
+  /* @apply */
+  /* color: inherit */
+}
 .prose ul {
   @apply list-disc pl-6;
 }

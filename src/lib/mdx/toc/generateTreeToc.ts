@@ -4,17 +4,24 @@ import remarkParse from 'remark-parse';
 import remarkMdx from 'remark-mdx';
 import { visit } from 'unist-util-visit';
 import matter from 'gray-matter';
-import { MdTocTreeNode, MdTreeToc } from '@/types/mdx';
+import { FileTocTreeNode, FileTreeToc } from '@/types/mdx';
 import { Root, Heading, Text } from 'mdast';
 
-const generateTreeToc = (mdxContent: string): MdTreeToc => {
-  const toc: MdTreeToc = [];
-  const stack: MdTocTreeNode[] = [];
+const generateTreeToc = (fileContent: string, format: 'md' | 'mdx'): FileTreeToc => {
+  const toc: FileTreeToc = [];
+  const stack: FileTocTreeNode[] = [];
 
   // 使用 gray-matter 解析并移除前置数据
-  const { content } = matter(mdxContent);
+  // console.log(`get content 前`);
+  const { content } = matter(fileContent);
 
-  const processor = unified().use(remarkParse).use(remarkMdx);
+  // console.log(`get ast 前`);
+  const processor = unified().use(remarkParse);
+
+  if (format === 'mdx') {
+    processor.use(remarkMdx);
+  }
+
   const ast = processor.parse(content) as Root;
 
   visit(ast, 'heading', (node: Heading) => {
@@ -25,7 +32,7 @@ const generateTreeToc = (mdxContent: string): MdTreeToc => {
       .join('');
     const anchor = text.toLowerCase().replace(/\s+/g, '-');
 
-    const newNode: MdTocTreeNode = { level, text, anchor, children: [] };
+    const newNode: FileTocTreeNode = { level, text, anchor, children: [] };
 
     while (stack.length > 0 && stack[stack.length - 1].level >= level) {
       stack.pop();

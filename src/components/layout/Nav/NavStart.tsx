@@ -9,6 +9,7 @@ const navItems = {
   '/aa': { name: 'blog' },
   '/vscode': { name: 'vscode' },
   '/mc': {name:'mc'},
+  '/tools/api': { name: 'tools/api' },
 };
 
 export function NavStart() {

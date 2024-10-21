@@ -1,4 +1,4 @@
-export type MdxMetadata = {
+export type FileMetadata = {
   title: string
   created_at?: string
   pushed_at: string
@@ -17,7 +17,7 @@ export type MdxMetadata = {
 export type Post = {
   slug: string;
   content: string;
-  metadata: MdxMetadata;
+  metadata: FileMetadata;
   full_name?: string;
 }
 
@@ -30,13 +30,13 @@ export type PostList = Post[]
 
 export type JsonDocMetadataTreeNode = {
   path: string
-  metadata: MdxMetadata
+  metadata: FileMetadata
   children: JsonDocMetadataTreeNode[]
 }
 export type JsonDocMetadataTree = JsonDocMetadataTreeNode[]
 export type JsonDocTocTreeNode = {
   path: string
-  toc: MdTreeToc
+  toc: FileTreeToc
   children: JsonDocTocTreeNode[]
 }
 export type JsonDocTocTree = JsonDocTocTreeNode[]
@@ -49,16 +49,16 @@ export type JsonDocTocTree = JsonDocTocTreeNode[]
 
 
 // export type MdListTocNodeLevel = 1 | 2 | 3 | 4 | 5 | 6
-export type MdListTocNode = {
+export type FileListTocNode = {
   // level: MdListTocNodeLevel
   level: number
   text: string
   anchor: string // slug_with_cn
   htmlText?: string
 }
-export type MdListToc = MdListTocNode[]
-export type MdTocTreeNode = MdListTocNode & { children: MdTocTreeNode[] }
-export type MdTreeToc = MdTocTreeNode[]
+export type MdListToc = FileListTocNode[]
+export type FileTocTreeNode = FileListTocNode & { children: FileTocTreeNode[] }
+export type FileTreeToc = FileTocTreeNode[]
 
 
 

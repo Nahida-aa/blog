@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { JsonDocMetadataTree, MdTreeToc } from '@/types/mdx';
+import { JsonDocMetadataTree, FileTreeToc } from '@/types/mdx';
 import { parseFrontmatter } from './parseMatter';
 import generateTreeToc from './toc/generateTreeToc';
 
@@ -10,40 +10,41 @@ export const getMetadataTrees = (): JsonDocMetadataTree => {
   return metadataTree;
 }
 
-export const getBlog = (blog_path: string) => {
+export const getFile = (file_path: string) => {
+  // console.log(`getFile: ${file_path}`)
   const postsDirectory = path.join(process.cwd(), 'src', 'app', '(blog)', 'md', 'blog');
-  const filePath = path.join(postsDirectory, `${blog_path}`)
-  let fileContent = '';
+  const filePath = path.join(postsDirectory, `${file_path}`)
+  let rawContent = '';
 
   if (!fs.existsSync(filePath)) {
     console.error(`File not found: ${filePath}`);
-    return { metadata: null, mdxContent: null };
+    return { metadata: null, content: null };
   } 
 
   try {
-    fileContent = fs.readFileSync(filePath, 'utf8');
+    rawContent = fs.readFileSync(filePath, 'utf8');
   } catch (err) {
     console.error(`Failed to read file: ${filePath}`, err);
-    return { metadata: null, mdxContent: null };
+    return { metadata: null, content: null };
   }
 
-  const { metadata, content: mdxContent } = parseFrontmatter(fileContent);
-  return { metadata, mdxContent };
+  const { metadata, content } = parseFrontmatter(rawContent);
+  return { metadata, content,rawContent };
 };
 
 interface TocEntry {
   path: string;
-  toc: MdTreeToc;
+  toc: FileTreeToc;
   children: TocEntry[];
 }
 
-export const getToc_from_tocsJson = (blog_path: string): MdTreeToc => {
+export const getToc_from_tocsJson = (blog_path: string): FileTreeToc => {
   const tocFilePath = path.join(process.cwd(), 'public', 'data', 'toc.json');
   const tocData: TocEntry[] = JSON.parse(fs.readFileSync(tocFilePath, 'utf8'));
 
   const normalizePath = (p: string) => p.replace(/\\/g, '/').replace(/\.mdx?$/, '');
 
-  const findToc = (entries: TocEntry[], fullPath: string): MdTreeToc | null => {
+  const findToc = (entries: TocEntry[], fullPath: string): FileTreeToc | null => {
     for (const entry of entries) {
       if (normalizePath(entry.path) === fullPath) {
         return entry.toc;
@@ -59,24 +60,26 @@ export const getToc_from_tocsJson = (blog_path: string): MdTreeToc => {
   const normalizedPath = normalizePath(blog_path);
   return findToc(tocData, normalizedPath) || [];
 }
-export const getToc_from_md = (blog_path: string): MdTreeToc => {
+export const getToc_from_md = (filePath: string): FileTreeToc => {
+  const format = filePath.split('.').pop() as 'md' | 'mdx';
   const postsDirectory = path.join(process.cwd(), 'src', 'app', '(blog)', 'md', 'blog');
-  const filePath = path.join(postsDirectory, `${blog_path}`)
+  const absFilePath = path.join(postsDirectory, `${filePath}`)
   let fileContent = '';
 
-  if (!fs.existsSync(filePath)) {
-    console.error(`File not found: ${filePath}`);
+  if (!fs.existsSync(absFilePath)) {
+    console.error(`File not found: ${absFilePath}`);
     return []
   }
 
   try {
-    fileContent = fs.readFileSync(filePath, 'utf8');
+    fileContent = fs.readFileSync(absFilePath, 'utf8');
   } catch (err) {
-    console.error(`Failed to read file: ${filePath}`, err);
+    console.error(`Failed to read file: ${absFilePath}`, err);
     return [];
   }
-
-  const toc = generateTreeToc(fileContent);
+  // console.log(`generateTreeToc-前`)
+  const toc = generateTreeToc(fileContent,format);
+  // console.log(`generateTreeToc-后`)
   return toc;
 };
 export const getToc = getToc_from_md

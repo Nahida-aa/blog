@@ -14,8 +14,10 @@ datasource db {
 }
 
 model User {
-  id            String       @default(cuid()) @id
+  // id            String       @default(cuid()) @id
+  id            Int         @id @default(autoincrement())
   name          String?
+  type          String?
   email         String?   @unique
   created_at     DateTime  @default(now()) @map(name: "created_at")
   updated_at     DateTime  @updatedAt @map(name: "updated_at")

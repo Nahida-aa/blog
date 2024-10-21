@@ -1,9 +1,9 @@
 // scripts/generateData.ts
 import fs from 'fs'
-import path from 'path'
+import path, { format } from 'path'
 import  generateTreeToc from '../src/lib/mdx/toc/generateTreeToc';
 import { parseFrontmatter } from '../src/lib/mdx/parseMatter';
-import { MdxMetadata, MdTreeToc, JsonDocMetadataTreeNode, JsonDocTocTreeNode } from '../src/types/mdx';
+import { FileMetadata, FileTreeToc, JsonDocMetadataTreeNode, JsonDocTocTreeNode } from '../src/types/mdx';
 
 const postsDirectory = path.join(process.cwd(), 'src','app','(blog)', 'md', 'blog');
 const outputDirectory = path.join(process.cwd(), 'public', 'data');
@@ -22,19 +22,20 @@ const generateTreeData = (directory: string, basePath: string = ''): { metadataT
       const { metadataTree, tocTree, staticParams } = generateTreeData(fullPath, relativePath);
       acc.metadataTree.push({
         path: relativePath.replace(/\\/g, '/') + '/', // 目录以斜杠结尾
-        metadata: {} as MdxMetadata,
+        metadata: {} as FileMetadata,
         children: metadataTree,
       });
       acc.tocTree.push({
         path: relativePath.replace(/\\/g, '/') + '/', // 目录以斜杠结尾
-        toc: [] as MdTreeToc,
+        toc: [] as FileTreeToc,
         children: tocTree,
       });
       acc.staticParams.push(...staticParams);
     } else if (entry.isFile() && (entry.name.endsWith('.mdx') || entry.name.endsWith('.md'))) {
+      const format = entry.name.endsWith('.mdx') ? 'mdx' : 'md';
       const fileContent = fs.readFileSync(fullPath, 'utf8');
       const { metadata, content } = parseFrontmatter(fileContent);
-      const toc = generateTreeToc(content);
+      const toc = generateTreeToc(content, format);
 
       acc.metadataTree.push({
         path: relativePath.replace(/\\/g, '/'),

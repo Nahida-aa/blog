@@ -1,5 +1,5 @@
 // src/lib/mdx/get/getsForFileSystem.ts
-import {JsonDocMetadataTreeNode,MdxMetadata} from '@/types/mdx'
+import {JsonDocMetadataTreeNode,FileMetadata} from '@/types/mdx'
 import { parseFrontmatter } from '@/lib/mdx/parseMatter';
 import fs from 'fs';
 import path from 'path';
@@ -15,7 +15,7 @@ export const generateMetadataTree = (directory: string, basePath: string = ''): 
       const children = generateMetadataTree(fullPath, relativePath);
       acc.push({
         path: relativePath.replace(/\\/g, '/') + '/', // 目录以斜杠结尾
-        metadata: {} as MdxMetadata,
+        metadata: {} as FileMetadata,
         children,
       });
     } else if (entry.isFile() && (entry.name.endsWith('.mdx') || entry.name.endsWith('.md'))) {

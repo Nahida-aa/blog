@@ -1,20 +1,20 @@
-// src/app/(blog)/aa/[slug]/_components/BlogToc.tsx
+// src/app/(blog)/aa/[...slug]/_components/FileToc.tsx
 "use client";
 import { useEffect, useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { useToc } from '@/context/TocContext';
 import { Dialog, DialogContent, DialogOverlay, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
-import { MdTreeToc, MdTocTreeNode } from '@/types/mdx';
-import { ChevronRight, ChevronDown } from 'lucide-react';
+import { FileTreeToc, FileTocTreeNode } from '@/types/mdx';
+import { ChevronRight, ChevronDown, X } from 'lucide-react';
 import Link from 'next/link';
 import { highlightText } from '../_util/highlightText'
 
-interface BlogTocProps {
-  toc: MdTreeToc;
+interface FileTocProps {
+  toc: FileTreeToc;
 }
 
-export default function BlogToc({ toc }: BlogTocProps) {
+export default function FileToc({ toc }: FileTocProps) {
   const { isTocOpen, toggleToc } = useToc();
   const [isMounted, setIsMounted] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
@@ -44,9 +44,9 @@ export default function BlogToc({ toc }: BlogTocProps) {
 
   useEffect(() => {
     // 默认展开所有节点
-    const expandAllNodes = (nodes: MdTocTreeNode[]) => {
+    const expandAllNodes = (nodes: FileTocTreeNode[]) => {
       const newExpandedNodes = new Set<string>();
-      const traverse = (nodes: MdTocTreeNode[]) => {
+      const traverse = (nodes: FileTocTreeNode[]) => {
         nodes.forEach(node => {
           newExpandedNodes.add(node.anchor);
           if (node.children.length > 0) {
@@ -77,7 +77,7 @@ export default function BlogToc({ toc }: BlogTocProps) {
     });
   };
 
-  const filterToc = (nodes: MdTocTreeNode[], searchTerm: string): MdTocTreeNode[] => {
+  const filterToc = (nodes: FileTocTreeNode[], searchTerm: string): FileTocTreeNode[] => {
     return nodes
       .map(node => {
         const filteredChildren = filterToc(node.children, searchTerm);
@@ -89,7 +89,7 @@ export default function BlogToc({ toc }: BlogTocProps) {
         }
         return null;
       })
-      .filter(node => node !== null) as MdTocTreeNode[];
+      .filter(node => node !== null) as FileTocTreeNode[];
   };
 
 
@@ -99,7 +99,7 @@ export default function BlogToc({ toc }: BlogTocProps) {
     }
   };
 
-  const renderToc = (nodes: MdTocTreeNode[], depth = 1) => (
+  const renderToc = (nodes: FileTocTreeNode[], depth = 1) => (
     <ul>
       {nodes.map((node) => {
         const hasChildren = node.children.length > 0;
@@ -107,7 +107,7 @@ export default function BlogToc({ toc }: BlogTocProps) {
         return (
           <li key={node.anchor}>
             <div
-              className={`flex cursor-pointer items-center h-8 w-full hover:bg-gray-700 rounded-md transition-colors duration-200`}
+              className={`flex cursor-pointer items-center h-8 w-full hover:bg-opacity-25 hover:bg-gray-600 rounded-md transition-colors duration-200`}
               style={{ paddingLeft: `${(depth - 1) * 8}px` }}
             >
               {hasChildren ? (
@@ -157,10 +157,12 @@ export default function BlogToc({ toc }: BlogTocProps) {
   return (
     isMounted && (
       <Card className="h-full max-h-[100vh] flex flex-col md:min-w-[320px] md:w-1/3 md:max-w-[460px] ml-4">
-        <section className="mx-2 mt-2">
+        <section className="m-2">
           <div className="flex justify-between">
             <h3>Outline</h3>
-            <button></button>
+            <button onClick={toggleToc} className="text-gray-500 hover:text-gray-700">
+              <X size={20} />
+            </button>
           </div>
           <span className='h-8 mt-2 flex'>
             <Input
@@ -170,7 +172,7 @@ export default function BlogToc({ toc }: BlogTocProps) {
               className="h-auto focus-visible:glow-purple-box-shadow px-2 bg-transparent"
             />
           </span>
-          <nav>{renderToc(filteredToc)}</nav>
+          <nav className='overflow-y-auto'>{renderToc(filteredToc)}</nav>
         </section>
       </Card>
     )

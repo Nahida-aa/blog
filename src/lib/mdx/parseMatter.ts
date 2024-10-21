@@ -1,9 +1,11 @@
 import matter from 'gray-matter';
-import type {MdxMetadata } from '@/types/mdx'
+import type {FileMetadata } from '@/types/mdx'
 
 export function parseFrontmatter(fileContent: string) {
+  // console.log(`parseFrontmatter: ${fileContent}`)
   const { data: metadata, content } = matter(fileContent);
-  return { metadata: metadata as MdxMetadata, content };
+  // console.log(`parseFrontmatter:matter: ${JSON.stringify(metadata, null, 2)}`)
+  return { metadata: metadata as FileMetadata, content };
 }
 
 // 自己实现(更加轻量)

@@ -4,8 +4,6 @@ import {
   // MDXRemote, 
   compileMDX,
   MDXRemoteProps } from 'next-mdx-remote/rsc';
-// import React from 'react';
-// import { Pre } from './pre/monacoPre';
 
 import { MdxComponents } from './mdxComponents'
 
@@ -16,15 +14,17 @@ import rehypeKatex from 'rehype-katex'
 import rehypeMdxCodeProps from 'rehype-mdx-code-props'
 import mdxErrorHandler from '@/lib/mdx/parse/error-handler'
 
+// import { remarkMark } from './remark/highlightMark'
+import { remarkMark } from 'remark-mark-highlight'
+
 // import rehypeSlug from 'rehype-slug';
 // import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 
-// import { Pre } from './pre/monacoPre';
-
 
 // mdx2html: 工作流程是先将 MDX 源码解析为 JSX, 然后再根据需要切换和渲染自定义组件
 export async function CustomMDX(props: MDXRemoteProps) {
+  // console.log(`CustomMDX: ${JSON.stringify(props.options, null, 2)}`)
   const options = {
     // made available to the arguments of any custom MDX component
     // scope: {},
@@ -32,16 +32,22 @@ export async function CustomMDX(props: MDXRemoteProps) {
     // https://mdxjs.com/packages/mdx/#compilefile-options
     mdxOptions: {
       // jsx: true,
-      remarkPlugins: [ mdxErrorHandler,remarkGfm,remarkMath],
+      remarkPlugins: [ 
+        mdxErrorHandler,
+        remarkGfm,
+        remarkMath,
+        remarkMark
+      ],
       rehypePlugins: [
         rehypeKatex,
         // rehypeMathjax,
         // 下面的插件必须最后使用
-        rehypeMdxCodeProps],
+        rehypeMdxCodeProps
+      ],
       // format: 'mdx',
     },
     // Indicates whether or not to parse the frontmatter from the MDX source
-    // parseFrontmatter: false,
+    parseFrontmatter: true,
   }
   const components = {
     ...MdxComponents,
@@ -56,6 +62,7 @@ export async function CustomMDX(props: MDXRemoteProps) {
     ...props,
     source: props.source, 
     options: {...options, ...(props.options||{}) },
+
     components
   })
   // console.log(`content:`)

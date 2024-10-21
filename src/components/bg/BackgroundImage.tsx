@@ -17,7 +17,7 @@ const BackgroundImage: React.FC = () => {
       ref={backgroundRef}
       // transition-brightness duration-100 ease-in-out
       className="fixed inset-0 z-[-1] 
-      brightness-[.75] dark:brightness-[.5]  bg-no-repeat bg-fixed bg-center h-full w-full bg-cover blur-sm"
+      dark:brightness-[.75]  bg-no-repeat bg-fixed bg-center h-full w-full bg-cover blur-sm"
     >
       {/* dark:brightness-[.25] */}
     </section>
