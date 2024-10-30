@@ -19,7 +19,7 @@ export default function GitHubDiscussionsEmbed({
     const script = document.createElement('script')
     script.src = 'https://giscus.app/client.js'
     script.setAttribute('data-repo', `${"Nahida-aa"}/${"blog"}`)
-    script.setAttribute('data-repo-id', 'YOUR_REPO_ID')
+    script.setAttribute('data-repo-id', '704198227')
     script.setAttribute('data-category', 'Announcements')
     script.setAttribute('data-category-id', 'YOUR_CATEGORY_ID')
     script.setAttribute('data-mapping', 'number')
