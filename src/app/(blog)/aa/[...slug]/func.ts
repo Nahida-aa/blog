@@ -22,7 +22,6 @@ export function getFilesMetaTreeData(): JsonDocMetadataTreeNode[] {
   }
 }
 
-
 export function getRelatedPosts(slug: string) {
   // 这里可以根据实际情况获取相关的文章数据
   console.log(`src/app/(blog)/aa/[...slug]/func.ts: slug: ${slug}`)

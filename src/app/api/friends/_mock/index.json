@@ -1,0 +1,8 @@
+[
+  { "id": 1, "name": "Alice's Tech Blog", "url": "https://alice-tech.com", "description": "Exploring the frontiers of web development", "avatar": "/avatar/aa-256.webp" },
+  { "id": 2, "name": "Bob's Design Corner", "url": "https://bob-design.com", "description": "Innovative UI/UX designs and tips", "avatar": "/avatar/star-256.webp", "labels": ["disconnected"] },
+  { "id": 3, "name": "Charlie's Code Cave", "url": "https://charlie-code.com", "description": "Deep dives into algorithms and data structures", "avatar": "/avatar/xc-256.webp", "labels": ["not added"] },
+  { "id": 4, "name": "Diana's Data Science", "url": "https://diana-data.com", "description": "Insights from the world of data", "avatar": "/avatar/yuuka-256.webp" },
+  { "id": 5, "name": "Evan's AI Adventures", "url": "https://evan-ai.com", "description": "Exploring the realm of artificial intelligence", "avatar": "/avatar/Nahida-256.webp" },
+  { "id": 6, "name": "Fiona's Photography", "url": "https://fiona-photo.com", "description": "Capturing moments in time", "avatar": "https://avatars.githubusercontent.com/u/96083926?v=4" }
+]

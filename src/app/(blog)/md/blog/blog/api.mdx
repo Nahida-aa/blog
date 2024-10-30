@@ -2,7 +2,7 @@
 title: api
 created_at: 2024-10-19T12:37:48.000Z
 pushed_at: '2024-10-19T04:52:59Z'
-updated_at: '2024-10-21T11:43:06Z'
+updated_at: '2024-10-28T06:10:25Z'
 authors:
   - name: aa
     github: Nahida-aa
@@ -211,7 +211,9 @@ GitHub 提供了丰富的 API，允许开发者与 GitHub 平台进行交互。�
   ```http
   GET /users/{username}
   ```
-
+```sh
+GET /users/{username}/repos
+```
 - **获取当前认证用户的信息**：
   ```http
   GET /user
@@ -246,7 +248,7 @@ Authorization: Bearer {{token}}
 
 通过这些 API，你可以与 GitHub 平台进行各种交互，如管理仓库、处理拉取请求、管理问题等。详细的 API 文档可以参考 [GitHub API 文档](https://docs.github.com/en/rest)。
 ## data
-### {{baseUrl}}/repos/{{owner}}/{{repo}}/contents/src
+### `{{baseUrl}}/repos/{{owner}}/{{repo}}/contents/src`
 ```json
 [
   {
@@ -395,7 +397,7 @@ Authorization: Bearer {{token}}
   }
 ]
 ```
-### {{baseUrl}}/repos/{{owner}}/{{repo}}/contents/src/app/(blog)/md/blog
+### `{{baseUrl}}/repos/{{owner}}/{{repo}}/contents/src/app/(blog)/md/blog`
 ```json
 [
   {

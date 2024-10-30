@@ -1,0 +1,80 @@
+---
+title: nuxt
+created_at: 2024-10-24T17:26:47.000Z
+pushed_at: '2024-10-27T20:51:28Z'
+updated_at: '2024-10-28T06:10:25Z'
+authors:
+  - name: aa
+    github: Nahida-aa
+    twitter: null
+private: false
+svg: null
+image: null
+tags: []
+description: null
+draft: false
+---
+## architecture
+```yml
+my-nuxt-app/
+├── assets/
+├── components/
+├── layouts/
+├── middleware/
+├── pages/
+├── plugins/
+├── static/
+├── store/
+├── nuxt.config.js
+├── package.json
+```
+### Nuxt.js 3 Boilerplate
+```yml
+public/
+server/:
+  - tsconfig.json
+- app.vue
+- nuxt.config.ts
+- package.json
+- tsconfig.json
+- pnpm-lock.yaml
+- .gitignore
+- README.md
+```
+### Nuxt 3 Kitchen Sink Template
+`Kitchen Sink` 意思是 除了厨房水槽什么都有，其他所有东西都在里面, 即应有尽有
+```yml
+assets/css/:
+  - tailwind.css
+components/:
+  - content/:
+    - CodeBlock.vue
+  - SideNav.vue
+  - ...
+content/:
+  - data-fetching.md
+  - index.md
+  - middleware.md
+  - ...
+layouts/:
+  - default.vue
+middleware/
+    - auth.ts
+pages/:
+  - private.vue
+  - [...slug].vue
+public/
+server/api/:
+  - info.ts
+  - hello.ts
+  - count.ts
+.npmrc
+app.vue
+nuxt.config.ts
+package.json
+tailwind.config.js
+tsconfig.json
+pnpm-lock.yaml
+.gitignore
+README.md
+```

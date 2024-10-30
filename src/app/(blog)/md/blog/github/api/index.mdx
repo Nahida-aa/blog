@@ -1,0 +1,101 @@
+---
+title: api.github
+created_at: 2024-10-25T18:04:49.000Z
+pushed_at: '2024-10-27T20:51:28Z'
+updated_at: '2024-10-28T06:10:25Z'
+authors:
+  - name: aa
+    github: Nahida-aa
+    twitter: null
+private: false
+svg: null
+image: null
+tags:
+  - github
+  - api
+description: null
+draft: false
+---
+```ts
+const baseUrl = 'https://api.github.com'
+const token = 'YOUR TOKEN'
+const headers = {
+  'Authorization ': `Bearer ${token}`
+}
+```
+## users
+### `GET /users/{username}`
+```sh
+GET https://api.github.com/users/Nahida-aa
+```
+```sh
+GET https://api.github.com/users/Nahida-aa
+Authorization: Bearer {{token}}
+```
+### `GET /user`
+```sh
+GET https://api.github.com/user
+Authorization: Bearer {{token}} # required
+```
+## orgs
+## repos
+### `GET /users/{username}/repos`
+这个带上token也不能获取私有仓库
+```sh
+GET https://api.github.com/users/Nahida-aa/repos?per_page=30&page=1
+```
+### `GET /user/repos`
+这个可以获取私有仓库
+```sh
+GET https://api.github.com/user/repos
+Authorization Bearer {{token}} # required
+```
+### `GET /orgs/{org}/repos`
+### `GET /repos/{owner}/{repo}`
+```sh
+GET https://api.github.com/repos/Nahida-aa/blog
+```
+## issues
+### `GET /repos/{owner}/{repo}/issues`
+```sh
+GET https://api.github.com/repos/Nahida-aa/blog/issues
+GET https://api.github.com/repos/Nahida-aa/blog/issues/{issue_number}
+```
+### `POST /repos/{owner}/{repo}/issues`
+```sh
+POST https://api.github.com/repos/Nahida-aa/blog/issues
+Authorization
+
+{
+  "title": "Found a bug", # required string | int
+  "body": "I'm having a problem with this.", # string 
+  assignee : "Nahida-aa", # string | null
+  "milestone": 1, # int | null | string
+  "labels": [ # string[]
+    "bug"
+  ],
+  "assignees": [ # array of strings
+    "Nahida-aa"
+  ]
+}
+```
+### `PATCH /repos/{owner}/{repo}/issues/{issue_number}`
+```sh
+PATCH https://api.github.com/repos/Nahida-aa/blog/issues/1
+Authorization
+
+{
+  "title": "Found a bug", #  string | int
+  "body": "I'm having a problem with this.", # string | null
+  "assignee" : "Nahida", # string | null
+  "state": "open", # string, eg: open, closed
+  "state_reason": "moved", # string | null, 如果状态没有改变，这个字段将被忽略
+  "milestone": 1, # int | null | string
+  "labels": [ # string[], 替换此 Issue 的标签s, 如果传入空数组，将清空所有标签
+    "bug"
+  ],
+  "assignees": [ # array of strings
+    "Nahida-aa"
+  ]
+}
+```

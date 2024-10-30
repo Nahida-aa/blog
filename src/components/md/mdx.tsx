@@ -44,7 +44,7 @@ export async function CustomMDX(props: MDXRemoteProps) {
         // 下面的插件必须最后使用
         rehypeMdxCodeProps
       ],
-      // format: 'mdx',
+      format: props.options?.mdxOptions.format || 'mdx', // 'mdx' or 'md'
     },
     // Indicates whether or not to parse the frontmatter from the MDX source
     parseFrontmatter: true,
@@ -61,7 +61,10 @@ export async function CustomMDX(props: MDXRemoteProps) {
   } = await compileMDX({
     ...props,
     source: props.source, 
-    options: {...options, ...(props.options||{}) },
+    options: {
+      // ...(props.options||{}),
+      ...options,
+  },
 
     components
   })

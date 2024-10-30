@@ -1,0 +1,223 @@
+---
+title: admin.js
+created_at: 2024-10-21T22:06:52.000Z
+pushed_at: '2024-10-27T20:51:28Z'
+updated_at: '2024-10-28T06:10:25Z'
+authors:
+  - name: aa
+    github: Nahida-aa
+    twitter: null
+private: false
+svg: null
+image: null
+tags: []
+description: null
+draft: false
+---
+# adminjs
+在 `src/app/admin/index.ts` 文件中：
+```ts
+import AdminJS from 'adminjs';
+import AdminJSExpress from '@adminjs/express';
+import { PrismaClient } from '@prisma/client';
+import { Database, Resource } from '@adminjs/prisma';
+import express from 'express';
+
+AdminJS.registerAdapter({ Database, Resource });
+
+const prisma = new PrismaClient();
+
+const adminJs = new AdminJS({
+  resources: [
+    { resource: { model: prisma.user, client: prisma }, options: {} },
+    // 添加更多资源
+  ],
+  rootPath: '/admin',
+});
+
+const app = express();
+const router = AdminJSExpress.buildRouter(adminJs);
+app.use(adminJs.options.rootPath, router);
+
+app.listen(3000, () => {
+  console.log('AdminJS is under localhost:3000/admin');
+});
+```
+
+3. 启动服务器：
+```sh
+node src/app/admin/index.ts
+```
+## adminjs in Next.js
+
+### 1. 安装 AdminJS 相关依赖
+
+在你的 Next.js 项目中安装 AdminJS 及其相关依赖：
+
+```sh
+pnpm add adminjs @adminjs/next @adminjs/prisma @prisma/client
+```
+
+### 2. 配置 Prisma
+
+确保你的 
+
+schema.prisma
+
+ 文件已经定义了你的数据模型。例如：
+
+```prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+```
+
+### 3. 配置 AdminJS
+
+在[/src/app/admin](/src/app/admin)目录下创建一个 `admin.ts` 文件，用于配置 AdminJS：
+
+```ts name='/src/app/admin/admin.ts'
+import AdminJS from 'adminjs';
+import { PrismaClient } from '@prisma/client';
+import { Database, Resource } from '@adminjs/prisma';
+
+AdminJS.registerAdapter({ Database, Resource });
+
+const prisma = new PrismaClient();
+
+const adminJs = new AdminJS({
+  resources: [
+    { resource: { model: prisma.user, client: prisma }, options: {} },
+    // 添加更多资源
+  ],
+  rootPath: '/admin',
+});
+
+export default adminJs;
+```
+
+### 4. 创建 API 路由
+
+在 [`src/app/api/admin`](/src/app/api/admin) 目录下创建一个 `route.ts` 文件，用于处理 AdminJS 的 API 请求：
+
+```ts
+import { NextRequest, NextResponse } from 'next/server';
+import adminJs from '../../../admin';
+import AdminJSNext from '@adminjs/next';
+
+export async function GET(req: NextRequest) {
+  const handler = await AdminJSNext.buildHandler(adminJs);
+  return handler(req, NextResponse);
+}
+
+export async function POST(req: NextRequest) {
+  const handler = await AdminJSNext.buildHandler(adminJs);
+  return handler(req, NextResponse);
+}
+```
+
+### 5. 创建 AdminJS 页面
+
+在[/src/app/admin](/src/app/admin)目录下创建一个 `page.tsx` 文件，用于渲染 AdminJS 界面：
+
+```tsx name='/src/app/admin/page.tsx'
+import dynamic from 'next/dynamic';
+
+const AdminJSComponent = dynamic(() => import('@adminjs/next').then(mod => mod.AdminJS), { ssr: false });
+
+export default function AdminPage() {
+  return <AdminJSComponent />;
+}
+```
+
+### 6. 配置 Next.js 中间件（可选）
+
+如果你需要对访问 `/admin` 路由的用户进行权限验证，可以在 
+
+[src/middleware.ts](/src/middleware.ts)
+
+ 文件中添加中间件：
+
+```ts
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // 检查是否是管理界面路由
+  if (pathname.startsWith('/admin')) {
+    const token = request.cookies.get('token');
+
+    // 验证用户是否有管理员权限
+    if (!token || !isAdmin(token)) {
+      return NextResponse.redirect(new URL('/login', request.url));
+    }
+  }
+
+  return NextResponse.next();
+}
+
+function isAdmin(token: string): boolean {
+  // 这里添加你的权限验证逻辑
+  return token === 'admin-token';
+}
+```
+
+### 7. 运行开发服务器
+
+启动 Next.js 开发服务器：
+
+```sh
+pnpm dev
+```
+
+### 8. 访问 AdminJS 界面
+
+在浏览器中访问 `http://localhost:3000/admin`，你应该能够看到 AdminJS 的管理界面。
+
+### 示例项目结构
+
+以下是一个示例项目结构：
+
+```
+my-next-app/
+├── node_modules/
+├── prisma/
+│   └── schema.prisma
+├── public/
+├── src/
+│   ├── app/
+│   │   ├── api/
+│   │   │   └── admin/
+│   │   │       └── route.ts
+│   │   ├── admin/
+│   │   │   └── page.tsx
+│   │   ├── users/
+│   │   │   └── page.tsx
+│   │   └── index.tsx
+│   ├── styles/
+│   ├── lib/
+│   │   └── prisma.ts
+│   └── middleware.ts
+├── .env
+├── package.json
+├── pnpm-lock.yaml
+├── tsconfig.json
+└── next.config.js
+```
+
+通过以上步骤，你可以将 AdminJS 集成到 Next.js 14 项目中，而不需要单独的 Express 服务器。如果你有具体的部分需要进一步优化或详细讨论，请告诉我。

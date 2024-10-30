@@ -136,7 +136,9 @@ export default function FileToc({ toc }: FileTocProps) {
   if (isMobile) {
     return (
       <Dialog open={isTocOpen} onOpenChange={() => toggleToc()}>
-        <DialogContent overlayComponent={<DialogOverlay className="opacity-0" />} className="min-w-[296px] max-w-[calc(-64px+100dvw)] max-h-[calc(-64px+100dvw)] items-center backdrop-blur-md px-4 py-2 gap-0 glow-cyan-box-shadow ">
+        <DialogContent 
+        // overlayComponent={<DialogOverlay className="opacity-0" />} 
+        className="min-w-[296px] max-w-[calc(-64px+100dvw)] max-h-[calc(-64px+100dvw)] items-center backdrop-blur-md px-4 py-2 gap-0 glow-cyan-box-shadow ">
           <DialogHeader>
             <DialogTitle className='h-8 flex items-center'>Outline</DialogTitle>
           </DialogHeader>

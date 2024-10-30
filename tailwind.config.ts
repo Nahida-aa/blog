@@ -13,13 +13,13 @@ const config: Config = {
   		colors: {
   			background: 'hsl(var(--background)/0.2)',
   			foreground: 'hsl(var(--foreground))',
-				appHeader: 'hsl(var(--AppHeader-bg)/0.2)',
+  			appHeader: 'hsl(var(--AppHeader-bg)/0.2)',
   			card: {
   				DEFAULT: 'hsl(var(--card)/0.2)',
   				foreground: 'hsl(var(--card-foreground))'
   			},
   			popover: {
-  				DEFAULT: 'hsl(var(--popover))',
+  				DEFAULT: 'hsl(var(--popover)/0.3)',
   				foreground: 'hsl(var(--popover-foreground))'
   			},
   			primary: {
@@ -42,7 +42,7 @@ const config: Config = {
   				DEFAULT: 'hsl(var(--destructive))',
   				foreground: 'hsl(var(--destructive-foreground))'
   			},
-  			border: 'hsl(var(--border))',
+  			border: 'hsl(var(--border)/0.8)',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
   			chart: {
@@ -51,6 +51,16 @@ const config: Config = {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
+  			},
+  			sidebar: {
+  				DEFAULT: 'hsl(var(--sidebar-background)/0.2)',
+  				foreground: 'hsl(var(--sidebar-foreground))',
+  				primary: 'hsl(var(--sidebar-primary))',
+  				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+  				accent: 'hsl(var(--sidebar-accent)/0.2)',
+  				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+  				border: 'hsl(var(--sidebar-border))',
+  				ring: 'hsl(var(--sidebar-ring))'
   			}
   		},
   		borderRadius: {
@@ -58,23 +68,34 @@ const config: Config = {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
-			screens: {
-				'1.5xl': '1408px'
-			},
+  		screens: {
+  			'1.5xl': '1408px'
+  		}
   	}
   },
-  plugins: [require("tailwindcss-animate"),
-    // plugin(function ({ addUtilities }) {
-    //   const newUtilities = {
-    //     '.glow-cyan': '@apply glow-cyan;',
-    //     '.glow-purple': '@apply glow-purple;',
-    //   };
+  // plugins: [
+  //   // plugin(function ({ addUtilities }) {
+  //   //   const newUtilities = {
+  //   //     '.glow-cyan': '@apply glow-cyan;',
+  //   //     '.glow-purple': '@apply glow-purple;',
+  //   //   };
 
-    //   addUtilities(newUtilities, {
-    //     respectPrefix: false,
-    //     respectImportant: false,
-    //   });
-		// }),
-	],
+  //   //   addUtilities(newUtilities, {
+  //   //     respectPrefix: false,
+  //   //     respectImportant: false,
+  //   //   });
+	// 	// }),
+	// ],
+	plugins: [
+		require("tailwindcss-animate"),
+    plugin(function({ addUtilities }) {
+      addUtilities({
+        '.text-glow-cyan': {
+          'text-shadow': '0 0 2px #0e002000, 0 0 7px #00f6ff75, 0 0 5px #00f6ff75, 0 0 18px #00f6ff75',
+        },
+        
+      })
+    })
+  ]
 };
 export default config;

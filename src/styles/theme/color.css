@@ -36,9 +36,9 @@
 	/* #151b23 */
 	--muted: 214.29 25% 10.98%;
 	--bgColor-neutral-muted:#656c7633;
-
 	--muted-foreground: 215 20.2% 65.1%;
-	--accent: 217.2 32.6% 17.5%;
+	--accent: 262 31% 30%;
+	--accent-var: hsl(262, 31%, 30%);
 	--accent-foreground: 210 40% 98%;
 	--destructive: 0 62.8% 30.6%;
 	--destructive-foreground: 210 40% 98%;

@@ -6,17 +6,17 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Copy } from 'lucide-react'
-import { CodeHighlight} from '@/components/md/pre/prismPre'
-
+import { generateEquivalentCode } from './_utils/generateEquivalentCode'
+import { EquivalentCode } from './_components/EquivalentCode'
 interface ResponseType {
   status?: number;
   error?: string;
   headers?: Record<string, string>;
   body?: string;
 }
-export default function Component() {
+
+export default function ToolsApiPage() {
   const [url, setUrl] = useState('')
   const [method, setMethod] = useState('GET')
   const [headers, setHeaders] = useState('')
@@ -66,19 +66,20 @@ export default function Component() {
   }, [url, headers, body, variables])
 
   const sendRequest = async () => {
+    console.log('click:sendRequest')
     setIsLoading(true)
     try {
       const options = {
         method,
         headers: processedHeaders,
-        body
       }
 
       if (method !== 'GET' && processedBody) {
-        options.body = processedBody
+        (options as RequestInit & { body: string }).body = processedBody
       }
-
+      console.log('fetch前', options)
       const res = await fetch(processedUrl, options)
+      console.log(`fetch后: ${res}`)
       const responseBody = await res.text()
       setResponse({
         status: res.status,
@@ -93,190 +94,7 @@ export default function Component() {
     setIsLoading(false)
   }
 
-  const generateEquivalentCode = () => {
-    const shCode = `curl -X ${method} ${Object.entries(processedHeaders).map(([k, v]) => `-H "${k}: ${v}"`).join(' ')} ${method !== 'GET' ? `-d '${processedBody}'` : ''} "${processedUrl}"`
-
-    const jsCode = `fetch("${processedUrl}", {
-  method: "${method}",
-  headers: ${JSON.stringify(processedHeaders, null, 2)},
-  ${method !== 'GET' ? `body: ${JSON.stringify(processedBody)}` : ''}
-})
-  .then(response => response.text())
-  .then(data => console.log(data))
-  .catch(error => console.error('Error:', error));`
-
-    const tsCode = `async function sendRequest() {
-  try {
-    const response = await fetch("${processedUrl}", {
-      method: "${method}",
-      headers: ${JSON.stringify(processedHeaders, null, 2)},
-      ${method !== 'GET' ? `body: ${JSON.stringify(processedBody)}` : ''}
-    });
-    const data = await response.text();
-    console.log(data);
-  } catch (error) {
-    console.error('Error:', error);
-  }
-}
-
-sendRequest();`
-
-    const pythonCode = `import requests
-
-response = requests.${method.toLowerCase()}("${processedUrl}",
-    headers=${JSON.stringify(processedHeaders, null, 2)},
-    ${method !== 'GET' ? `data='${processedBody}'` : ''}
-)
-
-print(response.text)`
-
-    const cCode = `#include <stdio.h>
-#include <curl/curl.h>
-
-int main(void) {
-  CURL *curl;
-  CURLcode res;
-
-  curl = curl_easy_init();
-  if(curl) {
-    curl_easy_setopt(curl, CURLOPT_URL, "${processedUrl}");
-    curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "${method}");
-
-    struct curl_slist *headers = NULL;
-    ${Object.entries(processedHeaders).map(([k, v]) => `headers = curl_slist_append(headers, "${k}: ${v}");`).join('\n    ')}
-    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
-
-    ${method !== 'GET' ? `curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "${processedBody}");` : ''}
-
-    res = curl_easy_perform(curl);
-    if(res != CURLE_OK)
-      fprintf(stderr, "curl_easy_perform() failed: %s\\n", curl_easy_strerror(res));
-
-    curl_easy_cleanup(curl);
-    curl_slist_free_all(headers);
-  }
-  return 0;
-}`
-
-    const cppCode = `#include <iostream>
-#include <string>
-#include <curl/curl.h>
-
-static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
-{
-    ((std::string*)userp)->append((char*)contents, size * nmemb);
-    return size * nmemb;
-}
-
-int main(void)
-{
-    CURL *curl;
-    CURLcode res;
-    std::string readBuffer;
-
-    curl = curl_easy_init();
-    if(curl) {
-        curl_easy_setopt(curl, CURLOPT_URL, "${processedUrl}");
-        curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "${method}");
-
-        struct curl_slist *headers = NULL;
-        ${Object.entries(processedHeaders).map(([k, v]) => `headers = curl_slist_append(headers, "${k}: ${v}");`).join('\n        ')}
-        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
-
-        ${method !== 'GET' ? `curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "${processedBody}");` : ''}
-
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-
-        res = curl_easy_perform(curl);
-        if(res != CURLE_OK)
-            std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
-        else
-            std::cout << readBuffer << std::endl;
-
-        curl_easy_cleanup(curl);
-        curl_slist_free_all(headers);
-    }
-    return 0;
-}`
-
-    const javaCode = `import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-
-public class ApiRequest {
-    public static void main(String[] args) throws Exception {
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("${processedUrl}"))
-            .method("${method}", ${method !== 'GET' ? `HttpRequest.BodyPublishers.ofString("${processedBody}")` : 'HttpRequest.BodyPublishers.noBody()'})
-            ${Object.entries(processedHeaders).map(([k, v]) => `.header("${k}", "${v}")`).join('\n            ')}
-            .build();
-        
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.body());
-    }
-}`
-
-    const restCode = `### Send ${method} request to ${processedUrl}
-${method} ${processedUrl}
-${Object.entries(processedHeaders).map(([k, v]) => `${k}: ${v}`).join('\n')}
-
-${method !== 'GET' ? processedBody : ''}`
-
-    const goCode = `package main
-
-import (
-    "fmt"
-    "io/ioutil"
-    "log"
-    "net/http"
-    "strings"
-)
-
-func main() {
-    client := &http.Client{}
-    req, err := http.NewRequest("${method}", "${processedUrl}", ${method !== 'GET' ? `strings.NewReader(\`${processedBody}\`)` : 'nil'})
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    ${Object.entries(processedHeaders).map(([k, v]) => `req.Header.Set("${k}", "${v}")`).join('\n    ')}
-
-    resp, err := client.Do(req)
-    if err != nil {
-        log.Fatal(err)
-    }
-    defer resp.Body.Close()
-
-    body, err := ioutil.ReadAll(resp.Body)
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    fmt.Println(string(body))
-}`
-
-    const rustCode = `use reqwest;
-
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let client = reqwest::Client::new();
-    let res = client.${method.toLowerCase()}("${processedUrl}")
-        ${Object.entries(processedHeaders).map(([k, v]) => `.header("${k}", "${v}")`).join('\n        ')}
-        ${method !== 'GET' ? `.body("${processedBody}")` : ''}
-        .send()
-        .await?;
-
-    println!("{}", res.text().await?);
-    Ok(())
-}`
-
-    return { shCode, jsCode, tsCode, pythonCode, cCode, cppCode, javaCode, restCode, goCode, rustCode }
-  }
-
-  const equivalentCode = generateEquivalentCode()
+  const equivalentCode = generateEquivalentCode(method, processedUrl, processedHeaders, processedBody)
 
   return (
     <div className="container mx-auto p-4 max-w-3xl">
@@ -370,53 +188,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
           <Card className="mt-4">
             <CardHeader>
               <CardTitle>Equivalent Code</CardTitle>
-            
             </CardHeader>
             <CardContent>
-              <Tabs defaultValue="sh">
-                <TabsList>
-                  <TabsTrigger value="sh">Shell</TabsTrigger>
-                  <TabsTrigger value="js">JavaScript</TabsTrigger>
-                  <TabsTrigger value="ts">TypeScript</TabsTrigger>
-                  <TabsTrigger value="python">Python</TabsTrigger>
-                  <TabsTrigger value="c">C</TabsTrigger>
-                  <TabsTrigger value="cpp">C++</TabsTrigger>
-                  <TabsTrigger value="java">Java</TabsTrigger>
-                  <TabsTrigger value="rest">REST</TabsTrigger>
-                  <TabsTrigger value="go">Go</TabsTrigger>
-                  <TabsTrigger value="rust">Rust</TabsTrigger>
-                </TabsList>
-                <TabsContent value="sh">
-                  <CodeHighlight code={equivalentCode.shCode} language="bash" />
-                </TabsContent>
-                <TabsContent value="js">
-                  <CodeHighlight code={equivalentCode.jsCode} language="javascript" />
-                </TabsContent>
-                <TabsContent value="ts">
-                  <CodeHighlight code={equivalentCode.tsCode} language="typescript" />
-                </TabsContent>
-                <TabsContent value="python">
-                  <CodeHighlight code={equivalentCode.pythonCode} language="python" />
-                </TabsContent>
-                <TabsContent value="c">
-                  <CodeHighlight code={equivalentCode.cCode} language="c" />
-                </TabsContent>
-                <TabsContent value="cpp">
-                  <CodeHighlight code={equivalentCode.cppCode} language="cpp" />
-                </TabsContent>
-                <TabsContent value="java">
-                  <CodeHighlight code={equivalentCode.javaCode} language="java" />
-                </TabsContent>
-                <TabsContent value="rest">
-                  <CodeHighlight code={equivalentCode.restCode} language="http" />
-                </TabsContent>
-                <TabsContent value="go">
-                  <CodeHighlight code={equivalentCode.goCode} language="go" />
-                </TabsContent>
-                <TabsContent value="rust">
-                  <CodeHighlight code={equivalentCode.rustCode} language="rust" />
-                </TabsContent>
-              </Tabs>
+              <EquivalentCode equivalentCode={equivalentCode} />
             </CardContent>
           </Card>
         </CardContent>
@@ -424,4 +198,3 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     </div>
   )
 }
-

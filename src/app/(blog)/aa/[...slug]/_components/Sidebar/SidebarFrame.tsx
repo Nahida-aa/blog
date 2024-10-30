@@ -71,14 +71,14 @@ export default function SidebarFrame({ children }: SidebarFrameProps) {
         {children}
       </div>
       {/* 与其他区域之间的边界 */}
-      <div className="relative h-full w-[1px] bg-[#3d444d]">
+      <div className="relative h-full w-[1px] bg-border">
         <div
           role="slider"
           aria-label="Draggable pane splitter"
           // aria-valuemin={minWidth}
           // aria-valuemax={maxWidth}
           tabIndex={0}
-          className={`absolute inset-0 -inset-x-0.5 cursor-col-resize transition delay-100 ${isDragging ? 'bg-purple-500' : 'bg-transparent hover:bg-[var(--bgColor-neutral-muted,var(--color-neutral-muted,rgba(110,118,129,0.4)))]'}`}
+          className={`absolute inset-0 -inset-x-0.5 cursor-col-resize transition delay-100 ${isDragging ? 'bg-purple-500' : 'bg-transparent '}`}
           onMouseDown={handleMouseDown}
         ></div>
       </div>

@@ -1,0 +1,75 @@
+---
+title: friends
+created_at: 2024-10-25T21:51:14.000Z
+pushed_at: '2024-10-27T20:51:28Z'
+updated_at: '2024-10-28T06:10:25Z'
+authors:
+  - name: aa
+    github: Nahida-aa
+    twitter: null
+private: false
+svg: null
+image: null
+tags:
+  - friends
+description: 实现友链功能
+draft: false
+---
+## friends
+```
+name=aa's blog
+url=https://blog.Nahida-aa.us.kg
+avatar=https://avatars.githubusercontent.com/u/96083926?v=4
+desc=变聪明啦
+```
+### `GET /api/friends`
+```sh
+GET http://localhost:3000/api/friends
+GET http://localhost:3000/api/friends/{issue_number}
+```
+### `POST /api/friends`
+```sh
+POST http://localhost:3000/api/friends
+Authorization
+
+{
+  "title": "Found a bug", 
+  "name": "Friend 1", # required
+  "url": "https://friend1.com", # required
+  "avatar": "https://friend1.com/avatar.png",
+  "desc": "This is friend 1's website.",
+  "labels": [
+    "lost" 
+  ]
+}
+```
+```json
+{
+  "number": 6,
+  "name": "Friend 1",
+  "url": "https://friend1.com",
+  "avatar": "https://friend1.com/avatar.png",
+  "description": "undefined",
+  "labels": [
+    "lost"
+  ],
+  "state": "open"
+}
+```
+### `PATCH /repos/{owner}/{repo}/issues/{issue_number}`
+```sh
+PATCH http://localhost:3000/api/friends/{issue_number}
+Authorization
+
+{
+  "title": "Found a bug", 
+  "name": "Friend 1",
+  "url": "https://friend1.com",
+  "avatar": "https://friend1.com/avatar.png",
+  "desc": "This is friend 1's website.",
+  "labels": [
+    "bug"
+  ],
+  "state": "open"
+}
+```

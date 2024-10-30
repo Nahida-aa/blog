@@ -1,3 +1,10 @@
+/* @layer utilities {
+    .glow-cyan {
+        color: #f4edf7;
+        text-shadow: 0 0 2px #0e002000, 0 0 7px #00f6ff75, 0 0 5px #00f6ff75, 0 0 18px #00f6ff75;
+    }
+} */
+
 /* ai写的 */
 .glow-cyan {
     color: #f4edf7;
@@ -13,7 +20,14 @@
     text-shadow: 0 0 2px #0e002000, 0 0 7px #780afe75, 0 0 5px #780afe75, 0 0 18px #780afe75;
 }
 
-    .glow-purple-box-shadow {
-        /* box-shadow: 0 0 10px #780afe75, 0 0 20px #780afe75, 0 0 30px #780afe75, 0 0 40px #780afe75, 0 0 50px #780afe75, 0 0 60px #780afe75, 0 0 70px #780afe75; */
-        box-shadow: 0 0 2px #0e002000, 0 0 7px #780afe75, 0 0 5px #780afe75, 0 0 18px #780afe75;
-    }
+.glow-purple-box-shadow {
+    /* box-shadow: 0 0 10px #780afe75, 0 0 20px #780afe75, 0 0 30px #780afe75, 0 0 40px #780afe75, 0 0 50px #780afe75, 0 0 60px #780afe75, 0 0 70px #780afe75; */
+    box-shadow: 0 0 2px #0e002000, 0 0 7px #780afe75, 0 0 5px #780afe75, 0 0 18px #780afe75;
+}
+
+.bg-gradient-opacity-30 {
+    background-image: linear-gradient(to bottom right, rgba(59, 50, 238, 0.3), rgba(125, 74, 243, 0.3), rgba(236, 72, 153, 0.3));
+}
+.bg-gradient-opacity-40 {
+background-image: linear-gradient(to bottom right, rgba(20, 17, 81, 0.4), rgba(54, 29, 110, 0.4), rgba(94, 27, 60, 0.4));
+}

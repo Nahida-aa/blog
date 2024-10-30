@@ -15,7 +15,7 @@ import rehypePrism from 'rehype-prism-plus'
 import remarkFrontmatter from 'remark-frontmatter'
 import { VFile } from 'vfile'
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime'
-import { CodeHighlight} from '@/components/md/pre/prismPre'
+import { CodeBlockWithCopy} from '@/components/md/pre/prismPre'
 import { removePosition } from 'unist-util-remove-position'
 import { visit as visitEstree } from 'estree-util-visit'
 import ReactDOMServer from 'react-dom/server'
@@ -98,18 +98,18 @@ const Page: React.FC = () => {
 
         if (ast) {
           removePosition(ast, { force: true })
-          setOutput(<CodeHighlight code={JSON.stringify(ast, null, 2)} language="json" />)
+          setOutput(<CodeBlockWithCopy value={JSON.stringify(ast, null, 2)} language="json" />)
         } else if (show === 'preview') {
           const { default: Content } = await run(String(file), { Fragment, jsx, jsxs })
           setOutput(<Content />)
         } else if (show === 'code') {
-          setOutput(<CodeHighlight code={String(file)} language="jsx" />)
+          setOutput(<CodeBlockWithCopy value={String(file)} language="jsx" />)
         } else if (show === 'html') {
           const { default: Content } = await run(String(file), { Fragment, jsx, jsxs })
           const codeHtml = ReactDOMServer.renderToString(<Content />)
-          setOutput(<CodeHighlight code={codeHtml} language="html" />)
+          setOutput(<CodeBlockWithCopy value={codeHtml} language="html" />)
         } else {
-          setOutput(<CodeHighlight code={String(file)} language="javascript" />)
+          setOutput(<CodeBlockWithCopy value={String(file)} language="javascript" />)
         }
       } catch (error) {
         const errorMessage = (error as Error).message;
