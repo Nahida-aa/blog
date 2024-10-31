@@ -70,11 +70,11 @@ export function ComboboxSidebarHeader() {
         <SidebarMenuButton
           role="combobox"
           aria-expanded={open}
-          className="w-full justify-between"
+          className="w-full min-w-0 justify-between group-data-[collapsible=icon]:!size-0 group-data-[collapsible=icon]:!p-0"
         >
-          {value
+          <span className="">{value
             ? side_head_selects.find((side_head_select) => side_head_select.value === value)?.label
-            : ""}
+            : ""}</span>
           <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 " />
         </SidebarMenuButton>
       </PopoverTrigger>

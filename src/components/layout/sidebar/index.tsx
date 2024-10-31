@@ -37,7 +37,6 @@ export interface MenuGroup {
   name: string
   items: MenuItem[]
 }
-
 const TreeMenuNode: React.FC<{ item: MenuItem, depth?: number }> = ({ item, depth = 0 }) => {
   const [isOpen, setIsOpen] = React.useState(false)
   const hasChildren = item.items && item.items.length > 0

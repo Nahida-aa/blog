@@ -4,7 +4,7 @@ import { Calendar, ChevronDown, ChevronsUpDown, ChevronUp, Home, Inbox, Search, 
 import { MenuGroup, MenuItem } from "@/components/layout/sidebar"
 export const blog_ContentMenuItems: MenuItem[] = [
   {name: "Blog", url: "/aa", icon: BookMarked},
-  {name: "Comments", url: "/comment", icon: MessageSquareText},
+  {name: "Comments", url: "/comment/test", icon: MessageSquareText},
   {name: "Tags", url: "/tags", icon: Tags},
   {name: "Friends", url: "/friends", icon: FriendLink},
   {name: "VSCode", url: "/vscode", icon: WandSparkles},

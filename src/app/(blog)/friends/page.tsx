@@ -4,9 +4,13 @@ import FriendLinkTemplate from './_components/FriendLinkTemplate'
 import FriendsList from './_components/FriendsList'
 
 async function getFriends(): Promise<Friend[]> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/friends?stat=all`, { cache: 'no-store' })
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/friends`, { cache: 'no-store' })
   if (!res.ok) throw new Error('Failed to fetch friends')
-  return res.json()
+  const data = await res.json()
+  if (!Array.isArray(data)) {
+    throw new Error('Expected an array of friends: ' + JSON.stringify(data))
+  }
+  return data
 }
 
 export default async function FriendLinks() {

@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/provider/theme-provider";
 import { GoogleAnalytics
   // , GoogleTagManager 
 } from "@next/third-parties/google"
+import { SessionProvider } from "next-auth/react";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -56,17 +57,20 @@ export default function RootLayout({
         <script src="/vscode/Comet.js" />
       </head> */}
       <body className="antialiased mio-scroll">
+      
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
+          <SessionProvider>
           <main>
             
             {children}
             {/* <SpeedInsights /> */}
           </main>
+          </SessionProvider>
         </ThemeProvider>
         {process.env.GA_TRACKING_ID && <GoogleAnalytics gaId={process.env.GA_TRACKING_ID} />}
       </body>

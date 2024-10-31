@@ -6,7 +6,7 @@ import BackgroundImage  from '@/components/bg/BackgroundImage'
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/layout/sidebar"
 import AppHeader from "@/components/layout/header";
-import { blog_ContentMenuItems } from "./_json/menu";
+import { blog_ContentMenuItems } from "@/app/(blog)/_json/menu";
 import { CSSProperties } from "react";
 
 export default function BlogLayout({
