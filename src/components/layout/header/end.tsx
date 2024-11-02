@@ -8,13 +8,13 @@ import ThemeToggle from '@/components/ThemeToggle';
 
 export default function NavEnd() {
   return (
-    <div className="max-h-8 flex items-center space-x-2 pl-10 pr-1">
+    <div className="max-h-8 flex items-center space-x-2  ">
       {/* 超过 md 大小时显示 */}
-      <div className="hidden md:flex items-center space-x-1 pl-10 pr-1">
+      <div className="flex items-center space-x-1  ">
         <BgToggle />
         <ThemeToggle />
         {/* <DayNightToggle size={1.5} /> */}
-      </div>
+      </div>  
 
     </div>
   );

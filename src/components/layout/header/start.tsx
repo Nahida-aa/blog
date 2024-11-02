@@ -4,11 +4,27 @@ import { AlignLeft } from "lucide-react";
 import { DynamicBreadcrumb } from "../DynamicBreadcrumb";
 import { TriggerCustomIcon } from "../sidebar/custom/Trigger";
 import { Separator } from "@/components/ui/separator"
+import { useSidebar } from "@/components/ui/sidebar";
+
 
 export default function HeaderStart() {
+  const {
+    state,
+    open,
+    setOpen,
+    openMobile,
+    setOpenMobile,
+    isMobile,
+    toggleSidebar,
+  } = useSidebar()
   return (<>
     <TriggerCustomIcon className="md:hidden" icon={<AlignLeft />} />
-    <Separator orientation="vertical" className="h-5 md:hidden"/>
-    <DynamicBreadcrumb />
+    {!isMobile && (
+      <>
+
+      </>
+    )}
+          <Separator orientation="vertical" className="h-5 md:hidden"/>
+          <DynamicBreadcrumb />
   </>)
 }
