@@ -1,5 +1,5 @@
 "use client"
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Calendar, ChevronDown, ChevronsUpDown, ChevronUp, Home, Inbox, Search, Settings, User2, Link as FriendLink, MessageSquareText, BookMarked, Tags, ChartSpline, Plus, ChevronLeft, ChevronRight } from "lucide-react"
 import {
   Sidebar,
@@ -24,6 +24,7 @@ import SidebarHeader from "@/components/layout/sidebar/header"
 import SidebarFooter from "@/components/layout/sidebar/footer"
 import React from "react"
 import { getIconByNameAndTypeAndStat } from '@/lib/map/icon'
+import { usePathname } from 'next/navigation'
 
 export type MenuItemType = "link" | "button" | "dir" | "file" | "repo"
 export interface MenuItem {
@@ -39,9 +40,19 @@ export interface MenuGroup {
   name: string
   items: MenuItem[]
 }
-const TreeMenuNode: React.FC<{ item: MenuItem, depth?: number }> = ({ item, depth = 0 }) => {
+const TreeMenuNode: React.FC<{ item: MenuItem, depth?: number, currentPath: string }> = ({ item, depth = 0, currentPath }) => {
   const [isOpen, setIsOpen] = React.useState(false)
   const hasChildren = item.items && item.items.length > 0
+
+  const isActive = currentPath === item.path
+
+  useEffect(() => {
+    if (currentPath.startsWith(item.path)) {
+      setIsOpen(true)
+      // 打印展开的 item.path
+    }
+  }, [currentPath, item.path])
+  console.log(`TreeMenuNode: currentPath=${currentPath}, item.path=${item.path}, isActive=${isActive}, isOpen=${isOpen}`)
 
   const toggleOpen = () => setIsOpen(!isOpen)
 
@@ -54,9 +65,9 @@ const TreeMenuNode: React.FC<{ item: MenuItem, depth?: number }> = ({ item, dept
 
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-      <MenuItemComp>
+      <MenuItemComp className='MenuItemComp'>
         <CollapsibleTrigger asChild>
-          <MenuButtonComp asChild className="w-full">
+          <MenuButtonComp asChild className={`w-full ${isActive ? 'bg-accent text-accent-foreground' : ''} MenuButtonComp`}>
             {isLink ? (
               <Link href={item.path} className="flex items-center !px-1">
                 {/* {item.icon && <item.icon />} */}
@@ -83,7 +94,7 @@ const TreeMenuNode: React.FC<{ item: MenuItem, depth?: number }> = ({ item, dept
           <CollapsibleContent>
             <MenuComp className="pr-0 ml-2.5 pl-1  mr-0 side-menu w-[100%-2.5rem]">
               {item.items!.map((subItem, index) => (
-                <TreeMenuNode key={index} item={subItem} depth={depth + 1} />
+                <TreeMenuNode key={index} item={subItem} depth={depth + 1} currentPath={currentPath} />
               ))}
             </MenuComp>
           </CollapsibleContent>
@@ -139,6 +150,8 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ menu_groups = [], menu_i
   console.log(`AppSidebar: state=${state}, open=${open}, openMobile=${openMobile}, isMobile=${isMobile}, toggleSidebar=${toggleSidebar}, menu_groups=${JSON.stringify(menu_groups, null, 2)}, menu_items=${JSON.stringify(menu_items[0].items[0].items[2], null, 2)}, grouped=${grouped}`)
   const isGrouped = grouped !== undefined ? grouped : menu_groups.length > 0
 
+  const pathname = usePathname()
+
   return (
     <Sidebar side="left" variant="sidebar" collapsible="icon" className='  md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:!hidden Sidebar '
     // style={{ 
@@ -168,7 +181,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ menu_groups = [], menu_i
                   <SidebarGroupContent className="px-2">
                     <SidebarMenu className="gap-0">
                       {group.items.map((item, index) => (
-                        <TreeMenuNode key={index} item={item} />
+                        <TreeMenuNode key={index} item={item} currentPath={pathname} />
                       ))}
                     </SidebarMenu>
                   </SidebarGroupContent>
@@ -179,7 +192,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ menu_groups = [], menu_i
         ) : (
           <SidebarMenu className="gap-0 px-2">
             {menu_items.map((item, index) => (
-              <TreeMenuNode key={index} item={item} />
+              <TreeMenuNode key={index} item={item} currentPath={pathname} />
             ))}
           </SidebarMenu>
         )}

@@ -15,7 +15,7 @@ export const getFileTree = (dir: string, basePath: string = ''): FileTree => {
   files.forEach(file => {
     const filePath = path.join(dir, file)
     const stat = fs.statSync(filePath)
-    const relativePath = path.join(basePath, file)
+    const relativePath = path.join(basePath, file).replace(/\\/g, '/') // windows path fix
 
     if (stat.isDirectory()) {
       result.push({

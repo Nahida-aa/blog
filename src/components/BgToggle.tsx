@@ -32,9 +32,9 @@ export default function BgToggle() {
       setAutoCycle(true);
     } else {
       setAutoCycle(false);
-      setBgImage(image);
+      setBgImage(image)
     }
-  };
+  }
 
   return (
     <DropdownMenu>

@@ -14,7 +14,7 @@ import path from 'path';
 import fs from 'fs'
 
 import PasswordPrompt from './_components/PasswordPrompt'
-import { cookies } from 'next/headers'
+import { cookies,headers  } from 'next/headers'
 
 export async function generateMetadata({ params }) {
   // console.log(`params:`,JSON.stringify(params, null, 2))
@@ -38,8 +38,18 @@ interface FilePageProps {
     plain?: string
   }
 }
-export default function FilePage({ params, searchParams }: FilePageProps) {
+export default async function FilePage({ params, searchParams }: FilePageProps) {
   // console.log(`params: ${JSON.stringify({ params, searchParams }, null, 2)}`)
+  // const headersList =  headers()
+  // const headerKeys = headersList.keys()
+  // console.log(`src/app/(blog)/aa/[...slug]/page.tsx headersList: ${headersList}`)
+  // console.log(`src/app/(blog)/aa/[...slug]/page.tsx headerKeys: ${JSON.stringify(headerKeys, null, 2)}`)
+  // const headerEntries = []
+  // headersList.forEach((value, key) => {
+  //   headerEntries.push(`${key}: ${value}`)
+  // })
+  // console.log('Headers:', headerEntries)
+
   let file_path = params.slug.join('/')
   // /%E5%BB%BA%E8%AE%AE.mdx 转中文
   file_path = decodeURI(file_path)
@@ -67,7 +77,7 @@ export default function FilePage({ params, searchParams }: FilePageProps) {
         {/* 结构化数据的脚本 */}
         <StructuredData file_path={file_path} metadata={metadata}  baseUrl={baseUrl} />
         {/* 左侧：files tree */}
-        {/* <FileSidebar filesMeta={filesMeta} /> */}
+        <FileSidebar filesMeta={filesMeta} />
         {/* 右侧 内容等 */}
         <div className='pb-10 flex-1 flex w-[calc(100%-var(--sidebar-width)-1px)]'>
           <div className="w-full ">
