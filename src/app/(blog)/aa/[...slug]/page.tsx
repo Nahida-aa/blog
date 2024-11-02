@@ -73,7 +73,7 @@ export default function FilePage({ params, searchParams }: FilePageProps) {
           <div className="w-full ">
             {/* 以及控制 files tree 是否显示的按钮，file路径等信息 */}
             {/* <Header url_path={`aa/${file_path}`} /> */}
-            <div className='m-4 max-w-full'>
+            <div className=' max-w-full'>
             {metadata.private && !isAuthenticated ? (
                 <PasswordPrompt filePath={file_path}  />
               ) : (
