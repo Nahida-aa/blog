@@ -40,19 +40,41 @@ export interface MenuGroup {
   name: string
   items: MenuItem[]
 }
-const TreeMenuNode: React.FC<{ item: MenuItem, depth?: number, currentPath: string }> = ({ item, depth = 0, currentPath }) => {
-  const [isOpen, setIsOpen] = React.useState(false)
+const TreeMenuNode: React.FC<{ item: MenuItem, depth?: number, currentPath: string, expandedNodes: string[], setExpandedNodes: (nodes: string[]) => void }> = ({ item, depth = 0, currentPath, expandedNodes, setExpandedNodes }) => {
+  const [isOpen, setIsOpen] = useState(expandedNodes.includes(item.path || ''))
   const hasChildren = item.items && item.items.length > 0
 
   const isActive = currentPath === item.path
 
+  
+  
   useEffect(() => {
     if (currentPath.startsWith(item.path)) {
       setIsOpen(true)
+      console.log(`useEffect(,[currentPath, item.path])TreeMenuNode: currentPath=${currentPath}, item.path=${item.path}, isActive=${isActive}, isOpen=${isOpen}`)
       // 打印展开的 item.path
     }
   }, [currentPath, item.path])
   console.log(`TreeMenuNode: currentPath=${currentPath}, item.path=${item.path}, isActive=${isActive}, isOpen=${isOpen}`)
+  
+  // 在状态变化时保存展开状态到本地存储
+  useEffect(() => {
+    if (!hasChildren) return // 忽略没有子节点的节点
+    let newExpandedNodes = [...expandedNodes]
+    console.log(`TreeMenuNode:1 newExpandedNodes=${JSON.stringify(newExpandedNodes, null, 2)}`)
+    if (isOpen) {
+      if (!newExpandedNodes.includes(item.path || '')) {
+        newExpandedNodes.push(item.path || '')
+      }
+    } else {
+      newExpandedNodes = newExpandedNodes.filter(path => path !== item.path)
+    }
+    if (JSON.stringify(newExpandedNodes) !== JSON.stringify(expandedNodes)) {
+      setExpandedNodes(newExpandedNodes)
+      localStorage.setItem('tree-menu-expanded-nodes', JSON.stringify(newExpandedNodes))
+      console.log(`TreeMenuNode:2 newExpandedNodes=${JSON.stringify(newExpandedNodes, null, 2)}`)
+    }
+  }, [isOpen])
 
   const toggleOpen = () => setIsOpen(!isOpen)
 
@@ -94,7 +116,7 @@ const TreeMenuNode: React.FC<{ item: MenuItem, depth?: number, currentPath: stri
           <CollapsibleContent>
             <MenuComp className="pr-0 ml-2.5 pl-1  mr-0 side-menu w-[100%-2.5rem]">
               {item.items!.map((subItem, index) => (
-                <TreeMenuNode key={index} item={subItem} depth={depth + 1} currentPath={currentPath} />
+                <TreeMenuNode key={index} item={subItem} depth={depth + 1} currentPath={currentPath} expandedNodes={expandedNodes} setExpandedNodes={setExpandedNodes} />
               ))}
             </MenuComp>
           </CollapsibleContent>
@@ -147,11 +169,22 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ menu_groups = [], menu_i
     toggleSidebar,
   } = useSidebar()
   // 如果没有传入 grouped 参数，则 自动根据 menu_groups 和 menu_items 判断是否分组
-  console.log(`AppSidebar: state=${state}, open=${open}, openMobile=${openMobile}, isMobile=${isMobile}, toggleSidebar=${toggleSidebar}, menu_groups=${JSON.stringify(menu_groups, null, 2)}, menu_items=${JSON.stringify(menu_items[0].items[0].items[2], null, 2)}, grouped=${grouped}`)
+  // console.log(`AppSidebar: state=${state}, open=${open}, openMobile=${openMobile}, isMobile=${isMobile}, toggleSidebar=${toggleSidebar}, menu_groups=${JSON.stringify(menu_groups, null, 2)}, menu_items=${JSON.stringify(menu_items[0].items[0].items[2], null, 2)}, grouped=${grouped}`)
   const isGrouped = grouped !== undefined ? grouped : menu_groups.length > 0
 
+  // 自动展开对应的节点，需要根据当前路径判断
   const pathname = usePathname()
-
+  // 拿到 localStorage 中保存的展开节点
+  const [expandedNodes, setExpandedNodes] = useState<string[]>(() => {
+    if (typeof window !== 'undefined') {
+      const savedNodes = localStorage.getItem('tree-menu-expanded-nodes')
+      console.log(`expandedNodes 由于有window 所以返回 ${savedNodes}`)
+      return savedNodes ? JSON.parse(savedNodes) : []
+    }
+    console.log(`expandedNodes 由于没有window 所以返回 {}`)
+    return []
+  })
+  
   return (
     <Sidebar side="left" variant="sidebar" collapsible="icon" className='  md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:!hidden Sidebar '
     // style={{ 
@@ -181,7 +214,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ menu_groups = [], menu_i
                   <SidebarGroupContent className="px-2">
                     <SidebarMenu className="gap-0">
                       {group.items.map((item, index) => (
-                        <TreeMenuNode key={index} item={item} currentPath={pathname} />
+                        <TreeMenuNode key={index} item={item} currentPath={pathname} expandedNodes={expandedNodes} setExpandedNodes={setExpandedNodes} />
                       ))}
                     </SidebarMenu>
                   </SidebarGroupContent>
@@ -192,7 +225,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ menu_groups = [], menu_i
         ) : (
           <SidebarMenu className="gap-0 px-2">
             {menu_items.map((item, index) => (
-              <TreeMenuNode key={index} item={item} currentPath={pathname} />
+              <TreeMenuNode key={index} item={item} currentPath={pathname} expandedNodes={expandedNodes} setExpandedNodes={setExpandedNodes} />
             ))}
           </SidebarMenu>
         )}

@@ -77,7 +77,7 @@ export default async function FilePage({ params, searchParams }: FilePageProps) 
         {/* 结构化数据的脚本 */}
         <StructuredData file_path={file_path} metadata={metadata}  baseUrl={baseUrl} />
         {/* 左侧：files tree */}
-        <FileSidebar filesMeta={filesMeta} />
+        {/* <FileSidebar filesMeta={filesMeta} /> */}
         {/* 右侧 内容等 */}
         <div className='pb-10 flex-1 flex w-[calc(100%-var(--sidebar-width)-1px)]'>
           <div className="w-full ">

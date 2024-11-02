@@ -16,18 +16,19 @@ export const getFileTree = (dir: string, basePath: string = ''): FileTree => {
     const filePath = path.join(dir, file)
     const stat = fs.statSync(filePath)
     const relativePath = path.join(basePath, file).replace(/\\/g, '/') // windows path fix
+    // console.log(`getFileTree: ${relativePath}`)
 
     if (stat.isDirectory()) {
       result.push({
         name: file,
-        path: relativePath,
+        path: `${relativePath}`,
         type: 'dir',
         items: getFileTree(filePath, relativePath),
       })
     } else {
       result.push({
         name: file,
-        path: relativePath,
+        path: `${relativePath}`,
         type: 'file',
       })
     }

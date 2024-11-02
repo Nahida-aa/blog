@@ -10,7 +10,6 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/componen
 import { CSSProperties } from "react";
 import path from "path"
 import { getFileTree } from "@/lib/file/getTree"
-import { usePathname } from 'next/navigation'
 import { headers } from 'next/headers'
 
 
@@ -19,19 +18,12 @@ export default async  function BlogLayout({
 }: {
   children: React.ReactNode
 }) {
-  // const pathname = usePathname()
-  const headersList = await headers()
-  console.log(`src/app/(blog)/layout.tsx: `)
-  const headerEntries = []
-  headersList.forEach((value, key) => {
-    headerEntries.push(`${key}: ${value}`)
-  })
-  console.log('Headers:', headerEntries)
-  console.log(headersList)
-  const userAgent = headersList.get('user-agent')
-  const pathname = headersList.get('x-invoke-path') || headersList.get('referer') || '/'
-  console.log(pathname)
-  console.log(pathname.replace('/aa', ''))
+  // const headersList = await headers()
+  // console.log(`src/app/(blog)/layout.tsx: `)
+  // const headerEntries = []
+  // headersList.forEach((value, key) => {
+  //   headerEntries.push(`${key}: ${value}`)
+  // })
 
   const dir = path.join(process.cwd(), 'src/app/(blog)/md/blog') // 假设你的文件在 app/content 目录下
   const fileTree = getFileTree(dir,'/aa')
