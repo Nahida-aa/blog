@@ -3,6 +3,8 @@ import { Friend } from '@/app/(blog)/md/blog/blog/types/friends'
 import FriendLinkTemplate from './_components/FriendLinkTemplate'
 import FriendsList from './_components/FriendsList'
 
+export const metadata = {title: 'Friends'}
+
 async function getFriends(): Promise<Friend[]> {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/friends`, { cache: 'no-store' })
   if (!res.ok) throw new Error('Failed to fetch friends')

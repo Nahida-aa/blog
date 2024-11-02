@@ -27,7 +27,7 @@ body {
 }
 
 :root {
-  --sidebar-width: 14rem; /* 默认宽度 */
+  /* --sidebar-width: 14.5rem;  */
   --navbar-height: 48px;
 }
 /* body {

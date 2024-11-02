@@ -7,7 +7,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/layout/sidebar"
 import { DynamicBreadcrumb } from '@/components/layout/DynamicBreadcrumb'
 // Menu Group and items.
-import { admin_MenuGroups } from "@/app/admin/_mock/sidebar"
+import { admin_MenuGroups } from "@/app/_admin/_mock/sidebar"
 
 export default function AdminLayout({
   children,

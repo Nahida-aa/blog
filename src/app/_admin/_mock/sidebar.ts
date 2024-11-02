@@ -7,20 +7,17 @@ export const admin_MenuGroups: MenuGroup[] = [
     items: [
       {
         name: "Dashboard",
-        url: "/admin",
-        icon: LayoutDashboard,
+        path: "/admin",
         items: []
       },
       {
         name: "Analytics",
-        url: "/admin/analytics",
-        icon: ChartSpline,
+        path: "/admin/analytics",
         items: []
       },
       {
         name: "Resource",
-        url: "/admin/resource",
-        icon: Sparkles,
+        path: "/admin/resource",
         items: []
       },
     ],
@@ -30,25 +27,21 @@ export const admin_MenuGroups: MenuGroup[] = [
     items: [
       {
         name: "Posts",
-        url: "/admin/blog",
-        icon: BookMarked,
+        path: "/admin/blog",
         items: []
       },
       {
         name: "Comments",
-        url: "/admin/blog/comments",
-        icon: MessageSquareText,
+        path: "/admin/blog/comments",
         items: []
       },
       {
         name: "Tags",
-        url: "/admin/blog/tags",
-        icon: Tags,
+        path: "/admin/blog/tags",
       },
       {
         name: "Friends",
-        url: "/admin/blog/friends",
-        icon: FriendLink,
+        path: "/admin/blog/friends",
       },
     ],
   },
@@ -57,8 +50,7 @@ export const admin_MenuGroups: MenuGroup[] = [
     items: [
       {
         name: "UserCog",
-        url: "/admin/users",
-        icon: UserCog,
+        path: "/admin/users",
         items: []
       },
     ],
@@ -68,34 +60,28 @@ export const admin_MenuGroups: MenuGroup[] = [
     items: [
       {
         name: "Settings",
-        url: "/admin/settings",
-        icon: Settings,
+        path: "/admin/settings",
         items: [
           {
             name: "Setting File",
-            url: "/admin/settings/settings.json",
-            icon: FileCog,
+            path: "/admin/settings/settings.json",
           },
           {
             name: "Keyboard",
-            url: "/admin/settings/keyboard",
-            icon: Command,
+            path: "/admin/settings/keyboard",
           },
           {
             name: "theme",
-            url: "/admin/settings/theme",
-            icon: Palette,
+            path: "/admin/settings/theme",
             items: [
               {
                 name: "layout",
-                url: "/admin/settings/theme/layout",
-                icon: PanelsTopLeft,
+                path: "/admin/settings/theme/layout",
                 items: []
               },
               {
                 name: "Color",
-                url: "/admin/settings/theme/color",
-                icon: WandSparkles,
+                path: "/admin/settings/theme/color",
                 items: []
               },
             ]
@@ -104,8 +90,7 @@ export const admin_MenuGroups: MenuGroup[] = [
       },
       {
         name: "Inbox",
-        url: "/admin/Inbox",
-        icon: Inbox,
+        path: "/admin/Inbox",
         items: []
       }
 

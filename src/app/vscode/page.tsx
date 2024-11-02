@@ -5,6 +5,7 @@ import { Copy, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import aaThemeConfig from '@/lib/vscode/monaco/theme/aaTheme'
 
+// export const metadata = {title: 'VSCode'}
 loader.config({
   paths: {
     vs: `${process.env.NODE_ENV === "production" ? 'https://blog.nahida-aa.us.kg/' : 'http://localhost:3000'}/monaco/min/vs`,
@@ -73,12 +74,6 @@ greet();`;
 
   return (
     <>
-    <div className="heading-container"><h4 id="vs-code-主题示例" className="heading-element">VS Code 主题示例</h4></div>
-    <div className="heading-container"><h4 id="vs-code-主题示例" className="heading-element">VS Code 主题示例</h4></div>
-    <div className="heading-container"><h4 id="vs-code-主题示例" className="heading-element">VS Code 主题示例</h4></div>
-    <div className="heading-container"><h4 id="vs-code-主题示例" className="heading-element">VS Code 主题示例</h4></div>
-    <div className="heading-container"><h4 id="vs-code-主题示例" className="heading-element">VS Code 主题示例</h4></div>
-    <div className="heading-container"><h4 id="vs-code-主题示例" className="heading-element">VS Code 主题示例</h4></div>
     <pre ref={containerRef} className="vscode-container flex flex-col h-full resize-y max-h-[60vh]">
       <nav className='flex items-center justify-between h-8'>
         <div className='ml-2 px-2 flex items-center'>

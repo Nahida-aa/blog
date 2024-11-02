@@ -2,7 +2,12 @@
 import { BackgroundProvider } from "@/context/BackgroundContext";
 import { Navbar } from '@/components/layout/Nav';
 import BackgroundImage  from '@/components/bg/BackgroundImage'
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/layout/sidebar";
+import { CSSProperties } from "react";
 // import Script from 'next/script'
+import AppHeader from "@/components/layout/header"
+import { blog_ContentMenuItems } from "@/app/(blog)/_json/menu";
 
 export default function BlogLayout({
   children
@@ -13,8 +18,22 @@ export default function BlogLayout({
     <>
       {/* <Script src="/vscode/Comet.js" strategy="lazyOnload" /> */}
       <BackgroundProvider>
-        <Navbar />
-        {children}
+      <SidebarProvider 
+      className=""
+      style={{
+        // "--sidebar-width": "14.5rem",
+        "--sidebar-width-mobile": "17.5rem",
+      } as CSSProperties}
+    >
+      <AppSidebar menu_items={blog_ContentMenuItems} grouped={false} />
+      {/* <Navbar /> */}
+      {/* <SidebarInset className="flex-grow overflow-hidden"> */}
+        <main className="flex flex-1 flex-col px-4 pb-4 w-full flex-grow overflow-hidden">
+          <AppHeader />
+          {children}
+        </main>
+      {/* </SidebarInset> */}
+    </SidebarProvider>
         <BackgroundImage />
       </BackgroundProvider>
     </>

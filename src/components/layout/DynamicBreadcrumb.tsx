@@ -15,7 +15,9 @@ import {
 
 export function DynamicBreadcrumb() {
   const pathname = usePathname()
-  const pathSegments = pathname.split('/').filter(segment => segment !== '')
+  console.log('pathname:', pathname)
+  const pathSegments = pathname.split('/').filter(segment => segment !== '').map(segment => decodeURI(segment))
+  console.log('pathSegments:', pathSegments)
 
   return (
     <Breadcrumb className="">

@@ -16,6 +16,13 @@ import fs from 'fs'
 import PasswordPrompt from './_components/PasswordPrompt'
 import { cookies } from 'next/headers'
 
+export async function generateMetadata({ params }) {
+  // console.log(`params:`,JSON.stringify(params, null, 2))
+  return {
+    title: `aa/${decodeURI(params.slug.join('/'))}`
+  }
+}
+
 export async function generateStaticParams() {
   
   const staticParamsFilePath = path.join(process.cwd(), 'public', 'data', 'staticParams.json');
@@ -60,12 +67,12 @@ export default function FilePage({ params, searchParams }: FilePageProps) {
         {/* 结构化数据的脚本 */}
         <StructuredData file_path={file_path} metadata={metadata}  baseUrl={baseUrl} />
         {/* 左侧：files tree */}
-        <FileSidebar filesMeta={filesMeta} />
+        {/* <FileSidebar filesMeta={filesMeta} /> */}
         {/* 右侧 内容等 */}
         <div className='pb-10 flex-1 flex w-[calc(100%-var(--sidebar-width)-1px)]'>
           <div className="w-full ">
             {/* 以及控制 files tree 是否显示的按钮，file路径等信息 */}
-            <Header url_path={`aa/${file_path}`} />
+            {/* <Header url_path={`aa/${file_path}`} /> */}
             <div className='m-4 max-w-full'>
             {metadata.private && !isAuthenticated ? (
                 <PasswordPrompt filePath={file_path}  />

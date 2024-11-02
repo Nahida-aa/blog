@@ -1,3 +1,4 @@
+"use client"
 import { ChevronDown, Check, ChevronsUpDown,PanelLeft,Sparkles,X } from "lucide-react"
 import {
   SidebarHeader,

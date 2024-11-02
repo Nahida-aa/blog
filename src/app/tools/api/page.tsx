@@ -97,7 +97,7 @@ export default function ToolsApiPage() {
   const equivalentCode = generateEquivalentCode(method, processedUrl, processedHeaders, processedBody)
 
   return (
-    <div className="container mx-auto p-4 max-w-3xl">
+    <div className="container mx-auto ">
       <Card>
         <CardHeader>
           <CardTitle>Advanced API Tester</CardTitle>

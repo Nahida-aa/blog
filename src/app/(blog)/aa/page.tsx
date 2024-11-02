@@ -17,6 +17,7 @@ import { getFilesMetaTreeData } from './[...slug]/func';
 // // 静态路由: 自动生成了，不用手动添加
 // }
 
+export const metadata = {title: 'aa'}
 
 export default function BlogList() {
   // console.log(blog_path)

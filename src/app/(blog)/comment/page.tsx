@@ -11,7 +11,9 @@ import AddCommentForm from './_comp/AddCommentForm'
 import AddReplyForm from './_comp/AddReplyForm'
 import { Card } from '@/components/ui/card'
 import MessageGalaxyWithCtrl from './_comp/galaxy/MessageGalaxyWithCtrl'
+// import type { Metadata } from 'next'
 
+// export const metadata: Metadata = {title: 'Comment'}
 export default function Component() {
   const [state, dispatch] = useReducer(reducer, initialState)
   const [newMessage, setNewMessage] = useState('')
