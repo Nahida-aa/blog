@@ -3,7 +3,8 @@ import { BackgroundProvider } from "@/context/BackgroundContext";
 import { Navbar } from '@/components/layout/Nav';
 import BackgroundImage  from '@/components/bg/BackgroundImage'
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar, MenuItem } from "@/components/layout/sidebar"
+import { AppSidebar } from "@/components/layout/sidebar"
+import type { MenuItem } from "@/components/layout/sidebar/tree/TreeMenuNode";
 import AppHeader from "@/components/layout/header";
 import { blog_ContentMenuItems } from "@/app/(blog)/_json/menu";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"

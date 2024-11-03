@@ -57,13 +57,13 @@ export default function RootLayout({
         <script src="/vscode/Comet.js" />
       </head> */}
       <body className="antialiased mio-scroll">
-      
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          // defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
+      
           <SessionProvider>
           <main>
             

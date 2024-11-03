@@ -84,9 +84,9 @@ export default async function FilePage({ params, searchParams }: FilePageProps) 
             {/* 以及控制 files tree 是否显示的按钮，file路径等信息 */}
             {/* <Header url_path={`aa/${file_path}`} /> */}
             <div className=' max-w-full'>
-            {metadata.private && !isAuthenticated ? (
+              {metadata.private && !isAuthenticated ? (
                 <PasswordPrompt filePath={file_path}  />
-              ) : (
+                ) : (
                 <>
                   {/* file metadata */}
                   <Info url_path={`aa/${file_path}`} metadata={metadata} />
@@ -98,7 +98,7 @@ export default async function FilePage({ params, searchParams }: FilePageProps) 
                     <FileToc toc={toc} />
                   </div>
                 </>
-              )}
+                )}
             </div>
           </div>
         </div>

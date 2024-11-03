@@ -58,7 +58,7 @@ const OnlyReadEditor = ({ value, language,
     const resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         if (entry.target === containerRef.current) {
-          setEditorHeight(entry.contentRect.height - 32); // 32 is the height of the nav
+          setEditorHeight(entry.contentRect.height - 31.99); // 32 is the height of the nav
         }
       }
     });

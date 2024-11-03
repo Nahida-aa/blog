@@ -70,7 +70,13 @@ const config: Config = {
   		},
   		screens: {
   			'1.5xl': '1408px'
-  		}
+  		},
+			animation: {
+				// ui/loading/Loading.tsx
+				'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'pulse-slow': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'spin-slow': 'spin 3s linear infinite',
+			}
   	}
   },
   // plugins: [

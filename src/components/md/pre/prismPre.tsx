@@ -33,7 +33,7 @@ export const CodeBlock = ({ value, language, options }: CodeBlockProps) => {
         style={style}
       >
         {tokens.map((line, i) => (
-          <div key={i} {...getLineProps({ line, key: i })} className="table-row">
+          <div key={i} {...getLineProps({ line })} className="table-row">
             {lineNumbers==='on' && (
               <span className="table-cell text-right pr-4 select-none opacity-50">
                 {i + 1}
@@ -41,7 +41,7 @@ export const CodeBlock = ({ value, language, options }: CodeBlockProps) => {
             )}
             <span className={`table-cell ${wrapLines ? 'whitespace-pre-wrap' : 'whitespace-pre'}`}>
               {line.map((token, key) => (
-                <span key={key} {...getTokenProps({ token, key })} />
+                <span key={key} {...getTokenProps({ token })} />
               ))}
             </span>
           </div>
