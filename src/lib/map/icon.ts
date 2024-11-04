@@ -1,4 +1,4 @@
-import { MenuItemType } from '@/components/layout/sidebar'
+import { MenuItemType } from '@/components/layout/sidebar/tree/TreeMenuNode'
 import { FolderTree, Sigma, BookMarked, InfinityIcon, Github, BoxIcon, FileCode, MessageSquareText, Tags, Link as FriendLink, WandSparkles, Boxes, Wrench, SquareAsterisk, ChevronDown, Folder, FolderOpen, File as FileIcon, Sparkles } from 'lucide-react'
 
 

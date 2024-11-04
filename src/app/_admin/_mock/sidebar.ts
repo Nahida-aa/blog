@@ -1,6 +1,6 @@
 import { Calendar, ChevronDown, ChevronsUpDown, ChevronUp, Home, Inbox, Search, Settings, User2, Link as FriendLink, MessageSquareText, BookMarked, Tags, ChartSpline, UserCog, WandSparkles, PanelsTopLeft, FileCog, Palette, Command, Server, Sparkles,Telescope, LayoutDashboard } from "lucide-react"
 // Menu Group and items.
-import { MenuGroup } from "@/components/layout/sidebar"
+import { MenuGroup } from "@/components/layout/sidebar/tree/TreeMenuNode"
 export const admin_MenuGroups: MenuGroup[] = [
   {
     name: 'Statistic',
