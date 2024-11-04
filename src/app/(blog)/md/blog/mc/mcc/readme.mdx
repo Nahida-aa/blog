@@ -2,7 +2,7 @@
 title: mcc
 created_at: 2024-10-25T01:05:26.000Z
 pushed_at: '2024-10-27T20:51:28Z'
-updated_at: '2024-11-04T05:06:19Z'
+updated_at: '2024-11-04T05:21:38Z'
 authors:
   - name: aa
     github: Nahida-aa
@@ -20,16 +20,374 @@ draft: false
 - 公告栏板块
 - 项目&团队宣传板块
 - 团队&项目动态板块
-- 用户板块
+- 用户(团队)板块
 
 ### 公告栏板块
-基础内容:
-- logo, 标语, 简介
-可查看和下载:
-- 新用户须知
-- 用户协议
-- 平台介绍
-- ...
+- logo
+- 论坛名, 论坛文化宣传标语
+- 迎新资料(以下 4 个可查看详情和下载)
+  - 用户协议
+  - 介绍资料
+  - 规章制度
+  - 平台守则
+- 平台寄语
+
+理解你的需求后，我建议以下方法来处理公告板块的不同部分。我们可以将静态内容和动态内容分开处理，以提高 SEO 和性能。
+
+### 1. 静态内容和动态内容的区分
+
+- **静态内容**：这些内容不经常变化，可以直接在前端代码中硬编码或通过静态文件加载，以提高 SEO 和性能。
+  - 论坛名和宣传标语
+  - 平台寄语
+  - Logo
+
+- **动态内容**：这些内容可能会频繁更新，需要通过后端 API 获取。
+  - 迎新资料（用户协议、介绍资料、规章制度、平台守则）
+
+### 2. 设计 API 文档
+
+我们将 API 设计为只处理动态内容部分，即迎新资料。
+
+#### API 文档
+
+#### 基本信息
+
+- **Base URL**: `http://your-domain.com/api`
+
+#### 端点
+
+1. **获取迎新资料列表**
+   - **URL**: `/announcements`
+   - **方法**: `GET`
+   - **描述**: 获取所有迎新资料的列表
+   - **响应**:
+     - **状态码**: `200 OK`
+     - **响应体**:
+       ```json
+       [
+         {
+           "id": 1,
+           "title": "用户协议",
+           "link": "/path/to/user-agreement.pdf",
+           "createdAt": "2023-10-01T12:00:00Z"
+         },
+         {
+           "id": 2,
+           "title": "介绍资料",
+           "link": "/path/to/introduction.pdf",
+           "createdAt": "2023-10-01T12:00:00Z"
+         }
+       ]
+       ```
+
+2. **创建迎新资料**
+   - **URL**: `/announcements`
+   - **方法**: `POST`
+   - **描述**: 创建一个新的迎新资料
+   - **请求体**:
+     ```json
+     {
+       "title": "资料标题",
+       "link": "资料链接"
+     }
+     ```
+   - **响应**:
+     - **状态码**: `201 Created`
+     - **响应体**:
+       ```json
+       {
+         "id": 3,
+         "title": "资料标题",
+         "link": "资料链接",
+         "createdAt": "2023-10-01T12:00:00Z"
+       }
+       ```
+
+3. **更新迎新资料**
+   - **URL**: `/announcements/{id}`
+   - **方法**: `PUT`
+   - **描述**: 更新指定 ID 的迎新资料
+   - **路径参数**:
+     - `id` (整数): 迎新资料的唯一标识符
+   - **请求体**:
+     ```json
+     {
+       "title": "更新后的资料标题",
+       "link": "更新后的资料链接"
+     }
+     ```
+   - **响应**:
+     - **状态码**: `200 OK`
+     - **响应体**:
+       ```json
+       {
+         "id": 3,
+         "title": "更新后的资料标题",
+         "link": "更新后的资料链接",
+         "createdAt": "2023-10-01T12:00:00Z"
+       }
+       ```
+
+4. **删除迎新资料**
+   - **URL**: `/announcements/{id}`
+   - **方法**: `DELETE`
+   - **描述**: 删除指定 ID 的迎新资料
+   - **路径参数**:
+     - `id` (整数): 迎新资料的唯一标识符
+   - **响应**:
+     - **状态码**: `204 No Content`
+
+### 3. 前端开发
+
+#### 创建公告板块组件
+
+`src/components/AnnouncementBoard.vue`
+
+```vue
+<template>
+  <div class="container mx-auto p-4">
+    <!-- Logo -->
+    <div class="flex justify-center mb-4">
+      <img src="/path/to/logo.png" alt="Logo" class="h-16" />
+    </div>
+
+    <!-- 论坛名和宣传标语 -->
+    <div class="text-center mb-4">
+      <h1 class="text-3xl font-bold">论坛名</h1>
+      <p class="text-lg text-gray-600">论坛文化宣传标语</p>
+    </div>
+
+    <!-- 迎新资料 -->
+    <div class="mb-4">
+      <h2 class="text-2xl font-semibold mb-2">迎新资料</h2>
+      <ul class="list-disc list-inside">
+        <li v-for="announcement in announcements" :key="announcement.id">
+          <a :href="announcement.link" class="text-blue-500">{{ announcement.title }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 平台寄语 -->
+    <div class="mb-4">
+      <h2 class="text-2xl font-semibold mb-2">平台寄语</h2>
+      <p class="text-gray-700">欢迎来到我们的论坛！我们致力于创建一个友好和谐的社区...</p>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      announcements: []
+    }
+  },
+  created() {
+    fetch('/api/announcements')
+      .then(response => response.json())
+      .then(data => {
+        this.announcements = data
+      })
+  }
+}
+</script>
+
+<style scoped>
+/* 添加你的样式 */
+</style>
+```
+
+#### 创建后台管理界面
+
+`src/components/AdminPanel.vue`
+
+```vue
+<template>
+  <div class="container mx-auto p-4">
+    <h1 class="text-3xl font-bold mb-4">公告管理</h1>
+    <form @submit.prevent="addAnnouncement">
+      <div class="mb-4">
+        <label class="block text-gray-700">标题</label>
+        <input v-model="newAnnouncement.title" class="w-full p-2 border border-gray-300 rounded" />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700">链接</label>
+        <input v-model="newAnnouncement.link" class="w-full p-2 border border-gray-300 rounded" />
+      </div>
+      <button type="submit" class="bg-blue-500 text-white p-2 rounded">添加公告</button>
+    </form>
+    <ul class="mt-4">
+      <li v-for="announcement in announcements" :key="announcement.id" class="mb-2">
+        <span>{{ announcement.title }}</span>
+        <button @click="deleteAnnouncement(announcement.id)" class="text-red-500 ml-2">删除</button>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      announcements: [],
+      newAnnouncement: {
+        title: '',
+        link: ''
+      }
+    }
+  },
+  created() {
+    this.fetchAnnouncements()
+  },
+  methods: {
+    fetchAnnouncements() {
+      fetch('/api/announcements')
+        .then(response => response.json())
+        .then(data => {
+          this.announcements = data
+        })
+    },
+    addAnnouncement() {
+      fetch('/api/announcements', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(this.newAnnouncement)
+      })
+        .then(response => response.json())
+        .then(data => {
+          this.announcements.push(data)
+          this.newAnnouncement.title = ''
+          this.newAnnouncement.link = ''
+        })
+    },
+    deleteAnnouncement(id) {
+      fetch(`/api/announcements/${id}`, {
+        method: 'DELETE'
+      })
+        .then(() => {
+          this.announcements = this.announcements.filter(a => a.id !== id)
+        })
+    }
+  }
+}
+</script>
+
+<style scoped>
+/* 添加你的样式 */
+</style>
+```
+
+### 4. 后端开发
+
+使用 Spring Boot 实现公告 API 和后台管理接口。
+
+#### 创建公告实体类
+
+`src/main/java/com/example/demo/entity/Announcement.java`
+
+```java
+package com.example.demo.entity;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+
+@Entity
+public class Announcement {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String title;
+    private String link;
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+    // Getters and setters
+}
+```
+
+#### 创建公告仓库接口
+
+`src/main/java/com/example/demo/repository/AnnouncementRepository.java`
+
+```java
+package com.example.demo.repository;
+
+import com.example.demo.entity.Announcement;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AnnouncementRepository extends JpaRepository<Announcement, Long> {
+}
+```
+
+#### 创建公告控制器
+
+`src/main/java/com/example/demo/controller/AnnouncementController.java`
+
+```java
+package com.example.demo.controller;
+
+import com.example.demo.entity.Announcement;
+import com.example.demo.repository.AnnouncementRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/announcements")
+public class AnnouncementController {
+
+    @Autowired
+    private AnnouncementRepository announcementRepository;
+
+    @GetMapping
+    public List<Announcement> getAllAnnouncements() {
+        return announcementRepository.findAll();
+    }
+
+    @PostMapping
+    public Announcement createAnnouncement(@RequestBody Announcement announcement) {
+        return announcementRepository.save(announcement);
+    }
+
+    @PutMapping("/{id}")
+    public Announcement updateAnnouncement(@PathVariable Long id, @RequestBody Announcement announcementDetails) {
+        Announcement announcement = announcementRepository.findById(id).orElseThrow();
+        announcement.setTitle(announcementDetails.getTitle());
+        announcement.setLink(announcementDetails.getLink());
+        return announcementRepository.save(announcement);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteAnnouncement(@PathVariable Long id) {
+        announcementRepository.deleteById(id);
+    }
+}
+```
+
+### 总结
+
+通过将静态内容和动态内容分开处理，你可以提高 SEO 和性能。静态内容直接在前端代码中硬编码或通过静态文件加载，而动态内容通过后端 API 获取。这样可以确保前后端的无缝集成，并通过测试和反馈不断改进。与团队成员保持沟通，确保项目按计划进行，并根据反馈进行持续改进。作为全栈开发者和技术总监，持续学习和提升自己的技能也是非常重要的。
+/announcements
+
+```json
+[
+  {
+    "id": 1,
+    "title": "用户协议",
+    "link": "/path/to/user-agreement.pdf",
+    "createdAt": "2023-10-01T12:00:00Z"
+  },
+  {
+    "id": 2,
+    "title": "介绍资料",
+    "link": "/path/to/introduction.pdf",
+    "createdAt": "2023-10-01T12:00:00Z"
+  }
+]
+```
 ### 项目&团队宣传板块
 - 资源
   - 基本介绍
@@ -41,26 +399,24 @@ draft: false
   - 资源下载
   - 资源协议
   - 更新日志与制作信息
+  - 
+  - 公共交流区
+  - 制作方公共反馈区
+  - 订阅及打赏交流区
+  - 打赏总名册
+  - 打赏动态
 - 项目
+  - 筹备书
+    - 基本简介
+    - 筹备信息
+    - 施工信息
+    - 项目协议
+    - 酬劳分配
 - 团队
+  - 筹备书
+    - 基本简介
+    - 筹备信息
 - 用户
-
-- name
-- description: 我|我们是xxx(发起者|团队名),在此 我|我们开始筹备制作一个 xxx 类型的项目, 该项目具体是制作一个 xxx 风格的、拥有xxx具体内容的 材质|光影|模组|建筑|地形|指令|数据包|行为包|命令块|整合包|服务器
-- 筹备原因
-- type: 材质|光影|模组|建筑|地形|指令|数据包|行为包|命令块|整合包|服务器|用户|团队|项目
-- 封面(图片): 或者说是logo 吗
-- 美术风格: 现代|中世纪|奇幻|科幻|魔幻 ... 
-- 体验基调: 不涉及|硬核求虐|偏向现实|高于现实|凌驾现实 ...
-- 分辨率: 不涉及|32x32|64x64|128x128|256x256|512x512|1024x1024|2048x2048|极限
-- 支持平台: java版|基岩版|主机版|移动版
-- 支持版本: 对应不同平台的各个版本
-- 运作方式: 不涉及|Forge|Fabric|Neoforge|Quilt|Rift|Lite|数据包|行为包|命令方块|文件覆盖 ...
-- 资源体量: 小|base|大|超大
-- 资源语言: 不涉及|中文|非中文未汉化|已汉化|多语言切换
-- 筹备时间: 发起时间
-
-每项显示: 名称,图片,团队等级标识,简介,团队信息按钮,项目书按钮
 
 游客:
 - 我的世界资源 [查看,点赞,下载,收藏,打赏,分享,订阅]
@@ -89,6 +445,8 @@ draft: false
 此处一切皆为 项目宣传
 
 项目状态(生命周期)(不显示,但会影响排序)
+- 筹备中
+- 施工中
 - 维护中
 - 删除: 逻辑删除, 保留7天(或14天,或30天)
 项目类型
@@ -101,10 +459,10 @@ draft: false
 - 施工意愿书[创作者,投资者][查看,点赞,收藏,分享,投递项目书]
 - 投资意愿书[创作者],投资者][查看,点赞,收藏,分享,投递项目书]
 ### 团队&项目动态板块
-### 搜索
-搜索结果呈现到 团队&项目宣传板块
 ### 用户中心板块
-### 私聊&群聊板块
+- 个人场景
+- 公共场景
+
 ## 账户中心 page
 ## user type
 ### 游客
