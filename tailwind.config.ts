@@ -98,8 +98,13 @@ const config: Config = {
     plugin(function({ addUtilities }) {
       addUtilities({
         '.text-glow-cyan': {
+					'color': '#f4edf7',
           'text-shadow': '0 0 2px #0e002000, 0 0 7px #00f6ff75, 0 0 5px #00f6ff75, 0 0 18px #00f6ff75',
         },
+				'.text-glow-purple': {
+					'color': '#f4edf7',
+					'text-shadow': '0 0 2px #0e002000, 0 0 7px #780afe75, 0 0 5px #780afe75, 0 0 18px #780afe75',
+				},
         
       })
     })

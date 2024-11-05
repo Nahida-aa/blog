@@ -17,7 +17,7 @@ export async function GET(req: NextRequest) {
   // stat=open|closed|all
   const url = req.nextUrl
   const searchParams = Object.fromEntries(url.searchParams.entries());
-  console.log('url,searchParams', JSON.stringify({ url, searchParams }, null, 2));
+  // console.log('url,searchParams', JSON.stringify({ url, searchParams }, null, 2));
   const friends = await fetch_friends({ searchParams })
   // 从 ./_mock/index.json 中获取数据
   // await delay(1000*10)

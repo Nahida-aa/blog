@@ -30,9 +30,9 @@ export function DynamicBreadcrumb() {
             <React.Fragment key={segment}>
               <BreadcrumbItem>
                 {isLast ? (
-                  <BreadcrumbPage className='BreadcrumbPage text-base font-semibold glow-cyan'>{segment}</BreadcrumbPage>
+                  <BreadcrumbPage className='BreadcrumbPage text-base font-semibold glow-cyan !text-glow-cyan'>{segment}</BreadcrumbPage>
                 ) : (
-                  <BreadcrumbLink href={href} className='text-base font-semibold glow-purple'>{segment}</BreadcrumbLink>
+                  <BreadcrumbLink href={href} className='text-base font-semibold !text-glow-purple hover:text-foreground hover:opacity-75'>{segment}</BreadcrumbLink>
                 )}
               </BreadcrumbItem>
               {!isLast && (

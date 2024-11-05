@@ -17,7 +17,7 @@ async function getFriends(): Promise<Friend[]> {
 
 export default async function FriendLinks() {
   const friends = await getFriends()
-  console.log('friends', friends)
+  // console.log('friends', friends)
 
   return (
     <div className="min-h-screen bg-gradient-to-br w-full">

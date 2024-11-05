@@ -1,0 +1,33 @@
+---
+title: vercel
+created_at: 2024-11-05T17:01:55Z
+pushed_at: 
+updated_at: 2024-11-05T17:01:55Z
+authors:
+  - name: aa
+    github: Nahida-aa
+    twitter: 
+private: false
+svg: 
+image: 
+tags: [vercel]
+description: 
+draft: false
+---
+
+```ts
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model VisitorLog {
+  id         Int      @id @default(autoincrement())
+  ipAddress  String
+  visitTime  DateTime @default(now())
+}
+```

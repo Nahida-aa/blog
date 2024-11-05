@@ -29,7 +29,8 @@ const images = [
 ];
 
 export const BackgroundProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [bgImage, setBgImage] = useState("/bg/mengde_ye.webp");
+  // const [bgImage, setBgImage] = useState("/bg/mengde_ye.webp");
+  const [bgImage, setBgImage] = useState("none");
   const [autoCycle, setAutoCycle] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 

@@ -20,8 +20,21 @@
 	/* dark color */
 	/* --background: 216 27.78% 7.06%; */
 	--background: 250 20% 17%;
-	--background-res: hsl(250, 20%, 17%);
+	--background-res: #262334;
 	--background-var: #040d21;
+
+	--background-start-rgb: 38, 35, 52;
+	--background-start: hsl(267, 78%, 7%);
+	--background-end-rgb: 4, 13, 33;
+	--background-end: rgb(4, 13, 33);
+	
+	--background-1: hsl(220, 73%, 9%);
+	--background-2: hsl(234, 31%, 12%);
+	--background-3: hsl(240, 32%, 12%);
+	--background-4: hsl(240, 26%, 17%);
+	--background-5: hsl(251, 20%, 17%);
+	--background-6: hsl(267, 78%, 7%);
+	
 	/* #0d1117 */
 	--foreground: 210 40% 98%;
 	--AppHeader-bg: 217.5 80% 1.96%;
@@ -61,6 +74,13 @@
 	/* light color */
 	--background: 0 0% 100%;
 	--background-res: #ffffff;
+	--background-1: hsl(198, 98%, 78%);
+	--background-2: hsl(216, 89%, 79%);
+	--background-3: hsl(249, 61%, 82%);
+	--background-4: hsl(285, 46%, 80%);
+	--background-5: hsl(326, 65%, 82%);
+	--background-6: hsl(344, 84%, 86%);
+
 	--foreground: 222.2 84% 4.9%;
 	--AppHeader-bg: 210 28.57% 97.25%;
 	/* #f6f8fa */

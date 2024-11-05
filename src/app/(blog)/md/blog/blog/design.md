@@ -92,6 +92,12 @@ model User {
   updated_at     DateTime  @updatedAt @map(name: "updated_at")
   @@map(name: "users")
 }
+model VisitorLog {
+  id         Int      @id @default(autoincrement())
+  ipAddress  String
+  visitTime  DateTime @default(now())
+  pageUrl    String
+}
 ```
 ```sh
 pnpm prisma db push
