@@ -18,7 +18,20 @@ export const admin_MenuGroups: MenuGroup[] = [
       {
         name: "Resource",
         path: "/admin/resource",
-        items: []
+        type: "button",
+        items: [
+          {
+            name: "MCC",
+            path: "/admin/resource/mcc",
+            type: "button",
+            items: [
+              {
+                name: "Announcements",
+                path: "/admin/resource/mcc/announcements",
+              },
+            ]
+          }
+        ]
       },
     ],
   },

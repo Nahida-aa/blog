@@ -5,9 +5,9 @@ import { Navbar } from '@/components/layout/Nav'
 import BackgroundImage from '@/components/bg/BackgroundImage'
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/layout/sidebar"
-import { DynamicBreadcrumb } from '@/components/layout/DynamicBreadcrumb'
+import AppHeader from "@/components/layout/header";
 // Menu Group and items.
-import { admin_MenuGroups } from "@/app/_admin/_mock/sidebar"
+import { admin_MenuGroups } from "@/app/admin/_mock/sidebar"
 
 export default function AdminLayout({
   children,
@@ -21,13 +21,10 @@ export default function AdminLayout({
     <BackgroundProvider>
       <SidebarProvider>
         <AppSidebar menu_groups={admin_MenuGroups} />
-        <main className='p-4 w-full'>
-          <header className="flex items-center mb-4">
-            <SidebarTrigger />
-            <DynamicBreadcrumb />
-          </header>
-          {children}
-        </main>
+        <main className="flex flex-1 flex-col px-4 pb-4 w-full flex-grow overflow-hidden">
+            <AppHeader />
+            {children}
+          </main>
       </SidebarProvider>
       <BackgroundImage />
     </BackgroundProvider>

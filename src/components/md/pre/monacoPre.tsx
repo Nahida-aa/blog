@@ -83,6 +83,7 @@ const OnlyReadEditor = ({ value, language,
         theme="aaTheme"
         options={{
           // readOnly: true,
+          automaticLayout: true,
           minimap: { enabled: false },
           scrollBeyondLastLine: false, // 禁止滚动超过最后一行
           // lineNumbers: 'off', // 隐藏行号

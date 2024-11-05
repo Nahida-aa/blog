@@ -51,7 +51,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={cx()}
-      // suppressHydrationWarning
+      suppressHydrationWarning
     >
       {/* <head>
         <script src="/vscode/Comet.js" />
