@@ -9,6 +9,7 @@ import { GoogleAnalytics
   // , GoogleTagManager 
 } from "@next/third-parties/google"
 import { SessionProvider } from "next-auth/react";
+import { ParticleBackground } from "@/components/3d/ParticleBackground";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -71,6 +72,7 @@ export default function RootLayout({
             {/* <SpeedInsights /> */}
           </main>
           </SessionProvider>
+          <ParticleBackground />
         </ThemeProvider>
         {process.env.GA_TRACKING_ID && <GoogleAnalytics gaId={process.env.GA_TRACKING_ID} />}
       </body>

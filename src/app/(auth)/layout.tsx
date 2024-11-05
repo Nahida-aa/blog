@@ -8,8 +8,6 @@ import { AppSidebar } from "@/components/layout/sidebar"
 import AppHeader from "@/components/layout/header";
 import { blog_ContentMenuItems } from "@/app/(blog)/_json/menu";
 import { CSSProperties } from "react";
-import { ParticleBackground } from '@/components/3d/ParticleBackground'
-
 
 export default function BlogLayout({
   children
@@ -34,6 +32,5 @@ export default function BlogLayout({
       {/* </SidebarInset> */}
     </SidebarProvider>
     <BackgroundImage />
-    <ParticleBackground />
   </BackgroundProvider>)
 }
