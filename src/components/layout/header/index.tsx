@@ -8,7 +8,7 @@ import HeaderEnd from "./end"
 export default function Header() {
   const { openMobile } = useSidebar()
   // 后续可以改成分左右
-  return (<header className="flex items-center gap-2 h-12 justify-between">
+  return (<header className="flex items-center  h-12 justify-between">
     {!openMobile && (<HeaderStart />)}
     <HeaderEnd />
   </header>)

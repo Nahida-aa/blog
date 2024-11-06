@@ -17,7 +17,7 @@ export default function HeaderStart() {
     isMobile,
     toggleSidebar,
   } = useSidebar()
-  return (<>
+  return (<div className="flex items-center gap-2">
     <TriggerCustomIcon className="md:hidden" icon={<AlignLeft />} />
     {!isMobile && (
       <>
@@ -26,5 +26,5 @@ export default function HeaderStart() {
     )}
           <Separator orientation="vertical" className="h-5 md:hidden"/>
           <DynamicBreadcrumb />
-  </>)
+  </div>)
 }

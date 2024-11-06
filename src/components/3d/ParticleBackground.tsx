@@ -59,5 +59,5 @@ export function ParticleBackground() {
     }
   }, [])
 
-  return <canvas ref={canvasRef} className="fixed inset-0 w-full h-full" />
+  return <canvas ref={canvasRef} className="fixed inset-0 w-full h-full z-[-1]" />
 }

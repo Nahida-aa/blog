@@ -8,7 +8,7 @@ export const GET = async () => {
   try{
     // Fetch data from Redis
     const visits = await redis.lrange('visits', 0, -1)
-    console.log('visits:', visits)
+    // console.log('visits:', visits)
     
     // Return the result in the response
     return new NextResponse(JSON.stringify({ visits }), { status: 200 });

@@ -1,3 +1,4 @@
+"use client"
 import { useState, useEffect, useRef, useMemo } from 'react'
 
 export const use3DEffect = (isHovering: boolean) => {

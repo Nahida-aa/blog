@@ -129,7 +129,7 @@ export const TreeMenuNode: React.FC<TreeMenuNodeProps> = ({
                 expandedPaths={expandedPaths}
                 togglePath={togglePath}
                 isClient={isClient}
-                 />
+                />
               ))}
             </MenuComp>
           </CollapsibleContent>

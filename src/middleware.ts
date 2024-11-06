@@ -43,6 +43,8 @@ async function middleware(
     // Trim the list to keep only the last 1000 visits
     await redis.ltrim('visits', 0, 999)
   }
+  // await redis.lpush('visits', JSON.stringify(visitData))
+  // await redis.ltrim('visits', 0, 999)
 
   const { pathname } = req.nextUrl
     // 检查是否是受保护的路由

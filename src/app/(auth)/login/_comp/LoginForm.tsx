@@ -1,131 +1,141 @@
-import { useState, useEffect } from 'react'
-import { useForm, Controller } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { LoginTypeSelect } from './LoginTypeSelect'
-import { VerifyTypeSelect } from './VerifyTypeSelect'
-import { ThirdPartyLogin } from './ThirdPartyLogin'
+"use client"
+// src/app/(auth)/login/_comp/LoginForm.tsx
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { useForm } from "react-hook-form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { useToast } from "@/hooks/use-toast";
+import { Eye, EyeOff, Loader2, Mail, User } from 'lucide-react';
+import { signIn } from 'next-auth/react';
 
-const formSchema = z.object({
-  loginType: z.enum(['email', 'username']),
-  loginValue: z.string().min(1, 'This field is required'),
-  verifyType: z.enum(['password', 'emailCode']),
-  verifyValue: z.string().min(1, 'This field is required'),
-})
+const loginFormSchema = z.object({
+  usernameOrEmail: z
+    .string()
+    .min(2, {
+      message: "Username or Email must be at least 2 characters.",
+    }),
+  password: z
+    .string()
+    .min(6, {
+      message: "Password must be at least 6 characters.",
+    }),
+});
 
-export const LoginForm: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(false)
-  const [isSendingCode, setIsSendingCode] = useState(false)
-  const [loginType, setLoginType] = useState<'email' | 'username'>('username')
-  const [verifyType, setVerifyType] = useState<'password' | 'emailCode'>('password')
-  const [isCodeSent, setIsCodeSent] = useState(false)
-  const [countdown, setCountdown] = useState(60)
+type LoginFormValues = z.infer<typeof loginFormSchema>;
 
-  const { control, handleSubmit, watch, setValue, formState: { errors } } = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+const LoginForm = () => {
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const form = useForm<LoginFormValues>({
+    resolver: zodResolver(loginFormSchema),
     defaultValues: {
-      loginType: 'username',
-      verifyType: 'password',
+      usernameOrEmail: "",
+      password: "",
     },
-  })
+  });
 
-  const watchLoginType = watch('loginType')
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
-  useEffect(() => {
-    if (watchLoginType === 'username') {
-      setValue('verifyType', 'password')
-      setVerifyType('password')
+  async function onSubmit(data: LoginFormValues) {
+    setIsLoading(true);
+    try {
+      console.log('Logging in...', data);
+
+      const result = await signIn('credentials', {
+        redirect: false,
+        usernameOrEmail: data.usernameOrEmail,
+        password: data.password,
+      });
+
+      if (result?.error) {
+        console.error('Login error:', result.error);
+        toast({
+          title: 'Login failed',
+          description: result.error,
+          variant: "destructive",
+        });
+      } else {
+        console.log('Login successful');
+        toast({
+          title: 'Login successful',
+          description: 'You have been logged in successfully.',
+        });
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      toast({
+        title: 'Login failed',
+        description: error.message || 'An unexpected error occurred',
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
     }
-  }, [watchLoginType, setValue])
-
-  useEffect(() => {
-    let timer: NodeJS.Timeout
-    if (isCodeSent && countdown > 0) {
-      timer = setTimeout(() => setCountdown(countdown - 1), 1000)
-    } else if (countdown === 0) {
-      setIsCodeSent(false)
-      setCountdown(60)
-    }
-    return () => clearTimeout(timer)
-  }, [isCodeSent, countdown])
-
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    console.log(`login`)
-    setIsLoading(true)
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    setIsLoading(false)
-    console.log(data)
-  }
-
-  const handleSendCode = async () => {
-    setIsSendingCode(true)
-    // Simulate sending email code
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    setIsSendingCode(false)
-    setIsCodeSent(true)
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="backdrop-blur-lg bg-white/30 p-8 rounded-2xl shadow-2xl">
-      <ThirdPartyLogin />
-      <div className="space-y-4 mt-4">
-        <div className="flex space-x-2">
-          <LoginTypeSelect control={control} setLoginType={setLoginType} setValue={setValue} />
-          <Controller
-            name="loginValue"
-            control={control}
-            render={({ field }) => (
-              <Input
-                {...field}
-                type={loginType === 'email' ? 'email' : 'text'}
-                placeholder={loginType === 'email' ? 'Email' : 'Username'}
-                className="flex-1 px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-white/50 placeholder:text-slate-500 text-slate-700"
-              />
-            )}
-          />
-        </div>
-        {errors.loginValue && <p className="text-red-500 text-sm mt-1">{errors.loginValue.message}</p>}
-        
-        <div className="flex space-x-2">
-          <VerifyTypeSelect control={control} loginType={loginType} setVerifyType={setVerifyType} />
-          <div className="flex-1 flex space-x-2">
-            <Controller
-              name="verifyValue"
-              control={control}
-              render={({ field }) => (
-                <Input
-                  {...field}
-                  type={verifyType === 'password' ? 'password' : 'text'}
-                  placeholder={verifyType === 'password' ? 'Password' : 'Email Code'}
-                  className="flex-1 px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-white/50 placeholder:text-slate-500 text-slate-700"
-                />
-              )}
-            />
-            {verifyType === 'emailCode' && (
-              <Button
-                type="button"
-                onClick={handleSendCode}
-                disabled={isSendingCode || isCodeSent}
-                className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-75 transition"
-              >
-                {isSendingCode ? 'Sending...' : isCodeSent ? `Sent (${countdown}s)` : 'Send Code'}
-              </Button>
-            )}
-          </div>
-        </div>
-        {errors.verifyValue && <p className="text-red-500 text-sm mt-1">{errors.verifyValue.message}</p>}
-        
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 flex flex-col w-full">
+        <FormField
+          control={form.control}
+          name="usernameOrEmail"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <div className="relative">
+                  <Input placeholder="Please enter username or email" {...field} className="pr-10"/>
+                  <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <User className="h-5 w-5 text-gray-400" />
+                  </div>
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <div className="relative">
+                  <Input
+                    type={showPassword ? 'text' : 'password'}
+                    placeholder="Please enter password"
+                    className="pr-10"
+                    {...field}
+                  />
+                  <button
+                    type="button"
+                    onClick={togglePasswordVisibility}
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                  >
+                    {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                  </button>
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <Button
           type="submit"
+          className="active:scale-95 transition-transform"
           disabled={isLoading}
-          className="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition"
         >
-          {isLoading ? 'Logging in...' : 'Log In'}
+          {isLoading ? <Loader2 className="animate-spin mr-2" /> : null}
+          Log In
         </Button>
-      </div>
-    </form>
-  )
-}
+      </form>
+    </Form>
+  );
+};
+
+export default LoginForm;

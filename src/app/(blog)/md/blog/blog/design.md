@@ -85,19 +85,22 @@ pnpm prisma db pull
 ```prisma path='prisma/schema.prisma'
 ...
 model User {
-  id            String       @default(cuid()) @id
-  name          String?
-  email         String?   @unique
-  created_at     DateTime  @default(now()) @map(name: "created_at")
-  updated_at     DateTime  @updatedAt @map(name: "updated_at")
-  @@map(name: "users")
+  id         String   @id @default(cuid())
+  name       String?
+  username   String?  @unique
+  email      String?  @unique
+  password   String?
+  created_at DateTime @default(now()) @map("created_at")
+  updated_at DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
 }
-model VisitorLog {
-  id         Int      @id @default(autoincrement())
-  ipAddress  String
-  visitTime  DateTime @default(now())
-  pageUrl    String
-}
+// model VisitorLog {
+//   id         Int      @id @default(autoincrement())
+//   ipAddress  String
+//   visitTime  DateTime @default(now())
+//   pageUrl    String
+// }
 ```
 ```sh
 pnpm prisma db push

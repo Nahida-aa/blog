@@ -45,10 +45,8 @@ function AvatarAndName({ className }: AvatarAndNameProps) {
 
 export default function ClientUser({ className }: AvatarAndNameProps) {
   return (
-    <SessionProvider>
       <Suspense fallback={<Skeleton className={`${className} rounded-full`} />}>
         <AvatarAndName className={className} />
       </Suspense>
-    </SessionProvider>
   )
 }

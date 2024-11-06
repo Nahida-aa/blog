@@ -30,7 +30,13 @@ export const admin_MenuGroups: MenuGroup[] = [
                 path: "/admin/resource/mcc/announcements",
               },
             ]
-          }
+          },
+          {
+            name: "User",
+            path: "/admin/resource/user",
+            // type: "button",
+            items: []
+          },
         ]
       },
     ],

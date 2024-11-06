@@ -157,7 +157,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ menu_groups = [], menu_i
               <TreeMenuNode key={index} item={item} currentPath={pathname}                   expandedPaths={expandedPaths}
               togglePath={togglePath}
               isClient={isClient}
-               />
+              />
             ))}
           </SidebarMenu>
         )}

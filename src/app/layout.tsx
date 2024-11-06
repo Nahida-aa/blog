@@ -70,9 +70,9 @@ export default function RootLayout({
             
             {children}
             {/* <SpeedInsights /> */}
+          <ParticleBackground />
           </main>
           </SessionProvider>
-          <ParticleBackground />
         </ThemeProvider>
         {process.env.GA_TRACKING_ID && <GoogleAnalytics gaId={process.env.GA_TRACKING_ID} />}
       </body>
