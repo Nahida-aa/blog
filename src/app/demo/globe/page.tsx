@@ -11,7 +11,7 @@ const Globe = dynamic(() => import('@/app/demo/globe/Globe'),
 
 export default function Home() {
   return (
-    <div style={{ width: '100vw', height: '100vh', background: '#040d21' }}>
+    <div style={{ width: '100vw', height: '100vh' }}>
       <Canvas >
         <Suspense fallback={null}>
           <Globe />
