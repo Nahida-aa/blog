@@ -19,6 +19,8 @@
     "@monaco-editor/react": "^4.6.0",
     "@next/mdx": "^14.2.14",
     "@next/third-parties": "^14.2.15",
+    "@nivo/heatmap": "^0.87.0",
+    "@nivo/sankey": "^0.87.0",
     "@prisma/client": "5.21.0",
     "@radix-ui/react-avatar": "^1.1.1",
     "@radix-ui/react-checkbox": "^1.1.2",
@@ -48,6 +50,8 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cmdk": "1.0.0",
+    "d3-scale": "^4.0.2",
+    "d3-scale-chromatic": "^3.1.0",
     "date-fns": "^4.1.0",
     "estree-util-visit": "^2.0.0",
     "framer-motion": "^11.11.1",
@@ -66,6 +70,7 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.0",
     "react-resizable-panels": "^2.1.6",
+    "react-simple-maps": "^3.0.0",
     "recharts": "^2.13.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-katex": "^7.0.1",
@@ -87,6 +92,7 @@
     "unist-util-remove-position": "^5.0.0",
     "unist-util-visit": "^5.0.0",
     "vfile": "^6.0.3",
+    "vis-graph3d": "^6.0.6",
     "zod": "^3.23.8"
   },
   "devDependencies": {

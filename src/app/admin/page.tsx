@@ -16,6 +16,8 @@ import {
 import { DateRange } from "react-day-picker";
 import { addMinutes, addHours, addDays, format } from "date-fns";
 
+import VisitAnalytics from './_components/VisitAnalytics';
+
 interface Visit {
   ip: string;
   userAgent: string;
@@ -28,8 +30,11 @@ const DashboardPage = () => {
   const [pathChartData, setPathChartData] = useState([]);
   const [timeChartData, setTimeChartData] = useState([]);
   const [ipChartData, setIpChartData] = useState([]);
+  const [deviceChartData, setDeviceChartData] = useState([])
+  const [browserChartData, setBrowserChartData] = useState([])
+
   const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined);
-  const [precision, setPrecision] = useState('minute');
+  const [precision, setPrecision] = useState('hour');
 
   const precisionOptions = [
     { value: 'minute', label: 'Minute' },
@@ -113,10 +118,29 @@ const DashboardPage = () => {
     setIpChartData(ipCounts);
   }, [data, dateRange, precision]);
 
+  //   // 根据设备统计访问次数
+  //   const devices = data.map(visit => new UAParser(visit.userAgent).getDevice().type || 'Unknown');
+  //   const uniqueDevices = [...new Set(devices)];
+  //   const deviceCounts = uniqueDevices.map(device => ({
+  //     device,
+  //     count: devices.filter(d => d === device).length,
+  //   }));
+  //   setDeviceChartData(deviceCounts);
+
+  //   // 根据浏览器统计访问次数
+  //   const browsers = data.map(visit => new UAParser(visit.userAgent).getBrowser().name || 'Unknown');
+  //   const uniqueBrowsers = [...new Set(browsers)];
+  //   const browserCounts = uniqueBrowsers.map(browser => ({
+  //     browser,
+  //     count: browsers.filter(b => b === browser).length,
+  //   }));
+  //   setBrowserChartData(browserCounts);
+  // }, [data, dateRange, precision]);
+
   return (
     <div className="space-y-4">
       <UserData />
-
+      <VisitAnalytics visits={data} />
 
 
       <Card className="col-span-4">
@@ -124,27 +148,30 @@ const DashboardPage = () => {
           <CardTitle>Visits / page</CardTitle>
         </CardHeader>
         <CardContent className="pl-2">
-          <ResponsiveContainer width="100%" height={350}>
-            <BarChart data={pathChartData}>
+          <ResponsiveContainer width="100%" height={pathChartData.length * 24}>
+            <BarChart layout="vertical" data={pathChartData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis
-                dataKey="path"
-                stroke="#888888"
-                fontSize={12}
-                tickLine={false}
-                axisLine={false}
-                interval={0}
-              />
-              <YAxis
+                type="number"
                 stroke="#888888"
                 fontSize={12}
                 tickLine={false}
                 axisLine={false}
                 tickFormatter={(value) => `${value}`}
               />
+              <YAxis
+                type="category"
+                dataKey="path"
+                stroke="#888888"
+                fontSize={12}
+                tickLine={false}
+                axisLine={false}
+                width={256} // 增加宽度以显示完整的路径
+                interval={0} // 确保每个路径都显示
+              />
               <Tooltip />
               <Legend />
-              <Bar dataKey="count" fill="#adfa1d" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="count" fill="#adfa1d" />
             </BarChart>
           </ResponsiveContainer>
         </CardContent>
@@ -212,7 +239,7 @@ const DashboardPage = () => {
           <CardTitle>Visits / IP</CardTitle>
         </CardHeader>
         <CardContent className="pl-2">
-          <ResponsiveContainer width="100%" height={350}>
+          <ResponsiveContainer width="100%" height={ipChartData.length * 24}>
             <BarChart layout="vertical" data={ipChartData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis
@@ -230,9 +257,41 @@ const DashboardPage = () => {
                 fontSize={12}
                 tickLine={false}
                 axisLine={false}
-                width={200} // 增加宽度以显示完整的 IP 地址
-                // tick={{ fontSize: 12, width: 200, overflow: 'visible' }} // 确保显示所有 IP 地址
+                width={128} // 增加宽度以显示完整的 IP 地址
                 interval={0} // 确保每个 IP 地址都显示
+              />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="count" fill="#82ca9d" />
+            </BarChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+      <Card className="col-span-4">
+        <CardHeader>
+          <CardTitle>Visits / Device</CardTitle>
+        </CardHeader>
+        <CardContent className="pl-2">
+          <ResponsiveContainer width="100%" height={deviceChartData.length * 24}>
+            <BarChart layout="vertical" data={deviceChartData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis
+                type="number"
+                stroke="#888888"
+                fontSize={12}
+                tickLine={false}
+                axisLine={false}
+                tickFormatter={(value) => `${value}`}
+              />
+              <YAxis
+                type="category"
+                dataKey="device"
+                stroke="#888888"
+                fontSize={12}
+                tickLine={false}
+                axisLine={false}
+                width={200} // 增加宽度以显示完整的设备名称
+                interval={0} // 确保每个设备名称都显示
               />
               <Tooltip />
               <Legend />

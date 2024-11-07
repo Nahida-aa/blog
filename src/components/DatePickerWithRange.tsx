@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { addDays, format } from "date-fns";
+import { addDays, format, subDays } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { DateRange } from "react-day-picker";
 
@@ -24,8 +24,8 @@ export function DatePickerWithRange({
   onChange,
 }: DatePickerWithRangeProps) {
   const [date, setDate] = React.useState<DateRange | undefined>({
-    from: new Date(2022, 0, 20),
-    to: addDays(new Date(2022, 0, 20), 20),
+    from: subDays(new Date(), 1),
+    to: new Date(),
   });
 
   const handleDateChange = (range: DateRange | undefined) => {
@@ -33,6 +33,7 @@ export function DatePickerWithRange({
     onChange(range);
   };
 
+  const formatCaption = (date: Date) => format(date, "yyyy-MM");
   return (
     <div className={cn("grid gap-2", className)}>
       <Popover>
@@ -49,11 +50,11 @@ export function DatePickerWithRange({
             {date?.from ? (
               date.to ? (
                 <>
-                  {format(date.from, "LLL dd, y")} -{" "}
-                  {format(date.to, "LLL dd, y")}
+                  {format(date.from, "yyyy-MM-dd")} -{" "}
+                  {format(date.to, "yyyy-MM-dd")}
                 </>
               ) : (
-                format(date.from, "LLL dd, y")
+                format(date.from, "yyyy-MM-dd")
               )
             ) : (
               <span>Pick a date</span>
@@ -68,6 +69,7 @@ export function DatePickerWithRange({
             selected={date}
             onSelect={handleDateChange}
             numberOfMonths={2}
+            formatters={{ formatCaption }}
           />
         </PopoverContent>
       </Popover>
