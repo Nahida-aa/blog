@@ -21,7 +21,7 @@ async function middleware(
   // console.log('middleware:', req)
   const { geo } = req
   const userAgent = req.headers.get('user-agent')
-  const ip = req.headers.get('x-forwarded-for') || req.ip || 'unknown'
+  const ip =  req.ip || req.headers.get('x-forwarded-for') || 'unknown'
   const path = req.nextUrl.pathname;
   const language = req.headers.get('accept-language')
   console.log('userAgent:', userAgent)

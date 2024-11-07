@@ -17,6 +17,8 @@ import { DateRange } from "react-day-picker";
 import { addMinutes, addHours, addDays, format } from "date-fns";
 
 import VisitAnalytics from './_components/VisitAnalytics';
+import VisitPath from './_components/VisitPath';
+import VisitIp from './_components/VisitIp';
 
 interface Visit {
   ip: string;
@@ -140,42 +142,28 @@ const DashboardPage = () => {
   return (
     <div className="space-y-4">
       <UserData />
-      <VisitAnalytics visits={data} />
-
 
       <Card className="col-span-4">
         <CardHeader>
-          <CardTitle>Visits / page</CardTitle>
+          <CardTitle>Visits by Path</CardTitle>
         </CardHeader>
         <CardContent className="pl-2">
-          <ResponsiveContainer width="100%" height={pathChartData.length * 24}>
-            <BarChart layout="vertical" data={pathChartData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis
-                type="number"
-                stroke="#888888"
-                fontSize={12}
-                tickLine={false}
-                axisLine={false}
-                tickFormatter={(value) => `${value}`}
-              />
-              <YAxis
-                type="category"
-                dataKey="path"
-                stroke="#888888"
-                fontSize={12}
-                tickLine={false}
-                axisLine={false}
-                width={256} // 增加宽度以显示完整的路径
-                interval={0} // 确保每个路径都显示
-              />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="count" fill="#adfa1d" />
-            </BarChart>
-          </ResponsiveContainer>
+          <VisitPath visits={data} />
         </CardContent>
       </Card>
+
+      <Card className="col-span-4">
+        <CardHeader>
+          <CardTitle>Visits by IP</CardTitle>
+        </CardHeader>
+        <CardContent className="pl-2">
+          <VisitIp visits={data} />
+        </CardContent>
+      </Card>
+
+      <VisitAnalytics visits={data} />
+
+
 
       <div className="flex space-x-4">
         <div>
@@ -234,39 +222,6 @@ const DashboardPage = () => {
         </CardContent>
       </Card>
 
-      <Card className="col-span-4">
-        <CardHeader>
-          <CardTitle>Visits / IP</CardTitle>
-        </CardHeader>
-        <CardContent className="pl-2">
-          <ResponsiveContainer width="100%" height={ipChartData.length * 24}>
-            <BarChart layout="vertical" data={ipChartData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis
-                type="number"
-                stroke="#888888"
-                fontSize={12}
-                tickLine={false}
-                axisLine={false}
-                tickFormatter={(value) => `${value}`}
-              />
-              <YAxis
-                type="category"
-                dataKey="ip"
-                stroke="#888888"
-                fontSize={12}
-                tickLine={false}
-                axisLine={false}
-                width={128} // 增加宽度以显示完整的 IP 地址
-                interval={0} // 确保每个 IP 地址都显示
-              />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="count" fill="#82ca9d" />
-            </BarChart>
-          </ResponsiveContainer>
-        </CardContent>
-      </Card>
       <Card className="col-span-4">
         <CardHeader>
           <CardTitle>Visits / Device</CardTitle>
