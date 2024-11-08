@@ -5,7 +5,7 @@ import  generateTreeToc from '../src/lib/mdx/toc/generateTreeToc';
 import { parseFrontmatter } from '../src/lib/mdx/parseMatter';
 import { FileMetadata, FileTreeToc, JsonDocMetadataTreeNode, JsonDocTocTreeNode } from '../src/types/mdx';
 
-const postsDirectory = path.join(process.cwd(), 'src','app','(blog)', 'md', 'blog');
+const postsDirectory = path.join(process.cwd(), 'src','app');
 const outputDirectory = path.join(process.cwd(), 'public', 'data');
 const metadataFilePath = path.join(outputDirectory, 'metadata.json');
 const tocFilePath = path.join(outputDirectory, 'toc.json');

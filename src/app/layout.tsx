@@ -46,7 +46,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode,
 }) {
-
+  // const headersList = await headers()
+  // console.log(`src/app/[...slug]/layout.tsx: `)
+  // const headerEntries = []
+  // headersList.forEach((value, key) => {
+  //   headerEntries.push(`${key}: ${value}`)
+  // })
 
   return (
     <html

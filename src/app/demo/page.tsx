@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { Card, CardContent } from "@/components/ui/card"
 import { ExternalLink } from 'lucide-react'
-import { Friend } from '@/app/(blog)/md/blog/blog/types/friends'
+import { Friend } from '@/app/blog/blog/types/friends'
 
 const testFriend = {
   id: 1,

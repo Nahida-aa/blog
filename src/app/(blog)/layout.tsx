@@ -6,7 +6,6 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/s
 import { AppSidebar } from "@/components/layout/sidebar"
 import type { MenuItem } from "@/components/layout/sidebar/tree/TreeMenuNode";
 import AppHeader from "@/components/layout/header";
-import { blog_ContentMenuItems } from "@/app/(blog)/_json/menu";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"
 import { CSSProperties } from "react";
 import path from "path"

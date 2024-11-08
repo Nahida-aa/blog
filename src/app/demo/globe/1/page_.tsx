@@ -1,7 +1,7 @@
 // import React from 'react'
 // import dynamic from 'next/dynamic'
 
-// const GlobeCanvas = dynamic(() => import('@/app/(blog)/md/blog/3d/demo/Globe1'), { ssr: false })
+// const GlobeCanvas = dynamic(() => import('@/app/blog/3d/demo/Globe1'), { ssr: false })
 
 // export default function Home() {
 //   return (

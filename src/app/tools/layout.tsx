@@ -7,13 +7,16 @@ import { AppSidebar } from "@/components/layout/sidebar";
 import { CSSProperties } from "react";
 // import Script from 'next/script'
 import AppHeader from "@/components/layout/header"
-import { blog_ContentMenuItems } from "@/app/(blog)/_json/menu";
+// import { blog_ContentMenuItems } from "@/app/(blog)/_json/menu";
+import { getFileTree } from "@/lib/file/getTree"
+import { constants } from "../config/constants"
 
 export default function BlogLayout({
   children
 }: {
   children: React.ReactNode
 }) {
+  const fileTree = getFileTree(constants.APP_DIR,'/')
   return (
     <>
       {/* <Script src="/vscode/Comet.js" strategy="lazyOnload" /> */}
@@ -25,7 +28,7 @@ export default function BlogLayout({
         "--sidebar-width-mobile": "17.5rem",
       } as CSSProperties}
     >
-      <AppSidebar menu_items={blog_ContentMenuItems} grouped={false} />
+      <AppSidebar menu_items={fileTree} grouped={false} />
       {/* <Navbar /> */}
       {/* <SidebarInset className="flex-grow overflow-hidden"> */}
         <main className="flex flex-1 flex-col px-4 pb-4 w-full flex-grow overflow-hidden">

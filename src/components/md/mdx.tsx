@@ -49,6 +49,7 @@ export async function CustomMDX(props: MDXRemoteProps) {
     // Indicates whether or not to parse the frontmatter from the MDX source
     parseFrontmatter: true,
   }
+  console.log(`CustomMDX: ${JSON.stringify(options, null, 2)}`)
   const components = {
     ...MdxComponents,
     // pre: Pre,
