@@ -1,0 +1,2569 @@
+---
+title: 搜索
+pushed_at: "2024-10-08"
+updated_at: "2024-10-08"
+tags: [search, Blackbird]
+---
+
+# search
+
+## request
+
+GET /search?type=code&auto_enroll=true&q=Nahida-aa
+
+## response
+
+需要看到 文件地址, 对应文件里面的行(包括行号)
+
+200
+
+```json
+{
+    "payload": {
+        "header_redesign_enabled": true,
+        "results": [
+            {
+                "path": "deploy.md",
+                "repo_id": 855871165,
+                "repo_nwo": "Nahida-aa/aa-home",
+                "owner_id": 96083926,
+                "commit_sha": "dee4278b0e2f7150b00778bfbbf2e6cc138c5894",
+                "ref_name": "refs/heads/main",
+                "blob_sha": "d0d878aeef7ff5e8aa4d6281808756ac2ab0cd2f",
+                "language_name": "Markdown",
+                "language_id": 222,
+                "has_language_id": true,
+                "language_color": "#083fa1",
+                "match_count": 9,
+                "matched_symbols": [],
+                "snippets": [
+                    {
+                        "lines": [
+                            "<span class=\"pl-k\">?</span> Set up and deploy “D:<span class=\"pl-cce\">\\g</span>ithub<span class=\"pl-cce\">\\l</span>ang<span class=\"pl-cce\">\\P</span>yProjects<span class=\"pl-cce\">\\b</span>log<span class=\"pl-cce\">\\r</span>emio-home-next”<span class=\"pl-k\">?</span> yes",
+                            "<span class=\"pl-k\">?</span> Which scope <span class=\"pl-k\">do</span> you want to deploy to<span class=\"pl-k\">?</span> <mark>Nahida-aa</mark><span class=\"pl-s\"><span class=\"pl-pds\">&#39;</span>s projects</span>",
+                            "<span class=\"pl-s\">? Link to existing project? [y/N] n</span>"
+                        ],
+                        "starting_line_number": 13,
+                        "ending_line_number": 16,
+                        "jump_to_line_number": 14,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": 0.0,
+                        "start": 180,
+                        "end": 357
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">? Want to override the settings? [y/N] n</span>",
+                            "<span class=\"pl-s\">🔍  Inspect: https://vercel.com/<mark>Nahida-aa</mark>/my-nextjs-app/abc123 [1s]</span>",
+                            "<span class=\"pl-s\">✅  Production: https://my-nextjs-app.vercel.app [copied to clipboard] [3s]</span>"
+                        ],
+                        "starting_line_number": 18,
+                        "ending_line_number": 21,
+                        "jump_to_line_number": 19,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": 0.0,
+                        "start": 447,
+                        "end": 637
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">💡 To change the domain or build command, go to https://vercel.com/<mark>nahida-aa</mark>s-projects/aa-home/settings</span>"
+                        ],
+                        "starting_line_number": 22,
+                        "ending_line_number": 23,
+                        "jump_to_line_number": 22,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 733,
+                        "end": 839
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">   - `https://aa-home-<mark>nahida-aa</mark>s-projects.vercel.app/`</span>"
+                        ],
+                        "starting_line_number": 33,
+                        "ending_line_number": 34,
+                        "jump_to_line_number": 33,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 1179,
+                        "end": 1234
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">   - `https://aa-home-<mark>nahida-aa</mark>-<mark>nahida-aa</mark>s-projects.vercel.app/`</span>"
+                        ],
+                        "starting_line_number": 37,
+                        "ending_line_number": 38,
+                        "jump_to_line_number": 37,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 2,
+                        "score": -1.0,
+                        "start": 1365,
+                        "end": 1430
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">   - `https://aa-home-852lk5u5f-<mark>nahida-aa</mark>s-projects.vercel.app/`</span>"
+                        ],
+                        "starting_line_number": 41,
+                        "ending_line_number": 42,
+                        "jump_to_line_number": 41,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 1546,
+                        "end": 1611
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">git remote add origin git@github.com:<mark>Nahida-aa</mark>/aa-home.git</span>"
+                        ],
+                        "starting_line_number": 112,
+                        "ending_line_number": 113,
+                        "jump_to_line_number": 112,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 3782,
+                        "end": 3841
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\"># 在项目设置中，选择 &quot;Git Integration&quot; 并连接到你的 GitHub 仓库 <mark>Nahida-aa</mark>/aa-home</span>"
+                        ],
+                        "starting_line_number": 115,
+                        "ending_line_number": 116,
+                        "jump_to_line_number": 115,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 3877,
+                        "end": 3976
+                    }
+                ],
+                "debug_info": {
+                    "retrieval_position": 1,
+                    "score": -26.899730682373047,
+                    "factors": []
+                },
+                "line_number": 14,
+                "term_matches": [
+                    {
+                        "start": 299,
+                        "end": 308
+                    },
+                    {
+                        "start": 523,
+                        "end": 532
+                    },
+                    {
+                        "start": 802,
+                        "end": 811
+                    },
+                    {
+                        "start": 1201,
+                        "end": 1210
+                    },
+                    {
+                        "start": 1387,
+                        "end": 1396
+                    },
+                    {
+                        "start": 1397,
+                        "end": 1406
+                    },
+                    {
+                        "start": 1578,
+                        "end": 1587
+                    },
+                    {
+                        "start": 3819,
+                        "end": 3828
+                    },
+                    {
+                        "start": 3958,
+                        "end": 3967
+                    }
+                ],
+                "duplicate_locations": [],
+                "file_size": 4256,
+                "enclosing_symbols": []
+            },
+            {
+                "path": "readme.md",
+                "repo_id": 793357004,
+                "repo_nwo": "Nahida-aa/community",
+                "owner_id": 96083926,
+                "commit_sha": "6634dddab1f1c0158ff2a4cfd3c479252cef44fd",
+                "ref_name": "refs/heads/main",
+                "blob_sha": "059b2b494fc8728982f6bf97810d584a615c997b",
+                "language_name": "Markdown",
+                "language_id": 222,
+                "has_language_id": true,
+                "language_color": "#083fa1",
+                "match_count": 9,
+                "matched_symbols": [],
+                "snippets": [
+                    {
+                        "lines": [
+                            "",
+                            "<span class=\"pl-s\">![</span>20240429123755<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240429123755.png</span>)",
+                            ""
+                        ],
+                        "starting_line_number": 9,
+                        "ending_line_number": 12,
+                        "jump_to_line_number": 10,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": 0.0,
+                        "start": 81,
+                        "end": 185
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-c\"><span class=\"pl-c\">#</span> https: (貌似被禁用)</span>",
+                            "<span class=\"pl-c\"><span class=\"pl-c\">#</span> git remote add origin https://github.com/<mark>Nahida-aa</mark>/team.git</span>",
+                            "<span class=\"pl-c\"><span class=\"pl-c\">#</span> ssh: (推荐)</span>"
+                        ],
+                        "starting_line_number": 20,
+                        "ending_line_number": 23,
+                        "jump_to_line_number": 21,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": 0.0,
+                        "start": 438,
+                        "end": 545
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-c\"><span class=\"pl-c\">#</span> git remote add origin git@github.com:<mark>Nahida-aa</mark>/team.git</span>"
+                        ],
+                        "starting_line_number": 23,
+                        "ending_line_number": 24,
+                        "jump_to_line_number": 23,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 546,
+                        "end": 604
+                    },
+                    {
+                        "lines": [
+                            "git remote add github git@github.com:<mark>Nahida-aa</mark>/team.git"
+                        ],
+                        "starting_line_number": 24,
+                        "ending_line_number": 25,
+                        "jump_to_line_number": 24,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 605,
+                        "end": 661
+                    },
+                    {
+                        "lines": [
+                            "git remote set-url github git@github.com:<mark>Nahida-aa</mark>/team.git"
+                        ],
+                        "starting_line_number": 26,
+                        "ending_line_number": 27,
+                        "jump_to_line_number": 26,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 712,
+                        "end": 772
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240429125627<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240429125627.png</span>)"
+                        ],
+                        "starting_line_number": 48,
+                        "ending_line_number": 49,
+                        "jump_to_line_number": 48,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 1776,
+                        "end": 1876
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240429130323<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240429130323.png</span>)"
+                        ],
+                        "starting_line_number": 53,
+                        "ending_line_number": 54,
+                        "jump_to_line_number": 53,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 2027,
+                        "end": 2127
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240429135414<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240429135414.png</span>)"
+                        ],
+                        "starting_line_number": 63,
+                        "ending_line_number": 64,
+                        "jump_to_line_number": 63,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 2244,
+                        "end": 2344
+                    },
+                    {
+                        "lines": [
+                            "git remote add github git@github.com:<mark>Nahida-aa</mark>/team.git"
+                        ],
+                        "starting_line_number": 107,
+                        "ending_line_number": 108,
+                        "jump_to_line_number": 107,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 3284,
+                        "end": 3340
+                    }
+                ],
+                "debug_info": {
+                    "retrieval_position": 1,
+                    "score": -32.39973068237305,
+                    "factors": []
+                },
+                "line_number": 10,
+                "term_matches": [
+                    {
+                        "start": 135,
+                        "end": 144
+                    },
+                    {
+                        "start": 509,
+                        "end": 518
+                    },
+                    {
+                        "start": 585,
+                        "end": 594
+                    },
+                    {
+                        "start": 642,
+                        "end": 651
+                    },
+                    {
+                        "start": 753,
+                        "end": 762
+                    },
+                    {
+                        "start": 1828,
+                        "end": 1837
+                    },
+                    {
+                        "start": 2079,
+                        "end": 2088
+                    },
+                    {
+                        "start": 2296,
+                        "end": 2305
+                    },
+                    {
+                        "start": 3321,
+                        "end": 3330
+                    }
+                ],
+                "duplicate_locations": [],
+                "file_size": 11413,
+                "enclosing_symbols": []
+            },
+            {
+                "path": "nlp.md",
+                "repo_id": 850250907,
+                "repo_nwo": "Nahida-aa/resume",
+                "owner_id": 96083926,
+                "commit_sha": "7f3854abf4eaac1c5c78a19ed1a3027eef90d3a7",
+                "ref_name": "refs/heads/main",
+                "blob_sha": "f65648095713840bdfad4b9dc1a2b2b7c753f4a8",
+                "language_name": "Markdown",
+                "language_id": 222,
+                "has_language_id": true,
+                "language_color": "#083fa1",
+                "match_count": 14,
+                "matched_symbols": [],
+                "snippets": [
+                    {
+                        "lines": [
+                            "<span class=\"pl-v\">-</span> Name: aa Nahida",
+                            "<span class=\"pl-v\">-</span> Age: 22",
+                            "<span class=\"pl-v\">-</span> Phone: 18162711944",
+                            "<span class=\"pl-v\">-</span> Email: &lt;<mark>Nahida-aa</mark><span class=\"pl-s\">@<span class=\"pl-corl\">oulook</span></span>.com&gt;",
+                            "<span class=\"pl-v\">-</span> GitHub: &lt;<span class=\"pl-corl\">https://github.com/<mark>Nahida-aa</mark>&gt;</span>",
+                            "",
+                            "<span class=\"pl-mh\"># <span class=\"pl-en\">Education</span></span>"
+                        ],
+                        "starting_line_number": 1,
+                        "ending_line_number": 8,
+                        "jump_to_line_number": 4,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 2,
+                        "score": 0.0,
+                        "start": 0,
+                        "end": 134
+                    },
+                    {
+                        "lines": [
+                            "  - [Data Structure](https://github.com/<mark>Nahida-aa</mark>/Data-Structure) | [Principles of Computer Composition](https://github…"
+                        ],
+                        "starting_line_number": 10,
+                        "ending_line_number": 11,
+                        "jump_to_line_number": 10,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 243,
+                        "end": 362
+                    },
+                    {
+                        "lines": [
+                            "  <span class=\"pl-v\">-</span> <span class=\"pl-s\">[</span>Machine Learning<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://github.com/<mark>Nahida-aa</mark>/ML</span>) | <span class=\"pl-s\">[</span>Deep Learning<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://github.com/<mark>Nahida-aa</mark>/DL</span>)"
+                        ],
+                        "starting_line_number": 11,
+                        "ending_line_number": 12,
+                        "jump_to_line_number": 11,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 2,
+                        "score": -1.0,
+                        "start": 521,
+                        "end": 627
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-mh\">### <span class=\"pl-en\">Currently learning: <span class=\"pl-s\">[</span>LLM<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://github.com/<mark>Nahida-aa</mark>/LLM_ln)</span></span></span>"
+                        ],
+                        "starting_line_number": 18,
+                        "ending_line_number": 19,
+                        "jump_to_line_number": 18,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 780,
+                        "end": 846
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">[</span>Mathematical modeling<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://github.com/<mark>Nahida-aa</mark>/mm</span>) | <span class=\"pl-s\">[</span>Regression analysis<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://github.com/<mark>Nahida-aa</mark>/mm</span>)"
+                        ],
+                        "starting_line_number": 39,
+                        "ending_line_number": 40,
+                        "jump_to_line_number": 39,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 2,
+                        "score": -1.0,
+                        "start": 1653,
+                        "end": 1766
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-v\">-</span> <span class=\"pl-s\">**</span>情感分析, &lt;<span class=\"pl-corl\">https://ai.<mark>Nahida-aa</mark>.su.kg/&gt;</span><span class=\"pl-s\">**</span>"
+                        ],
+                        "starting_line_number": 43,
+                        "ending_line_number": 44,
+                        "jump_to_line_number": 43,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 1782,
+                        "end": 1831
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-v\">-</span> <span class=\"pl-s\">**</span>声音生成, &lt;<span class=\"pl-corl\">https://ai.<mark>Nahida-aa</mark>.su.kg/&gt;</span><span class=\"pl-s\">**</span>"
+                        ],
+                        "starting_line_number": 49,
+                        "ending_line_number": 50,
+                        "jump_to_line_number": 49,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 2107,
+                        "end": 2156
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-v\">-</span> <span class=\"pl-s\">**</span>api分享, &lt;<span class=\"pl-corl\">https://api.<mark>Nahida-aa</mark>.su.kg/&gt;</span><span class=\"pl-s\">**</span>"
+                        ],
+                        "starting_line_number": 55,
+                        "ending_line_number": 56,
+                        "jump_to_line_number": 55,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 2483,
+                        "end": 2530
+                    }
+                ],
+                "debug_info": {
+                    "retrieval_position": 0,
+                    "score": -38.599918365478516,
+                    "factors": []
+                },
+                "line_number": 4,
+                "term_matches": [
+                    {
+                        "start": 59,
+                        "end": 68
+                    },
+                    {
+                        "start": 111,
+                        "end": 120
+                    },
+                    {
+                        "start": 283,
+                        "end": 292
+                    },
+                    {
+                        "start": 367,
+                        "end": 376
+                    },
+                    {
+                        "start": 439,
+                        "end": 448
+                    },
+                    {
+                        "start": 493,
+                        "end": 502
+                    },
+                    {
+                        "start": 563,
+                        "end": 572
+                    },
+                    {
+                        "start": 614,
+                        "end": 623
+                    },
+                    {
+                        "start": 829,
+                        "end": 838
+                    },
+                    {
+                        "start": 1696,
+                        "end": 1705
+                    },
+                    {
+                        "start": 1753,
+                        "end": 1762
+                    },
+                    {
+                        "start": 1812,
+                        "end": 1821
+                    },
+                    {
+                        "start": 2137,
+                        "end": 2146
+                    },
+                    {
+                        "start": 2511,
+                        "end": 2520
+                    }
+                ],
+                "duplicate_locations": [],
+                "file_size": 3405,
+                "enclosing_symbols": []
+            },
+            {
+                "path": "MSYS2.md",
+                "repo_id": 852089213,
+                "repo_nwo": "Nahida-aa/env-os",
+                "owner_id": 96083926,
+                "commit_sha": "c545d82d1637efceb845ada58e6e2f01b1ce9f75",
+                "ref_name": "refs/heads/main",
+                "blob_sha": "18d336462792c4df9cab59eff4cb17e3521485c9",
+                "language_name": "Markdown",
+                "language_id": 222,
+                "has_language_id": true,
+                "language_color": "#083fa1",
+                "match_count": 2,
+                "matched_symbols": [],
+                "snippets": [
+                    {
+                        "lines": [
+                            "user.name=aa",
+                            "user.email=<mark>Nahida-aa</mark>@outlook.com",
+                            "http.sslverify=false"
+                        ],
+                        "starting_line_number": 32,
+                        "ending_line_number": 35,
+                        "jump_to_line_number": 33,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": 0.0,
+                        "start": 1421,
+                        "end": 1490
+                    },
+                    {
+                        "lines": [
+                            "user.name=aa",
+                            "user.email=<mark>Nahida-aa</mark>@outlook.com",
+                            "http.sslverify=false"
+                        ],
+                        "starting_line_number": 54,
+                        "ending_line_number": 57,
+                        "jump_to_line_number": 55,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": 0.0,
+                        "start": 2001,
+                        "end": 2070
+                    }
+                ],
+                "debug_info": {
+                    "retrieval_position": 0,
+                    "score": -44.29981231689453,
+                    "factors": []
+                },
+                "line_number": 33,
+                "term_matches": [
+                    {
+                        "start": 1446,
+                        "end": 1455
+                    },
+                    {
+                        "start": 2026,
+                        "end": 2035
+                    }
+                ],
+                "duplicate_locations": [],
+                "file_size": 2338,
+                "enclosing_symbols": []
+            },
+            {
+                "path": "README.md",
+                "repo_id": 704656036,
+                "repo_nwo": "Nahida-aa/Nahida-aa.github.io",
+                "owner_id": 96083926,
+                "commit_sha": "8a3ce2d49fc5748580de9a027e2e96327622f0d0",
+                "ref_name": "refs/heads/main",
+                "blob_sha": "6e5decd3367e20ffc4dfc4779fe8203e26f62e6c",
+                "language_name": "Markdown",
+                "language_id": 222,
+                "has_language_id": true,
+                "language_color": "#083fa1",
+                "match_count": 4,
+                "matched_symbols": [],
+                "snippets": [
+                    {
+                        "lines": [
+                            "<span class=\"pl-mh\"># <span class=\"pl-en\"><mark>Nahida-aa</mark>.github.io</span></span>"
+                        ],
+                        "starting_line_number": 1,
+                        "ending_line_number": 2,
+                        "jump_to_line_number": 1,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 0,
+                        "end": 22
+                    },
+                    {
+                        "lines": [
+                            "如果你有一个名为 <mark>Nahida-aa</mark>.github.io 的仓库，这意味着你已经或者正在设置一个个人网站，利用 GitHub Pages 服务。GitHub Pages 允许你直接从 GitHub 仓库托管网站内容，非常适合托管静态网站（…"
+                        ],
+                        "starting_line_number": 3,
+                        "ending_line_number": 4,
+                        "jump_to_line_number": 3,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 25,
+                        "end": 270
+                    },
+                    {
+                        "lines": [
+                            "  <span class=\"pl-v\">-</span> 如果你想使用自定义域名而不是默认的 <mark>nahida-aa</mark>.github.io，你可以在仓库的 settings 下的 GitHub Pages 部分设置自定义域名。"
+                        ],
+                        "starting_line_number": 18,
+                        "ending_line_number": 19,
+                        "jump_to_line_number": 18,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 897,
+                        "end": 1057
+                    },
+                    {
+                        "lines": [
+                            "  <span class=\"pl-v\">-</span> 一旦 GitHub Pages 被激活并且你的仓库中有了网站内容，你就可以通过访问 https://<mark>nahida-aa</mark>.github.io 来查看你的网站了。"
+                        ],
+                        "starting_line_number": 24,
+                        "ending_line_number": 25,
+                        "jump_to_line_number": 24,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 1226,
+                        "end": 1382
+                    }
+                ],
+                "debug_info": {
+                    "retrieval_position": 1,
+                    "score": -49.889732360839844,
+                    "factors": []
+                },
+                "line_number": 1,
+                "term_matches": [
+                    {
+                        "start": 2,
+                        "end": 11
+                    },
+                    {
+                        "start": 50,
+                        "end": 59
+                    },
+                    {
+                        "start": 953,
+                        "end": 962
+                    },
+                    {
+                        "start": 1334,
+                        "end": 1343
+                    }
+                ],
+                "duplicate_locations": [],
+                "file_size": 7724,
+                "enclosing_symbols": []
+            },
+            {
+                "path": "src/config/index.ts",
+                "repo_id": 839942158,
+                "repo_nwo": "Nahida-aa/vue3_ln",
+                "owner_id": 96083926,
+                "commit_sha": "1775a2b75c722fa9e30fbfbf31c1e46c122ef8bf",
+                "ref_name": "refs/heads/main",
+                "blob_sha": "beba241e0b8b5173895d42c6d6e0e12274812cc6",
+                "language_name": "JavaScript",
+                "language_id": 183,
+                "has_language_id": true,
+                "language_color": "#f1e05a",
+                "match_count": 1,
+                "matched_symbols": [],
+                "snippets": [
+                    {
+                        "lines": [
+                            "<span class=pl-c>// config/index.js</span>",
+                            "<span class=pl-k>const</span> <span class=pl-s1>devBaseURL</span> <span class=pl-c1>=</span> <span class=pl-s>&#39;http://127.0.0.1:8000&#39;</span>",
+                            "<span class=pl-k>const</span> <span class=pl-s1>proBaseURL</span> <span class=pl-c1>=</span> <span class=pl-s>&#39;https://<mark>nahida-aa</mark>.us.kg&#39;</span>",
+                            "<span class=pl-c>// const is_dev = process.env.NODE_ENV === &#39;development&#39;;</span>",
+                            "<span class=pl-k>const</span> <span class=pl-s1>is_dev</span> <span class=pl-c1>=</span> <span class=pl-c1>false</span>",
+                            "<span class=pl-k>const</span> <span class=pl-s1>baseURL</span> <span class=pl-c1>=</span> <span class=pl-s1>is_dev</span> ? <span class=pl-s1>devBaseURL</span> : <span class=pl-s1>proBaseURL</span>",
+                            "<span class=pl-k>export</span> <span class=pl-kos>{</span>"
+                        ],
+                        "starting_line_number": 1,
+                        "ending_line_number": 8,
+                        "jump_to_line_number": 4,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": 0.0,
+                        "start": 0,
+                        "end": 250
+                    }
+                ],
+                "debug_info": {
+                    "retrieval_position": 1,
+                    "score": -54.897464752197266,
+                    "factors": []
+                },
+                "line_number": 4,
+                "term_matches": [
+                    {
+                        "start": 92,
+                        "end": 101
+                    }
+                ],
+                "duplicate_locations": [
+                    {
+                        "path": "src/config/index.js",
+                        "repo_id": 839942158,
+                        "repo_nwo": "Nahida-aa/vue3_ln",
+                        "owner_id": 96083926,
+                        "commit_sha": "1775a2b75c722fa9e30fbfbf31c1e46c122ef8bf",
+                        "ref_name": ""
+                    }
+                ],
+                "file_size": 367,
+                "enclosing_symbols": []
+            },
+            {
+                "path": "基础.md",
+                "repo_id": 807208779,
+                "repo_nwo": "Nahida-aa/PLC_learn",
+                "owner_id": 96083926,
+                "commit_sha": "5ce7f3c2459aeef05069bdfc48ec57b1eda132c2",
+                "ref_name": "refs/heads/main",
+                "blob_sha": "35a90496e40a98925cd11719dafd4068912a9cc4",
+                "language_name": "Markdown",
+                "language_id": 222,
+                "has_language_id": true,
+                "language_color": "#083fa1",
+                "match_count": 1,
+                "matched_symbols": [],
+                "snippets": [
+                    {
+                        "lines": [
+                            "",
+                            "每两根线之间的电压为为380V",
+                            "",
+                            "<span class=\"pl-s\">![</span>20240529004534<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240529004534.png</span>)",
+                            "",
+                            "三相四线制: RST N(蓝色线，中性线) 三相线和中性线之间的电压为220V",
+                            ""
+                        ],
+                        "starting_line_number": 28,
+                        "ending_line_number": 35,
+                        "jump_to_line_number": 31,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": 0.0,
+                        "start": 329,
+                        "end": 560
+                    }
+                ],
+                "debug_info": {
+                    "retrieval_position": 0,
+                    "score": -60.39973068237305,
+                    "factors": []
+                },
+                "line_number": 31,
+                "term_matches": [
+                    {
+                        "start": 421,
+                        "end": 430
+                    }
+                ],
+                "duplicate_locations": [],
+                "file_size": 760,
+                "enclosing_symbols": []
+            },
+            {
+                "path": "doc/integrated_circuit.md",
+                "repo_id": 807764306,
+                "repo_nwo": "Nahida-aa/Single-Chip_Microcomputer",
+                "owner_id": 96083926,
+                "commit_sha": "23c302308e98c1e89ac984485f5e1c7e6bb1c01f",
+                "ref_name": "refs/heads/main",
+                "blob_sha": "5bf08ad1287885786393ab0c67d5578f2bddfa98",
+                "language_name": "Markdown",
+                "language_id": 222,
+                "has_language_id": true,
+                "language_color": "#083fa1",
+                "match_count": 25,
+                "matched_symbols": [],
+                "snippets": [
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240604190921<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240604190921.png</span>)"
+                        ],
+                        "starting_line_number": 9,
+                        "ending_line_number": 10,
+                        "jump_to_line_number": 9,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 136,
+                        "end": 235
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240604191612<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240604191612.png</span>)"
+                        ],
+                        "starting_line_number": 13,
+                        "ending_line_number": 14,
+                        "jump_to_line_number": 13,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 248,
+                        "end": 347
+                    },
+                    {
+                        "lines": [
+                            "",
+                            "<span class=\"pl-s\">![</span>20240604191802<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240604191802.png</span>)",
+                            ""
+                        ],
+                        "starting_line_number": 16,
+                        "ending_line_number": 19,
+                        "jump_to_line_number": 17,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": 0.0,
+                        "start": 377,
+                        "end": 478
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240604191901<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240604191901.png</span>)"
+                        ],
+                        "starting_line_number": 19,
+                        "ending_line_number": 20,
+                        "jump_to_line_number": 19,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 479,
+                        "end": 578
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240604192008<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240604192008.png</span>)"
+                        ],
+                        "starting_line_number": 23,
+                        "ending_line_number": 24,
+                        "jump_to_line_number": 23,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 606,
+                        "end": 705
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240604192436<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240604192436.png</span>)"
+                        ],
+                        "starting_line_number": 33,
+                        "ending_line_number": 34,
+                        "jump_to_line_number": 33,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 806,
+                        "end": 905
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240604192621<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240604192621.png</span>)"
+                        ],
+                        "starting_line_number": 35,
+                        "ending_line_number": 36,
+                        "jump_to_line_number": 35,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 907,
+                        "end": 1006
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240604192845<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240604192845.png</span>)"
+                        ],
+                        "starting_line_number": 45,
+                        "ending_line_number": 46,
+                        "jump_to_line_number": 45,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 1086,
+                        "end": 1185
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240604193105<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240604193105.png</span>)"
+                        ],
+                        "starting_line_number": 49,
+                        "ending_line_number": 50,
+                        "jump_to_line_number": 49,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 1243,
+                        "end": 1342
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240604193322<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240604193322.png</span>)"
+                        ],
+                        "starting_line_number": 51,
+                        "ending_line_number": 52,
+                        "jump_to_line_number": 51,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 1344,
+                        "end": 1443
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240604210119<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240604210119.png</span>)"
+                        ],
+                        "starting_line_number": 61,
+                        "ending_line_number": 62,
+                        "jump_to_line_number": 61,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 1525,
+                        "end": 1624
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240604210953<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240604210953.png</span>)"
+                        ],
+                        "starting_line_number": 62,
+                        "ending_line_number": 63,
+                        "jump_to_line_number": 62,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 1625,
+                        "end": 1724
+                    },
+                    {
+                        "lines": [
+                            "",
+                            "<span class=\"pl-s\">![</span>20240604220537<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240604220537.png</span>)",
+                            ""
+                        ],
+                        "starting_line_number": 77,
+                        "ending_line_number": 80,
+                        "jump_to_line_number": 78,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": 0.0,
+                        "start": 2092,
+                        "end": 2193
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240605001955<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240605001955.png</span>)"
+                        ],
+                        "starting_line_number": 99,
+                        "ending_line_number": 100,
+                        "jump_to_line_number": 99,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 2382,
+                        "end": 2481
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240605004007<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240605004007.png</span>)"
+                        ],
+                        "starting_line_number": 111,
+                        "ending_line_number": 112,
+                        "jump_to_line_number": 111,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 2674,
+                        "end": 2773
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240605003905<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240605003905.png</span>)"
+                        ],
+                        "starting_line_number": 115,
+                        "ending_line_number": 116,
+                        "jump_to_line_number": 115,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 2791,
+                        "end": 2890
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240605005940<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240605005940.png</span>)"
+                        ],
+                        "starting_line_number": 126,
+                        "ending_line_number": 127,
+                        "jump_to_line_number": 126,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 3028,
+                        "end": 3127
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240605011306<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240605011306.png</span>)"
+                        ],
+                        "starting_line_number": 132,
+                        "ending_line_number": 133,
+                        "jump_to_line_number": 132,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 3183,
+                        "end": 3282
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240605013308<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240605013308.png</span>)"
+                        ],
+                        "starting_line_number": 136,
+                        "ending_line_number": 137,
+                        "jump_to_line_number": 136,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 3403,
+                        "end": 3502
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240605020137<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240605020137.png</span>)"
+                        ],
+                        "starting_line_number": 146,
+                        "ending_line_number": 147,
+                        "jump_to_line_number": 146,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 3650,
+                        "end": 3749
+                    }
+                ],
+                "debug_info": {
+                    "retrieval_position": 0,
+                    "score": -67.49423217773438,
+                    "factors": []
+                },
+                "line_number": 9,
+                "term_matches": [
+                    {
+                        "start": 188,
+                        "end": 197
+                    },
+                    {
+                        "start": 300,
+                        "end": 309
+                    },
+                    {
+                        "start": 430,
+                        "end": 439
+                    },
+                    {
+                        "start": 531,
+                        "end": 540
+                    },
+                    {
+                        "start": 658,
+                        "end": 667
+                    },
+                    {
+                        "start": 858,
+                        "end": 867
+                    },
+                    {
+                        "start": 959,
+                        "end": 968
+                    },
+                    {
+                        "start": 1138,
+                        "end": 1147
+                    },
+                    {
+                        "start": 1295,
+                        "end": 1304
+                    },
+                    {
+                        "start": 1396,
+                        "end": 1405
+                    },
+                    {
+                        "start": 1577,
+                        "end": 1586
+                    },
+                    {
+                        "start": 1677,
+                        "end": 1686
+                    },
+                    {
+                        "start": 2145,
+                        "end": 2154
+                    },
+                    {
+                        "start": 2434,
+                        "end": 2443
+                    },
+                    {
+                        "start": 2726,
+                        "end": 2735
+                    },
+                    {
+                        "start": 2843,
+                        "end": 2852
+                    },
+                    {
+                        "start": 3080,
+                        "end": 3089
+                    },
+                    {
+                        "start": 3235,
+                        "end": 3244
+                    },
+                    {
+                        "start": 3455,
+                        "end": 3464
+                    },
+                    {
+                        "start": 3702,
+                        "end": 3711
+                    },
+                    {
+                        "start": 3823,
+                        "end": 3832
+                    },
+                    {
+                        "start": 4016,
+                        "end": 4025
+                    },
+                    {
+                        "start": 6242,
+                        "end": 6251
+                    },
+                    {
+                        "start": 6401,
+                        "end": 6410
+                    },
+                    {
+                        "start": 13059,
+                        "end": 13068
+                    }
+                ],
+                "duplicate_locations": [],
+                "file_size": 15438,
+                "enclosing_symbols": []
+            },
+            {
+                "path": "learn.md",
+                "repo_id": 796360004,
+                "repo_nwo": "Nahida-aa/git-learn",
+                "owner_id": 96083926,
+                "commit_sha": "cdf0c05d32a70deca6b8978beb5fbaa4ffee8b07",
+                "ref_name": "refs/heads/main",
+                "blob_sha": "0b491d5084e270e2605f840f82708f831ef9e013",
+                "language_name": "Markdown",
+                "language_id": 222,
+                "has_language_id": true,
+                "language_color": "#083fa1",
+                "match_count": 1,
+                "matched_symbols": [],
+                "snippets": [
+                    {
+                        "lines": [
+                            "<span class=\"pl-c\"><span class=\"pl-c\">#</span>1 检查用户名和邮箱是否配置</span>",
+                            "$ git config --global --list",
+                            "user.email=1276552337@qq.com",
+                            "user.name=<mark>Nahida-aa</mark>",
+                            "filter.lfs.clean=git-lfs clean -- %f",
+                            "filter.lfs.smudge=git-lfs smudge -- %f",
+                            "filter.lfs.process=git-lfs filter-process"
+                        ],
+                        "starting_line_number": 26,
+                        "ending_line_number": 33,
+                        "jump_to_line_number": 29,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": 0.0,
+                        "start": 267,
+                        "end": 502
+                    }
+                ],
+                "debug_info": {
+                    "retrieval_position": 0,
+                    "score": -73.0877685546875,
+                    "factors": []
+                },
+                "line_number": 29,
+                "term_matches": [
+                    {
+                        "start": 375,
+                        "end": 384
+                    }
+                ],
+                "duplicate_locations": [],
+                "file_size": 3188,
+                "enclosing_symbols": []
+            },
+            {
+                "path": "src/components/md/pre/monacoPre.tsx",
+                "repo_id": 704198227,
+                "repo_nwo": "Nahida-aa/blog",
+                "owner_id": 96083926,
+                "commit_sha": "1746722f9d855306bdae15e8f741bb69f9282c81",
+                "ref_name": "refs/heads/main",
+                "blob_sha": "422c99296fdb091b61f7e5c52b56c568c601a188",
+                "language_name": "TSX",
+                "language_id": 94901924,
+                "has_language_id": true,
+                "language_color": "#3178c6",
+                "match_count": 1,
+                "matched_symbols": [],
+                "snippets": [
+                    {
+                        "lines": [
+                            "    <span class=pl-kos>{</span>",
+                            "      <span class=pl-c1>paths</span>: <span class=pl-kos>{</span>",
+                            "        <span class=pl-c>// TODO: </span>",
+                            "        <span class=pl-c1>vs</span>: <span class=pl-s>&#39;https://blog.<mark>nahida-aa</mark>.us.kg/monaco/min/vs&#39;</span><span class=pl-kos>,</span>",
+                            "      <span class=pl-kos>}</span><span class=pl-kos>,</span>",
+                            "    <span class=pl-kos>}</span>",
+                            "  <span class=pl-kos>)</span><span class=pl-kos>;</span>"
+                        ],
+                        "starting_line_number": 25,
+                        "ending_line_number": 32,
+                        "jump_to_line_number": 28,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": 0.0,
+                        "start": 589,
+                        "end": 712
+                    }
+                ],
+                "debug_info": {
+                    "retrieval_position": 2,
+                    "score": -78.8785171508789,
+                    "factors": []
+                },
+                "line_number": 28,
+                "term_matches": [
+                    {
+                        "start": 657,
+                        "end": 666
+                    }
+                ],
+                "duplicate_locations": [],
+                "file_size": 3945,
+                "enclosing_symbols": []
+            },
+            {
+                "path": "app/blog/posts/spaces-vs-tabs.mdx",
+                "repo_id": 867781342,
+                "repo_nwo": "Nahida-aa/blog-next",
+                "owner_id": 96083926,
+                "commit_sha": "ae9e7488d325cdae494df5f9e0a0db08d18ff457",
+                "ref_name": "refs/heads/main",
+                "blob_sha": "7bc87bc80b787eae02880d1b11f7e940210df5b8",
+                "language_name": "MDX",
+                "language_id": 512838272,
+                "has_language_id": true,
+                "language_color": "#fcb32c",
+                "match_count": 1,
+                "matched_symbols": [],
+                "snippets": [
+                    {
+                        "lines": [
+                            "<span class=\"pl-ent\">author</span>: <span class=\"pl-s\">[{github:<mark>Nahida-aa</mark>, name:xaa},{github:mc-xaa, name:aa}]</span>"
+                        ],
+                        "starting_line_number": 4,
+                        "ending_line_number": 5,
+                        "jump_to_line_number": 4,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 89,
+                        "end": 152
+                    }
+                ],
+                "debug_info": {
+                    "retrieval_position": 2,
+                    "score": -84.45489501953125,
+                    "factors": []
+                },
+                "line_number": 4,
+                "term_matches": [
+                    {
+                        "start": 106,
+                        "end": 115
+                    }
+                ],
+                "duplicate_locations": [],
+                "file_size": 3616,
+                "enclosing_symbols": []
+            },
+            {
+                "path": "other.md",
+                "repo_id": 797762110,
+                "repo_nwo": "Nahida-aa/Physical_and_chemical_test_of_air",
+                "owner_id": 96083926,
+                "commit_sha": "f1fadf45f360aeb12e3ea0cded80d344795d3418",
+                "ref_name": "refs/heads/main",
+                "blob_sha": "e976e0b4c584a547c358a38225ad347c8f2973e4",
+                "language_name": "Markdown",
+                "language_id": 222,
+                "has_language_id": true,
+                "language_color": "#083fa1",
+                "match_count": 2,
+                "matched_symbols": [],
+                "snippets": [
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240423120301<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240423120301.png</span>)"
+                        ],
+                        "starting_line_number": 585,
+                        "ending_line_number": 586,
+                        "jump_to_line_number": 585,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 35136,
+                        "end": 35235
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240423120333<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240423120333.png</span>)"
+                        ],
+                        "starting_line_number": 586,
+                        "ending_line_number": 587,
+                        "jump_to_line_number": 586,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 35236,
+                        "end": 35335
+                    }
+                ],
+                "debug_info": {
+                    "retrieval_position": 0,
+                    "score": -91.41407775878906,
+                    "factors": []
+                },
+                "line_number": 585,
+                "term_matches": [
+                    {
+                        "start": 35188,
+                        "end": 35197
+                    },
+                    {
+                        "start": 35288,
+                        "end": 35297
+                    }
+                ],
+                "duplicate_locations": [],
+                "file_size": 53093,
+                "enclosing_symbols": []
+            },
+            {
+                "path": "空气理化检验.md",
+                "repo_id": 796321000,
+                "repo_nwo": "Nahida-aa/Hygiene",
+                "owner_id": 96083926,
+                "commit_sha": "01620ecb7b27f5ce7f147544b8a2eebcba465706",
+                "ref_name": "refs/heads/main",
+                "blob_sha": "b7c26fb22f246f379a0f37ad194371b26a6733fc",
+                "language_name": "Markdown",
+                "language_id": 222,
+                "has_language_id": true,
+                "language_color": "#083fa1",
+                "match_count": 5,
+                "matched_symbols": [],
+                "snippets": [
+                    {
+                        "lines": [
+                            "",
+                            "<span class=\"pl-s\">![</span>20240423154456<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240423154456.png</span>)",
+                            ""
+                        ],
+                        "starting_line_number": 353,
+                        "ending_line_number": 356,
+                        "jump_to_line_number": 354,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": 0.0,
+                        "start": 17546,
+                        "end": 17647
+                    },
+                    {
+                        "lines": [
+                            "",
+                            "<span class=\"pl-s\">![</span>空气理化检验重点<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/空气理化检验重点.png</span>)",
+                            ""
+                        ],
+                        "starting_line_number": 379,
+                        "ending_line_number": 382,
+                        "jump_to_line_number": 380,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": 0.0,
+                        "start": 19361,
+                        "end": 19482
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240423161808<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240423161808.png</span>)"
+                        ],
+                        "starting_line_number": 420,
+                        "ending_line_number": 421,
+                        "jump_to_line_number": 420,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 21407,
+                        "end": 21506
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240423120301<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240423120301.png</span>)"
+                        ],
+                        "starting_line_number": 1084,
+                        "ending_line_number": 1085,
+                        "jump_to_line_number": 1084,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 59879,
+                        "end": 59978
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240423120333<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240423120333.png</span>)"
+                        ],
+                        "starting_line_number": 1085,
+                        "ending_line_number": 1086,
+                        "jump_to_line_number": 1085,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 59979,
+                        "end": 60078
+                    }
+                ],
+                "debug_info": {
+                    "retrieval_position": 0,
+                    "score": -97.93877410888672,
+                    "factors": []
+                },
+                "line_number": 354,
+                "term_matches": [
+                    {
+                        "start": 17599,
+                        "end": 17608
+                    },
+                    {
+                        "start": 19424,
+                        "end": 19433
+                    },
+                    {
+                        "start": 21459,
+                        "end": 21468
+                    },
+                    {
+                        "start": 59931,
+                        "end": 59940
+                    },
+                    {
+                        "start": 60031,
+                        "end": 60040
+                    }
+                ],
+                "duplicate_locations": [],
+                "file_size": 77835,
+                "enclosing_symbols": []
+            },
+            {
+                "path": "README.md",
+                "repo_id": 793048977,
+                "repo_nwo": "Nahida-aa/Nahida-aa",
+                "owner_id": 96083926,
+                "commit_sha": "c48e3e3b19be2aa299a4e3f37cea79c8f67f1d37",
+                "ref_name": "refs/heads/main",
+                "blob_sha": "8dabc1ce5f110fb83085007172ed43851337d983",
+                "language_name": "Markdown",
+                "language_id": 222,
+                "has_language_id": true,
+                "language_color": "#083fa1",
+                "match_count": 13,
+                "matched_symbols": [],
+                "snippets": [
+                    {
+                        "lines": [
+                            "**<mark>Nahida-aa</mark>/<mark>Nahida-aa</mark>** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profil…"
+                        ],
+                        "starting_line_number": 4,
+                        "ending_line_number": 5,
+                        "jump_to_line_number": 4,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 2,
+                        "score": -1.0,
+                        "start": 24,
+                        "end": 147
+                    },
+                    {
+                        "lines": [
+                            "…!&amp;fontSize=60&amp;fontAlign=50&amp;fontAlignY=30&amp;desc=I%20am%20<mark>Nahida-aa</mark>!&amp;descAlign=50&amp;descSize=30&amp;descAlignY=60&amp;animation=twi…"
+                        ],
+                        "starting_line_number": 22,
+                        "ending_line_number": 23,
+                        "jump_to_line_number": 22,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 696,
+                        "end": 814
+                    },
+                    {
+                        "lines": [
+                            "…c=&#34;https://github-readme-stats.vercel.app/api?username=<mark>Nahida-aa</mark>&amp;theme=transparent&amp;include_all_commits=true&amp;show_icons…"
+                        ],
+                        "starting_line_number": 37,
+                        "ending_line_number": 38,
+                        "jump_to_line_number": 37,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 1442,
+                        "end": 1560
+                    },
+                    {
+                        "lines": [
+                            "…dth=&#34;400px&#34; src=&#34;https://streak-stats.demolab.com?user=<mark>Nahida-aa</mark>&amp;theme=shadow-purple&amp;hide_border=true&#34; alt=&#34;GitHub Str…"
+                        ],
+                        "starting_line_number": 41,
+                        "ending_line_number": 42,
+                        "jump_to_line_number": 41,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 1786,
+                        "end": 1904
+                    },
+                    {
+                        "lines": [
+                            "…://github-readme-activity-graph.vercel.app/graph?username=<mark>Nahida-aa</mark>&amp;theme=github-compact&amp;hide_border=true&amp;area=true&#34; /&gt;"
+                        ],
+                        "starting_line_number": 46,
+                        "ending_line_number": 47,
+                        "jump_to_line_number": 46,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 2088,
+                        "end": 2207
+                    },
+                    {
+                        "lines": [
+                            "…github-readme-stats.vercel.app/api/top-langs/?username=<mark>Nahida-aa</mark>&amp;theme=transparent&amp;hide_border=true&amp;layout=donut-verti…"
+                        ],
+                        "starting_line_number": 54,
+                        "ending_line_number": 55,
+                        "jump_to_line_number": 54,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 2634,
+                        "end": 2752
+                    },
+                    {
+                        "lines": [
+                            "  &lt;a href=&#34;https://github.com/<mark>Nahida-aa</mark>&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/GitHub-<mark>Nahida-aa</mark>-blue?logo=github&#34; /&gt;&lt;/…"
+                        ],
+                        "starting_line_number": 69,
+                        "ending_line_number": 70,
+                        "jump_to_line_number": 69,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 2,
+                        "score": -1.0,
+                        "start": 3292,
+                        "end": 3411
+                    },
+                    {
+                        "lines": [
+                            "&lt;a href=&#34;https://<mark>Nahida-aa</mark>.blog.csdn.net&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/CSDN-<mark>Nahida-aa</mark>-red?logo=data:image/png…"
+                        ],
+                        "starting_line_number": 70,
+                        "ending_line_number": 71,
+                        "jump_to_line_number": 70,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 2,
+                        "score": -1.0,
+                        "start": 3414,
+                        "end": 3533
+                    },
+                    {
+                        "lines": [
+                            "…&#34;https://space.bilibili.com/498105668&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/哔哩哔哩-<mark>Nahida-aa</mark>-pink?logo=bilibili&#34; /&gt;&lt;/a&gt;"
+                        ],
+                        "starting_line_number": 71,
+                        "ending_line_number": 72,
+                        "jump_to_line_number": 71,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 5138,
+                        "end": 5265
+                    },
+                    {
+                        "lines": [
+                            "&lt;<span class=\"pl-ent\">img</span> <span class=\"pl-e\">src</span>=<span class=\"pl-s\">&quot;</span><span class=\"pl-s\">https://komarev.com/ghpvc/?username=<mark>Nahida-aa</mark>&amp;abbreviated=true</span><span class=\"pl-s\">&quot;</span> /&gt;"
+                        ],
+                        "starting_line_number": 73,
+                        "ending_line_number": 74,
+                        "jump_to_line_number": 73,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 5344,
+                        "end": 5420
+                    }
+                ],
+                "debug_info": {
+                    "retrieval_position": 0,
+                    "score": -105.39973449707031,
+                    "factors": []
+                },
+                "line_number": 4,
+                "term_matches": [
+                    {
+                        "start": 26,
+                        "end": 35
+                    },
+                    {
+                        "start": 36,
+                        "end": 45
+                    },
+                    {
+                        "start": 751,
+                        "end": 760
+                    },
+                    {
+                        "start": 1497,
+                        "end": 1506
+                    },
+                    {
+                        "start": 1841,
+                        "end": 1850
+                    },
+                    {
+                        "start": 2146,
+                        "end": 2155
+                    },
+                    {
+                        "start": 2689,
+                        "end": 2698
+                    },
+                    {
+                        "start": 3322,
+                        "end": 3331
+                    },
+                    {
+                        "start": 3379,
+                        "end": 3388
+                    },
+                    {
+                        "start": 3431,
+                        "end": 3440
+                    },
+                    {
+                        "start": 3500,
+                        "end": 3509
+                    },
+                    {
+                        "start": 5229,
+                        "end": 5238
+                    },
+                    {
+                        "start": 5390,
+                        "end": 5399
+                    }
+                ],
+                "duplicate_locations": [],
+                "file_size": 5936,
+                "enclosing_symbols": []
+            },
+            {
+                "path": "[branch]/page.tsx",
+                "repo_id": 793357004,
+                "repo_nwo": "Nahida-aa/community",
+                "owner_id": 96083926,
+                "commit_sha": "6634dddab1f1c0158ff2a4cfd3c479252cef44fd",
+                "ref_name": "refs/heads/main",
+                "blob_sha": "669ae01e58a1ca705dbd8198c0eb79d8f3272050",
+                "language_name": "TSX",
+                "language_id": 94901924,
+                "has_language_id": true,
+                "language_color": "#3178c6",
+                "match_count": 6,
+                "matched_symbols": [],
+                "snippets": [
+                    {
+                        "lines": [
+                            "…m js-manifest-commit-form&#34; data-turbo=&#34;false&#34; action=&#34;/<mark>Nahida-aa</mark>/chat-nextjs/upload&#34; acceptCharset=&#34;UTF-8&#34; method=&#34;pos…"
+                        ],
+                        "starting_line_number": 96,
+                        "ending_line_number": 97,
+                        "jump_to_line_number": 96,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 5240,
+                        "end": 5358
+                    },
+                    {
+                        "lines": [
+                            "…d-full&#34; src=&#34;https://avatars.githubusercontent.com/u/96083926?s=96&amp;amp;v=4&#34; width=&#34;48&#34; height=&#34;48&#34; alt=&#34;@<mark>Nahida-aa</mark>&#34; /&gt;\r"
+                        ],
+                        "starting_line_number": 98,
+                        "ending_line_number": 99,
+                        "jump_to_line_number": 98,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 5585,
+                        "end": 5704
+                    },
+                    {
+                        "lines": [
+                            "                        &lt;input type=&#34;text&#34; value=&#34;<mark>Nahida-aa</mark>-patch-1&#34; className=&#34;form-control input-contrast mr-1 pl-5 i…"
+                        ],
+                        "starting_line_number": 146,
+                        "ending_line_number": 147,
+                        "jump_to_line_number": 146,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 10641,
+                        "end": 10760
+                    },
+                    {
+                        "lines": [
+                            "            <span class=pl-c1>&lt;</span><span class=pl-ent>a</span> <span class=pl-c1>className</span><span class=pl-c1>=</span><span class=pl-s>&quot;btn btn-danger&quot;</span> <span class=pl-c1>href</span><span class=pl-c1>=</span><span class=pl-s>&quot;/<mark>Nahida-aa</mark>/chat-nextjs&quot;</span><span class=pl-c1>&gt;</span>Cancel<span class=pl-c1>&lt;</span><span class=pl-c1>/</span><span class=pl-ent>a</span><span class=pl-c1>&gt;</span>"
+                        ],
+                        "starting_line_number": 164,
+                        "ending_line_number": 165,
+                        "jump_to_line_number": 164,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 12056,
+                        "end": 12139
+                    }
+                ],
+                "debug_info": {
+                    "retrieval_position": 3,
+                    "score": -111.69818115234375,
+                    "factors": []
+                },
+                "line_number": 96,
+                "term_matches": [
+                    {
+                        "start": 5295,
+                        "end": 5304
+                    },
+                    {
+                        "start": 5690,
+                        "end": 5699
+                    },
+                    {
+                        "start": 10691,
+                        "end": 10700
+                    },
+                    {
+                        "start": 10937,
+                        "end": 10946
+                    },
+                    {
+                        "start": 10991,
+                        "end": 11000
+                    },
+                    {
+                        "start": 12105,
+                        "end": 12114
+                    }
+                ],
+                "duplicate_locations": [],
+                "file_size": 12224,
+                "enclosing_symbols": []
+            },
+            {
+                "path": "readme.ipynb",
+                "repo_id": 704656036,
+                "repo_nwo": "Nahida-aa/Nahida-aa.github.io",
+                "owner_id": 96083926,
+                "commit_sha": "8a3ce2d49fc5748580de9a027e2e96327622f0d0",
+                "ref_name": "refs/heads/main",
+                "blob_sha": "3e148e8d2173bad0c2658b17ec93053c73840262",
+                "language_name": "Jupyter Notebook",
+                "language_id": 185,
+                "has_language_id": true,
+                "language_color": "#DA5B0B",
+                "match_count": 12,
+                "matched_symbols": [],
+                "snippets": [
+                    {
+                        "lines": [
+                            "    <span class=\"pl-s\"><span class=\"pl-pds\">&quot;</span># <mark>Nahida-aa</mark>.github.io<span class=\"pl-cce\">\\n</span><span class=\"pl-pds\">&quot;</span></span>,"
+                        ],
+                        "starting_line_number": 7,
+                        "ending_line_number": 8,
+                        "jump_to_line_number": 7,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 80,
+                        "end": 110
+                    },
+                    {
+                        "lines": [
+                            "    &#34;如果你有一个名为 <mark>Nahida-aa</mark>.github.io 的仓库，这意味着你已经或者正在设置一个个人网站，利用 GitHub Pages 服务。GitHub Pages 允许你直接从 GitHub 仓库托管网站内容，非常适合托管…"
+                        ],
+                        "starting_line_number": 9,
+                        "ending_line_number": 10,
+                        "jump_to_line_number": 9,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 121,
+                        "end": 356
+                    },
+                    {
+                        "lines": [
+                            "    <span class=\"pl-s\"><span class=\"pl-pds\">&quot;</span>  - 如果你想使用自定义域名而不是默认的 <mark>nahida-aa</mark>.github.io，你可以在仓库的 settings 下的 GitHub Pages 部分设置自定义域名。<span class=\"pl-cce\">\\n</span><span class=\"pl-pds\">&quot;</span></span>,"
+                        ],
+                        "starting_line_number": 24,
+                        "ending_line_number": 25,
+                        "jump_to_line_number": 24,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 1117,
+                        "end": 1285
+                    },
+                    {
+                        "lines": [
+                            "    <span class=\"pl-s\"><span class=\"pl-pds\">&quot;</span>  - 一旦 GitHub Pages 被激活并且你的仓库中有了网站内容，你就可以通过访问 https://<mark>nahida-aa</mark>.github.io 来查看你的网站了。<span class=\"pl-cce\">\\n</span><span class=\"pl-pds\">&quot;</span></span>,"
+                        ],
+                        "starting_line_number": 30,
+                        "ending_line_number": 31,
+                        "jump_to_line_number": 30,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 1494,
+                        "end": 1658
+                    },
+                    {
+                        "lines": [
+                            "    <span class=\"pl-s\"><span class=\"pl-pds\">&quot;</span>pnpm create vite@latest <mark>Nahida-aa</mark>.github.io -- --template vue<span class=\"pl-cce\">\\n</span><span class=\"pl-pds\">&quot;</span></span>,"
+                        ],
+                        "starting_line_number": 114,
+                        "ending_line_number": 115,
+                        "jump_to_line_number": 114,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 5118,
+                        "end": 5188
+                    },
+                    {
+                        "lines": [
+                            "    <span class=\"pl-s\"><span class=\"pl-pds\">&quot;</span>cd <mark>Nahida-aa</mark>.github.io<span class=\"pl-cce\">\\n</span><span class=\"pl-pds\">&quot;</span></span>,"
+                        ],
+                        "starting_line_number": 115,
+                        "ending_line_number": 116,
+                        "jump_to_line_number": 115,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 5189,
+                        "end": 5220
+                    },
+                    {
+                        "lines": [
+                            "    <span class=\"pl-s\"><span class=\"pl-pds\">&quot;</span><mark>Nahida-aa</mark>.github.io/<span class=\"pl-cce\">\\n</span><span class=\"pl-pds\">&quot;</span></span>,"
+                        ],
+                        "starting_line_number": 119,
+                        "ending_line_number": 120,
+                        "jump_to_line_number": 119,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 5271,
+                        "end": 5300
+                    },
+                    {
+                        "lines": [
+                            "    <span class=\"pl-s\"><span class=\"pl-pds\">&quot;</span><mark>Nahida-aa</mark>.github.io/<span class=\"pl-cce\">\\n</span><span class=\"pl-pds\">&quot;</span></span>,"
+                        ],
+                        "starting_line_number": 147,
+                        "ending_line_number": 148,
+                        "jump_to_line_number": 147,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 6415,
+                        "end": 6444
+                    },
+                    {
+                        "lines": [
+                            "    <span class=\"pl-s\"><span class=\"pl-pds\">&quot;</span><mark>Nahida-aa</mark>.github.io/<span class=\"pl-cce\">\\n</span><span class=\"pl-pds\">&quot;</span></span>,"
+                        ],
+                        "starting_line_number": 202,
+                        "ending_line_number": 203,
+                        "jump_to_line_number": 202,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 8313,
+                        "end": 8342
+                    },
+                    {
+                        "lines": [
+                            "    <span class=\"pl-s\"><span class=\"pl-pds\">&quot;</span>npx degit dcloudio/uni-preset-vue#vite-ts <mark>Nahida-aa</mark>.github.io<span class=\"pl-cce\">\\n</span><span class=\"pl-pds\">&quot;</span></span>,"
+                        ],
+                        "starting_line_number": 229,
+                        "ending_line_number": 230,
+                        "jump_to_line_number": 229,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 9608,
+                        "end": 9678
+                    },
+                    {
+                        "lines": [
+                            "    <span class=\"pl-s\"><span class=\"pl-pds\">&quot;</span>cd <mark>Nahida-aa</mark>.github.io<span class=\"pl-cce\">\\n</span><span class=\"pl-pds\">&quot;</span></span>,"
+                        ],
+                        "starting_line_number": 233,
+                        "ending_line_number": 234,
+                        "jump_to_line_number": 233,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 9737,
+                        "end": 9768
+                    },
+                    {
+                        "lines": [
+                            "    <span class=\"pl-s\"><span class=\"pl-pds\">&quot;</span><mark>Nahida-aa</mark>.github.io/<span class=\"pl-cce\">\\n</span><span class=\"pl-pds\">&quot;</span></span>,"
+                        ],
+                        "starting_line_number": 237,
+                        "ending_line_number": 238,
+                        "jump_to_line_number": 237,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 9819,
+                        "end": 9848
+                    }
+                ],
+                "debug_info": {
+                    "retrieval_position": 0,
+                    "score": -117.68936157226562,
+                    "factors": []
+                },
+                "line_number": 7,
+                "term_matches": [
+                    {
+                        "start": 87,
+                        "end": 96
+                    },
+                    {
+                        "start": 151,
+                        "end": 160
+                    },
+                    {
+                        "start": 1178,
+                        "end": 1187
+                    },
+                    {
+                        "start": 1607,
+                        "end": 1616
+                    },
+                    {
+                        "start": 5147,
+                        "end": 5156
+                    },
+                    {
+                        "start": 5197,
+                        "end": 5206
+                    },
+                    {
+                        "start": 5276,
+                        "end": 5285
+                    },
+                    {
+                        "start": 6420,
+                        "end": 6429
+                    },
+                    {
+                        "start": 8318,
+                        "end": 8327
+                    },
+                    {
+                        "start": 9655,
+                        "end": 9664
+                    },
+                    {
+                        "start": 9745,
+                        "end": 9754
+                    },
+                    {
+                        "start": 9824,
+                        "end": 9833
+                    }
+                ],
+                "duplicate_locations": [],
+                "file_size": 18730,
+                "enclosing_symbols": []
+            },
+            {
+                "path": "src/providers/index.tsx",
+                "repo_id": 855871165,
+                "repo_nwo": "Nahida-aa/aa-home",
+                "owner_id": 96083926,
+                "commit_sha": "dee4278b0e2f7150b00778bfbbf2e6cc138c5894",
+                "ref_name": "refs/heads/main",
+                "blob_sha": "1b7f5366d838b79becbda9653dd0881b37f4a3e7",
+                "language_name": "TSX",
+                "language_id": 94901924,
+                "has_language_id": true,
+                "language_color": "#3178c6",
+                "match_count": 2,
+                "matched_symbols": [],
+                "snippets": [
+                    {
+                        "lines": [
+                            "    <span class=pl-smi>console</span><span class=pl-kos>.</span><span class=pl-en>log</span><span class=pl-kos>(</span>",
+                            "      <span class=pl-s>`\\n %c Remio-home<span class=pl-s1><span class=pl-kos>${</span></span></span>",
+                            "<span class=pl-s><span class=pl-s1>        <span class=pl-s1>ver</span> ? <span class=pl-s>&quot; v&quot;</span> <span class=pl-c1>+</span> <span class=pl-s1>ver</span> : <span class=pl-s>&quot;&quot;</span></span></span>",
+                            "<span class=pl-s><span class=pl-s1>      <span class=pl-kos>}</span></span> By <mark>Nahida-aa</mark> %c https://github.com/<mark>Nahida-aa</mark>`</span><span class=pl-kos>,</span>",
+                            "      <span class=pl-s>&quot;color:#555;background:linear-gradient(to right, #a8edea 0%, #fed6e3 100%);padding:5px 0;&quot;</span><span class=pl-kos>,</span>",
+                            "      <span class=pl-s>&quot;color:#fff;background:#fff;padding:5px 10px 5px 0px;&quot;</span>",
+                            "    <span class=pl-kos>)</span><span class=pl-kos>;</span>"
+                        ],
+                        "starting_line_number": 34,
+                        "ending_line_number": 41,
+                        "jump_to_line_number": 37,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 2,
+                        "score": 0.0,
+                        "start": 813,
+                        "end": 1106
+                    }
+                ],
+                "debug_info": {
+                    "retrieval_position": 2,
+                    "score": -122.79550170898438,
+                    "factors": []
+                },
+                "line_number": 37,
+                "term_matches": [
+                    {
+                        "start": 897,
+                        "end": 906
+                    },
+                    {
+                        "start": 929,
+                        "end": 938
+                    }
+                ],
+                "duplicate_locations": [],
+                "file_size": 1788,
+                "enclosing_symbols": []
+            },
+            {
+                "path": "src/utils/request.js",
+                "repo_id": 839942158,
+                "repo_nwo": "Nahida-aa/vue3_ln",
+                "owner_id": 96083926,
+                "commit_sha": "1775a2b75c722fa9e30fbfbf31c1e46c122ef8bf",
+                "ref_name": "refs/heads/main",
+                "blob_sha": "6545151b0b282c7677c9c055471c3f872d48fad2",
+                "language_name": "JavaScript",
+                "language_id": 183,
+                "has_language_id": true,
+                "language_color": "#f1e05a",
+                "match_count": 2,
+                "matched_symbols": [],
+                "snippets": [
+                    {
+                        "lines": [
+                            "<span class=pl-kos>}</span> <span class=pl-c1>=</span> <span class=pl-kos>{</span><span class=pl-kos>}</span><span class=pl-kos>)</span> <span class=pl-kos>{</span>",
+                            "    <span class=pl-s1>header</span><span class=pl-kos>[</span><span class=pl-s>&#39;access-key&#39;</span><span class=pl-kos>]</span> <span class=pl-c1>=</span> <span class=pl-s>&#39;<mark>Nahida-aa</mark>&#39;</span>",
+                            "    <span class=pl-k>return</span> <span class=pl-k>new</span> <span class=pl-v>Promise</span><span class=pl-kos>(</span><span class=pl-kos>(</span><span class=pl-s1>resolve</span><span class=pl-kos>,</span> <span class=pl-s1>reject</span><span class=pl-kos>)</span> <span class=pl-c1>=&gt;</span> <span class=pl-kos>{</span>"
+                        ],
+                        "starting_line_number": 9,
+                        "ending_line_number": 12,
+                        "jump_to_line_number": 10,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": 0.0,
+                        "start": 190,
+                        "end": 287
+                    },
+                    {
+                        "lines": [
+                            "            <span class=pl-c>// header: {</span>",
+                            "            <span class=pl-c>//     &#39;access-key&#39;: &#39;<mark>Nahida-aa</mark>&#39;,</span>",
+                            "            <span class=pl-c>//     ...header</span>"
+                        ],
+                        "starting_line_number": 16,
+                        "ending_line_number": 19,
+                        "jump_to_line_number": 17,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": 0.0,
+                        "start": 394,
+                        "end": 496
+                    }
+                ],
+                "debug_info": {
+                    "retrieval_position": 0,
+                    "score": -127.99703979492188,
+                    "factors": []
+                },
+                "line_number": 10,
+                "term_matches": [
+                    {
+                        "start": 229,
+                        "end": 238
+                    },
+                    {
+                        "start": 454,
+                        "end": 463
+                    }
+                ],
+                "duplicate_locations": [],
+                "file_size": 1352,
+                "enclosing_symbols": []
+            },
+            {
+                "path": "py全栈.md",
+                "repo_id": 850250907,
+                "repo_nwo": "Nahida-aa/resume",
+                "owner_id": 96083926,
+                "commit_sha": "7f3854abf4eaac1c5c78a19ed1a3027eef90d3a7",
+                "ref_name": "refs/heads/main",
+                "blob_sha": "6ca0aa75be9ea4f325444b9be98ab32f5344afe0",
+                "language_name": "Markdown",
+                "language_id": 222,
+                "has_language_id": true,
+                "language_color": "#083fa1",
+                "match_count": 5,
+                "matched_symbols": [],
+                "snippets": [
+                    {
+                        "lines": [
+                            "<span class=\"pl-v\">-</span> 姓名：<mark>Nahida-aa</mark>",
+                            "<span class=\"pl-v\">-</span> 电话：18162711944",
+                            "<span class=\"pl-v\">-</span> 邮箱：<mark>Nahida-aa</mark><span class=\"pl-s\">@<span class=\"pl-corl\">outlook</span></span>.com",
+                            "<span class=\"pl-v\">-</span> GitHub: <span class=\"pl-corl\">https://github.com/<mark>Nahida-aa</mark></span>",
+                            "<span class=\"pl-v\">-</span> blog: https://<mark>nahida-aa</mark>.github.io/",
+                            "",
+                            "<span class=\"pl-mh\">## <span class=\"pl-en\">职业目标</span></span>"
+                        ],
+                        "starting_line_number": 1,
+                        "ending_line_number": 8,
+                        "jump_to_line_number": 4,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 4,
+                        "score": 0.0,
+                        "start": 0,
+                        "end": 169
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-v\">-</span> <span class=\"pl-s\">**</span>blog, &lt;https://<mark>Nahida-aa</mark>.su.kg/&gt;<span class=\"pl-s\">**</span>"
+                        ],
+                        "starting_line_number": 34,
+                        "ending_line_number": 35,
+                        "jump_to_line_number": 34,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 1295,
+                        "end": 1333
+                    }
+                ],
+                "debug_info": {
+                    "retrieval_position": 0,
+                    "score": -136.09950256347656,
+                    "factors": []
+                },
+                "line_number": 4,
+                "term_matches": [
+                    {
+                        "start": 11,
+                        "end": 20
+                    },
+                    {
+                        "start": 55,
+                        "end": 64
+                    },
+                    {
+                        "start": 106,
+                        "end": 115
+                    },
+                    {
+                        "start": 132,
+                        "end": 141
+                    },
+                    {
+                        "start": 1314,
+                        "end": 1323
+                    }
+                ],
+                "duplicate_locations": [],
+                "file_size": 2197,
+                "enclosing_symbols": []
+            },
+            {
+                "path": "tools/keyviz/README.md",
+                "repo_id": 797018239,
+                "repo_nwo": "Nahida-aa/migrate",
+                "owner_id": 96083926,
+                "commit_sha": "e746905ce88872db94c94344f79656b55d58e806",
+                "ref_name": "refs/heads/main",
+                "blob_sha": "ab0a998831f4f35f63ac7f638ee842253e8090fc",
+                "language_name": "Markdown",
+                "language_id": 222,
+                "has_language_id": true,
+                "language_color": "#083fa1",
+                "match_count": 6,
+                "matched_symbols": [],
+                "snippets": [
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240508115919<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240508115919.png</span>)"
+                        ],
+                        "starting_line_number": 11,
+                        "ending_line_number": 12,
+                        "jump_to_line_number": 11,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 689,
+                        "end": 789
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240508115948<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240508115948.png</span>)"
+                        ],
+                        "starting_line_number": 13,
+                        "ending_line_number": 14,
+                        "jump_to_line_number": 13,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 792,
+                        "end": 892
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240508120016<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240508120016.png</span>)"
+                        ],
+                        "starting_line_number": 15,
+                        "ending_line_number": 16,
+                        "jump_to_line_number": 15,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 895,
+                        "end": 995
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240508120055<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240508120055.png</span>)"
+                        ],
+                        "starting_line_number": 17,
+                        "ending_line_number": 18,
+                        "jump_to_line_number": 17,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 998,
+                        "end": 1098
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240508120117<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240508120117.png</span>)"
+                        ],
+                        "starting_line_number": 19,
+                        "ending_line_number": 20,
+                        "jump_to_line_number": 19,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 1101,
+                        "end": 1201
+                    },
+                    {
+                        "lines": [
+                            "<span class=\"pl-s\">![</span>20240508120150<span class=\"pl-s\">]</span>(<span class=\"pl-corl\">https://raw.githubusercontent.com/<mark>Nahida-aa</mark>/picgo/main/images/20240508120150.png</span>)"
+                        ],
+                        "starting_line_number": 21,
+                        "ending_line_number": 22,
+                        "jump_to_line_number": 21,
+                        "format": "SNIPPET_FORMAT_HTML",
+                        "match_count": 1,
+                        "score": -1.0,
+                        "start": 1204,
+                        "end": 1304
+                    }
+                ],
+                "debug_info": {
+                    "retrieval_position": 1,
+                    "score": -145.19606018066406,
+                    "factors": []
+                },
+                "line_number": 11,
+                "term_matches": [
+                    {
+                        "start": 741,
+                        "end": 750
+                    },
+                    {
+                        "start": 844,
+                        "end": 853
+                    },
+                    {
+                        "start": 947,
+                        "end": 956
+                    },
+                    {
+                        "start": 1050,
+                        "end": 1059
+                    },
+                    {
+                        "start": 1153,
+                        "end": 1162
+                    },
+                    {
+                        "start": 1256,
+                        "end": 1265
+                    }
+                ],
+                "duplicate_locations": [],
+                "file_size": 1305,
+                "enclosing_symbols": []
+            }
+        ],
+        "type": "code",
+        "page": 1,
+        "page_count": 3,
+        "elapsed_millis": 201,
+        "errors": [],
+        "result_count": 41,
+        "facets": [
+            {
+                "kind": "FACET_KIND_LANGUAGE",
+                "entries": [
+                    {
+                        "name": "Markdown",
+                        "owner": "",
+                        "language_color": "#083fa1",
+                        "query": "language:Markdown"
+                    },
+                    {
+                        "name": "JavaScript",
+                        "owner": "",
+                        "language_color": "#f1e05a",
+                        "query": "language:JavaScript"
+                    },
+                    {
+                        "name": "TSX",
+                        "owner": "",
+                        "language_color": "#3178c6",
+                        "query": "language:TSX"
+                    },
+                    {
+                        "name": "MDX",
+                        "owner": "",
+                        "language_color": "#fcb32c",
+                        "query": "language:MDX"
+                    },
+                    {
+                        "name": "Jupyter Notebook",
+                        "owner": "",
+                        "language_color": "#DA5B0B",
+                        "query": "language:\"Jupyter Notebook\""
+                    }
+                ]
+            },
+            {
+                "kind": "FACET_KIND_REPO",
+                "entries": [
+                    {
+                        "name": "Nahida-aa/Nahida-aa.github.io",
+                        "owner": "Nahida-aa",
+                        "language_color": "",
+                        "query": "repo:Nahida-aa/Nahida-aa.github.io"
+                    },
+                    {
+                        "name": "Nahida-aa/aa-home",
+                        "owner": "Nahida-aa",
+                        "language_color": "",
+                        "query": "repo:Nahida-aa/aa-home"
+                    },
+                    {
+                        "name": "Nahida-aa/community",
+                        "owner": "Nahida-aa",
+                        "language_color": "",
+                        "query": "repo:Nahida-aa/community"
+                    },
+                    {
+                        "name": "Nahida-aa/env-os",
+                        "owner": "Nahida-aa",
+                        "language_color": "",
+                        "query": "repo:Nahida-aa/env-os"
+                    },
+                    {
+                        "name": "Nahida-aa/resume",
+                        "owner": "Nahida-aa",
+                        "language_color": "",
+                        "query": "repo:Nahida-aa/resume"
+                    }
+                ]
+            },
+            {
+                "kind": "FACET_KIND_PATH",
+                "entries": [
+                    {
+                        "name": "a_web/proj_base/templates/",
+                        "owner": "",
+                        "language_color": "",
+                        "query": "path:/^a_web\\/proj_base\\/templates\\//"
+                    },
+                    {
+                        "name": "a_web/proj_base/templates/userapp/",
+                        "owner": "",
+                        "language_color": "",
+                        "query": "path:/^a_web\\/proj_base\\/templates\\/userapp\\//"
+                    },
+                    {
+                        "name": "src/",
+                        "owner": "",
+                        "language_color": "",
+                        "query": "path:/^src\\//"
+                    },
+                    {
+                        "name": "src/components/md/pre/",
+                        "owner": "",
+                        "language_color": "",
+                        "query": "path:/^src\\/components\\/md\\/pre\\//"
+                    },
+                    {
+                        "name": "src/config/",
+                        "owner": "",
+                        "language_color": "",
+                        "query": "path:/^src\\/config\\//"
+                    }
+                ]
+            }
+        ],
+        "protected_org_logins": [],
+        "topics": null,
+        "query_id": "A04E:0A0B:118B84:15C4F0:670476F3",
+        "logged_in": true,
+        "sign_up_path": "/signup?source=code_search_results",
+        "sign_in_path": "/login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Ftype%3Dcode%26auto_enroll%3Dtrue%26q%3DNahida-aa",
+        "metadata": null,
+        "warn_limited_results": false
+    },
+    "title": "Code search results"
+}
+```

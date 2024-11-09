@@ -1,0 +1,68 @@
+---
+title: eNSp
+created_at: 2024-10-23T12:16:23.000Z
+pushed_at: '2024-10-27T20:51:28Z'
+updated_at: '2024-11-07T16:03:28Z'
+authors:
+  - name: aa
+    github: Nahida-aa
+    twitter: null
+private: false
+svg: null
+image: null
+tags: []
+description: 网络实验
+draft: false
+---
+## 环境准备
+### install
+eSNP: https://cloud.grbj.cn/softlink/eNSP%20V100R003C00SPC100%20Setup.exe
+
+依赖:
+- VirtualBox: https://www.virtualbox.org/
+- WinPcap: 
+- Wireshark: https://cloud.grbj.cn/softlink/Wireshark-win64-3.0.6.exe
+## 基础知识
+- VSR: Virtual Service Router（虚拟服务路由器）
+- PC: Personal Computer（个人电脑）
+- AC: Access Control（访问控制）
+- AF
+- AP: Access Point, 接入点: 用于无线网络设备, 提供无线网络接入服务
+
+
+
+要在 VirtualBox 中进行网络实验，你可以按照以下步骤操作：
+
+1. **安装 VirtualBox**：
+   - 从 [VirtualBox 官方网站](https://www.virtualbox.org/)下载并安装 VirtualBox。
+
+2. **创建虚拟机**：
+   - 打开 VirtualBox，点击“新建”按钮，按照向导创建新的虚拟机。选择合适的操作系统类型和版本。
+
+3. **配置虚拟网络**：
+   - 在 VirtualBox 主界面中，选择“全局工具” -> “网络” -> “仅主机网络” -> “创建”。
+   - 配置网络的 IP 地址和子网掩码。
+
+4. **配置虚拟机网络适配器**：
+   - 选择你创建的虚拟机，点击“设置” -> “网络”。
+   - 选择“适配器1”，启用网络适配器，连接方式选择“仅主机网络”，并选择你刚刚创建的网络。
+
+5. **安装操作系统**：
+   - 启动虚拟机，按照提示安装操作系统（例如 Ubuntu、CentOS 等）。
+
+6. **配置网络实验环境**：
+   - 根据你的实验需求，配置虚拟机的网络设置。例如，设置 IP 地址、子网掩码、网关等。
+   - 可以使用多个虚拟机模拟不同的网络设备和拓扑结构。
+
+7. **安装和配置网络服务**：
+   - 在虚拟机中安装所需的网络服务和工具，例如 DHCP、DNS、Web 服务器等。
+   - 配置防火墙、交换机、路由器等网络设备。
+
+8. **测试和验证**：
+   - 使用 ping、traceroute 等工具测试网络连通性。
+   - 验证 DHCP、DNS 等服务是否正常工作。
+
+9. **保存和导出配置**：
+   - 完成实验后，可以保存虚拟机的状态，或者导出虚拟机配置以便以后使用。
+
+通过以上步骤，你可以在 VirtualBox 中搭建和测试你的网络实验环境。

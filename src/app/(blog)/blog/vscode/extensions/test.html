@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monaco Editor Example</title>
+  <style>
+    #editor {
+      width: 800px;
+      height: 600px;
+    }
+  </style>
+</head>
+<body>
+<div id="editor"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.21.2/min/vs/loader.min.js"></script>
+<script>
+  const code = `import React, { useEffect, useRef } from 'react';
+import * as monaco from 'monaco-editor';
+
+const CodeEditor = ({ code, language }) => {
+const editorRef = useRef(null);
+
+useEffect(() => {
+  if (editorRef.current) {
+    const editor = monaco.editor.create(editorRef.current, {
+      value: code,
+      language: language,
+      readOnly: true,
+      minimap: { enabled: false },
+      automaticLayout: true,
+      lineNumbers: 'off',
+      folding: false,
+      scrollBeyondLastLine: false,
+      theme: 'vs-dark',
+    });
+
+    return () => {
+      editor.dispose();
+    };
+  }
+}, [code, language]);
+
+return <div ref={editorRef} style={{ height: '500px', width: '100%' }} />;
+};
+
+export default CodeEditor;`
+  require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.21.2/min/vs' }});
+  require(['vs/editor/editor.main'], function() {
+    monaco.editor.create(document.getElementById('editor'), {
+      value: code,
+      // language: 'typescriptreact',
+      language: 'typescript',
+      readOnly: true,
+      theme: 'vs-dark'
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+---
+title: mdx-learning
+pushed_at: '2024-10-05'
+tags:
+  - mdx
+  - markdown
+  - jsx
+description: 学习 MDX
+updated_at: '2024-11-07T16:03:28Z'
+---
+# mdx-learning
+是的，MDX 的处理流程通常是先将 MDX 内容解析为 HTML 抽象语法树（AST），然后再进行各种操作和转换。这使得你可以在处理过程中插入自定义的插件和逻辑，以实现特定的功能。
+
+### MDX 处理流程
+
+1. **解析 MDX**：将 MDX 内容解析为 Markdown 抽象语法树（MDAST）。
+2. **应用 Remark 插件**：在 MDAST 上应用 Remark 插件进行处理。
+3. **转换为 HTML AST**：将 MDAST 转换为 HTML 抽象语法树（HAST）。
+4. **应用 Rehype 插件**：在 HAST 上应用 Rehype 插件进行处理。
+5. **生成最终 HTML**：将处理后的 HAST 转换为最终的 HTML 字符串。
+
+### 示例代码
+
+以下是一个完整的示例，展示了如何在 MDX 处理流程中应用 Remark 和 Rehype 插件，并将 MDX 内容解析为 HTML：
+
+```tsx
+'use client'
+
+import React, { useState, useEffect } from 'react'
+import { Button } from "@/components/ui/button"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Label } from "@/components/ui/label"
+import { compile } from '@mdx-js/mdx'
+import * as runtime from 'react/jsx-runtime'
+import remarkGfm from 'remark-gfm'
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
+import rehypePrism from 'rehype-prism-plus'
+import { parse as parseHTML } from 'node-html-parser'
+import { Highlight, themes } from "prism-react-renderer"
+
+const defaultMDX = `# Welcome to the MDX Playground
+
+This is a **bold** statement.
+
+Here's some code:
+
+\`\`\`js
+console.log('Hello, world!');
+\`\`\`
+
+And a list:
+
+- Item 1
+- Item 2
+- Item 3
+
+Math equation: $E = mc^2$
+`
+
+export default function Component() {
+  const [input, setInput] = useState(defaultMDX)
+  const [output, setOutput] = useState('')
+  const [outputFormat, setOutputFormat] = useState('preview')
+  const [inputFormat, setInputFormat] = useState('mdx')
+  const [plugins, setPlugins] = useState({
+    remarkGfm: true,
+    remarkMath: true,
+    rehypeKatex: true,
+    rehypePrism: true,
+  })
+
+  useEffect(() => {
+    handleCompile()
+  }, [input, outputFormat, inputFormat, plugins])
+
+  const handleCompile = async () => {
+    try {
+      const remarkPlugins = [
+        plugins.remarkGfm && remarkGfm,
+        plugins.remarkMath && remarkMath,
+      ].filter(Boolean)
+
+      const rehypePlugins = [
+        plugins.rehypeKatex && rehypeKatex,
+        plugins.rehypePrism && rehypePrism,
+      ].filter(Boolean)
+
+      const compiled = await compile(input, {
+        outputFormat: 'function-body',
+        remarkPlugins,
+        rehypePlugins,
+      })
+
+      const { default: MDXContent } = await runtime.compile(compiled.toString(), {
+        ...runtime,
+      })
+
+      setOutput(<MDXContent />)
+    } catch (error) {
+      console.error('Compilation error:', error)
+      setOutput('Compilation error')
+    }
+  }
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>MDX Playground</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Label htmlFor="input">Input</Label>
+        <Textarea id="input" value={input} onChange={(e) => setInput(e.target.value)} />
+        <Button onClick={handleCompile}>Compile MDX</Button>
+        <Label htmlFor="output">Output</Label>
+        <div id="output">{output}</div>
+      </CardContent>
+    </Card>
+  )
+}
+```
+
+### 解释
+
+1. **解析 MDX**：使用 `@mdx-js/mdx` 的 `compile` 函数将 MDX 内容解析为 HTML AST。
+2. **应用 Remark 插件**：在 MDAST 上应用 [`remarkGfm`](command:_github.copilot.openSymbolFromReferences?%5B%22%22%2C%5B%7B%22uri%22%3A%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fd%3A%2Fgithub%2Foutsource%2Fblog%2Fblog%2Fsrc%2Fapp%2Ftools%2Fmdx%2Fpage.tsx%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%2C%22pos%22%3A%7B%22line%22%3A45%2C%22character%22%3A4%7D%7D%5D%2C%226259aa6f-7560-4a3b-ba7f-6271680ddae8%22%5D "Go to definition") 和 [`remarkMath`](command:_github.copilot.openSymbolFromReferences?%5B%22%22%2C%5B%7B%22uri%22%3A%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fd%3A%2Fgithub%2Foutsource%2Fblog%2Fblog%2Fsrc%2Fapp%2Ftools%2Fmdx%2Fpage.tsx%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%2C%22pos%22%3A%7B%22line%22%3A46%2C%22character%22%3A4%7D%7D%5D%2C%226259aa6f-7560-4a3b-ba7f-6271680ddae8%22%5D "Go to definition") 插件。
+3. **转换为 HTML AST**：将 MDAST 转换为 HAST。
+4. **应用 Rehype 插件**：在 HAST 上应用 [`rehypeKatex`](command:_github.copilot.openSymbolFromReferences?%5B%22%22%2C%5B%7B%22uri%22%3A%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fd%3A%2Fgithub%2Foutsource%2Fblog%2Fblog%2Fsrc%2Fapp%2Ftools%2Fmdx%2Fpage.tsx%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%2C%22pos%22%3A%7B%22line%22%3A47%2C%22character%22%3A4%7D%7D%5D%2C%226259aa6f-7560-4a3b-ba7f-6271680ddae8%22%5D "Go to definition") 和 [`rehypePrism`](command:_github.copilot.openSymbolFromReferences?%5B%22%22%2C%5B%7B%22uri%22%3A%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fd%3A%2Fgithub%2Foutsource%2Fblog%2Fblog%2Fsrc%2Fapp%2Ftools%2Fmdx%2Fpage.tsx%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%2C%22pos%22%3A%7B%22line%22%3A48%2C%22character%22%3A4%7D%7D%5D%2C%226259aa6f-7560-4a3b-ba7f-6271680ddae8%22%5D "Go to definition") 插件。
+5. **生成最终 HTML**：将处理后的 HAST 转换为最终的 HTML 字符串，并在组件中渲染。
+
+通过这些步骤，你可以在 MDX 处理流程中应用自定义插件，并将 MDX 内容解析为 HTML 进行各种操作。
+## test toc json
+
+### 生成时不能用空标题吗？
+
+## 上面测试空标题

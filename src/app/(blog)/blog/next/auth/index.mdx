@@ -1,0 +1,128 @@
+---
+title: auth
+created_at: 2024-11-05T20:24:04.000Z
+pushed_at: '2024-11-06T15:50:08Z'
+updated_at: '2024-11-07T16:03:28Z'
+authors:
+  - name: aa
+    github: Nahida-aa
+    twitter: null
+private: false
+svg: null
+image: null
+tags:
+  - auth
+description: null
+draft: false
+---
+# Next.js Auth
+https://authjs.dev/getting-started/installation?framework=Next.js
+```sh
+pnpm add next-auth@beta
+```
+/src/auth.ts
+```ts name="src/auth.ts"
+import NextAuth from "next-auth"
+import type {NextAuthConfig} from "next-auth"
+import GitHub from "next-auth/providers/github"
+import type { Provider } from "next-auth/providers"
+import { NextResponse } from "next/server"
+import Credentials from "next-auth/providers/credentials"
+import { z } from "zod"
+
+const providers: Provider[] = [
+  Credentials({
+    credentials: { password: { label: "Password", type: "password" } },
+    async authorize(c) { // c 是 表单数据
+      const parsed_c = z.object({
+        username: z.string(),
+        email: z.string().email(),
+        password: z.string().min(6).max(100),
+      }).safeParse(c)
+      // 如果验证成功
+      if (c.password !== "password") return null
+      return {
+        id: "test",
+        name: "Test User",
+        email: "test@example.com",
+      }
+    },
+  }),
+  GitHub({    
+    
+  }),
+]
+export const { handlers, signIn, signOut, auth } = NextAuth({
+  pages: {
+    signIn: "/login",
+  },
+  callbacks: {
+    // 授权
+    // async authorized({ request, auth }) {
+    //   const url = request.nextUrl
+    
+    //   if(request.method === "POST") {
+    //     const { authToken } = (await request.json()) ?? {}
+    //     // If the request has a valid auth token, it is authorized
+    //     const valid = await validateAuthToken(authToken)
+    //     if(valid) return true
+    //     return NextResponse.json("Invalid auth token", { status: 401 })
+    //   }
+    
+    //   // Logged in users are authenticated, otherwise redirect to login page
+    //   return !!auth.user
+    // }
+  },
+  
+  providers,
+  
+})
+
+export const providerMap = providers
+  .map((provider) => {
+    if (typeof provider === "function") {
+      const providerData = provider()
+      return { id: providerData.id, name: providerData.name }
+    } else {
+      return { id: provider.id, name: provider.name }
+    }
+  })
+  .filter((provider) => provider.id !== "credentials")
+```
+
+## Prisma
+```ts name="prisma/schema.prisma"
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // sqlite
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  // id            String       @default(cuid()) @id
+  id            Int         @id @default(autoincrement())
+  name          String?
+  type          String?
+  email         String?   @unique
+  created_at     DateTime  @default(now()) @map(name: "created_at")
+  updated_at     DateTime  @updatedAt @map(name: "updated_at")
+  @@map(name: "users")
+}
+```
+### client
+
+[/src/lib/db.ts](/src/lib/db.ts)
+```ts name="src/lib/db.ts"
+import { PrismaClient } from '@prisma/client'
+
+const globalForPrisma = global as unknown as {
+  prisma?: PrismaClient
+}
+export const prisma = globalForPrisma.prisma ?? new PrismaClient({
+  log: ['query', 'info', 'warn', 'error']
+})
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+```

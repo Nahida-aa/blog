@@ -1,0 +1,238 @@
+---
+title: vite-vue
+created_at: 2024-11-03T19:16:02.000Z
+pushed_at: '2024-11-04T05:06:19Z'
+updated_at: '2024-11-07T16:03:28Z'
+authors:
+  - name: aa
+    github: Nahida-aa
+    twitter: null
+private: false
+svg: null
+image: null
+tags: []
+description: null
+draft: false
+---
+
+```sh
+git clone git@github.com:Nahida-aa/vite-vue.git
+cd vite-vue
+pnpm install three @tresjs/core
+pnpm i -D @types/three
+```
+
+```ts name="src/main.ts"
+import { createApp } from 'vue'
+import './style.css'
+import Tres from '@tresjs/core'
+import App from './App.vue'
+
+export const app = createApp(App)
+app.use(Tres)
+app.mount('#app')
+```
+
+```vue name="src/App.vue"
+<script setup lang="ts">
+import { TresCanvas } from "@tresjs/core"
+
+</script>
+
+<template>
+  <TresCanvas>
+  </TresCanvas>
+</template>
+
+<style scoped>
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+#app {
+  height: 100%;
+  width: 100%;
+}
+</style>
+```
+
+```ts name="vite.config.ts"
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import { templateCompilerOptions } from '@tresjs/core'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    vue({
+      ...templateCompilerOptions
+    })
+  ],
+})
+```
+`three-globe` 是一个基于three.js的地球组件, 可以用来展示地球数据, 比如地图, 弧线等
+```sh
+pnpm i @tresjs/cientos three-globe
+```
+
+## 1 
+
+### 创建一个 Camera
+```vue name="src/App.vue"
+<script setup lang="ts">
+import { TresCanvas } from "@tresjs/core"
+</script>
+
+<template>
+  <TresCanvas>
+    <TresPerspectiveCamera :position="{ x: 0, y: 0, z: 400 }" />
+  </TresCanvas>
+</template>
+...
+```
+
+###
+
+```vue name="src/components/Globe.vue"
+<template>
+  <primitive :object="Globe" />
+</template>
+
+<script lang="ts" setup>
+import { Color, MeshPhongMaterial } from "three"
+import  ThreeGlobe  from "three-globe"
+
+const Globe = new ThreeGlobe()
+
+const globeMaterial = Globe.globeMaterial() as MeshPhongMaterial
+globeMaterial.color = new Color('#3a228a')
+globeMaterial.emissive = new Color('#220038')
+globeMaterial.emissiveIntensity = 0.1
+globeMaterial.shininess = 0.7
+</script>
+```
+
+```vue name="src/App.vue"
+<script setup lang="ts">
+import { TresCanvas } from "@tresjs/core"
+import Globe from "./components/Globe.vue";
+import {  OrbitControls } from "@tresjs/cientos";
+</script>
+
+<template>
+  <TresCanvas window-size antialias clear-color="#040d21">
+    <TresPerspectiveCamera :position="[ 0, 0, 400 ]" />
+    <Globe />
+  </TresCanvas>
+</template>
+...
+```
+
+### 加光 和 控制
+光放到相机中，就能保证光与相机相对静止，避免跟着地球 旋转
+```vue name="src/App.vue"
+<script setup lang="ts">
+import { TresCanvas } from "@tresjs/core"
+import Globe from "./components/Globe.vue";
+import {  OrbitControls } from "@tresjs/cientos";
+</script>
+
+<template>
+  <TresCanvas window-size antialias clear-color="#040d21">
+    <TresPerspectiveCamera :position="[ 0, 0, 400 ]" >
+      <TresAmbientLight :color="0xbbbbbb" :intensity="1" />
+      <TresDirectionalLight :color="0xffffff" :intensity="8" :position="[ -800, 2000, 400 ]" />
+      <TresDirectionalLight :color="0xffffff" :intensity="10" :position="[ -200, 500, 200 ]" />
+      <TresPointLight :color="0x7982f6" :intensity="50" :position="[ -200, 500, 200 ]" />
+    </TresPerspectiveCamera>
+    <Globe />
+    <OrbitControls
+      :enableDamping="true"
+      :dampingFactor="0.01"
+      :enablePan="false"
+      :min-distance="200"
+      :max-distance="500"
+      :rotate-speed="0.8"
+      :zoom-speed="1"
+      :auto-rotate="true" 
+      :min-polar-angle="Math.PI / 3.5"
+      :max-polar-angle="Math.PI - Math.PI / 3"
+    />
+  </TresCanvas>
+</template>
+...
+```
+
+### 导入 数据
+
+```vue name="src/components/Globe.vue"
+<template>
+  <primitive :object="Globe" />
+</template>
+
+<script lang="ts" setup>
+import { Color, MeshPhongMaterial } from "three"
+import  ThreeGlobe  from "three-globe"
+import countries from '../assets/earth.geo.json'
+
+const Globe = new ThreeGlobe()
+  .hexPolygonsData(countries.features)
+  .hexPolygonResolution(3)
+  .hexPolygonMargin(0.7)
+  .showAtmosphere(true)
+  .atmosphereColor('#6944e5')
+  .atmosphereAltitude(0.2)
+const globeMaterial = Globe.globeMaterial() as MeshPhongMaterial
+globeMaterial.color = new Color('#3a228a')
+globeMaterial.emissive = new Color('#220038')
+globeMaterial.emissiveIntensity = 0.1
+globeMaterial.shininess = 0.7
+</script>
+```
+
+### 加入弧线
+
+```vue name="src/components/Globe.vue"
+<template>
+  <primitive :object="Globe" />
+</template>
+
+<script lang="ts" setup>
+import { Color, MeshPhongMaterial } from "three"
+import  ThreeGlobe  from "three-globe"
+import countries from '../assets/earth.geo.json'
+
+const N = 20
+const arcsData = [...Array(N).keys()].map(() => ({
+  startLat: (Math.random() - 0.5) * 180,
+  startLng: (Math.random() - 0.5) * 360,
+  endLat: (Math.random() - 0.5) * 180,
+  endLng: (Math.random() - 0.5) * 360,
+  // color: ['#ff0000', '#00ff00', '#0000ff'][Math.round(Math.random() * 3)]
+  color: ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]
+}))
+const Globe = new ThreeGlobe()
+  .hexPolygonsData(countries.features)
+  .hexPolygonResolution(3)
+  .hexPolygonMargin(0.7)
+  .showAtmosphere(true)
+  .atmosphereColor('#6944e5')
+  .atmosphereAltitude(0.2)
+  .arcsData(arcsData)
+  .arcColor('color')
+  .arcDashLength(0.9)
+  .arcDashGap(4)
+  .arcDashInitialGap(() => Math.random() * 5)
+  .arcDashAnimateTime(1000)
+  .arcsTransitionDuration(1000)
+  
+const globeMaterial = Globe.globeMaterial() as MeshPhongMaterial
+globeMaterial.color = new Color('#3a228a')
+globeMaterial.emissive = new Color('#220038')
+globeMaterial.emissiveIntensity = 0.1
+globeMaterial.shininess = 0.7
+</script>
+```
