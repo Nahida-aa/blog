@@ -25,7 +25,7 @@ export default async  function BlogLayout({
   //   headerEntries.push(`${key}: ${value}`)
   // })
 
-  const dir = path.join(process.cwd(), 'src/app/(blog)/md/blog') // 假设你的文件在 app/content 目录下
+  const dir = path.join(process.cwd(), 'src/app/(blog)/blog') // 假设你的文件在 app/content 目录下
   const fileTree = getFileTree(dir,'/aa')
   console.log(`fileTree`)
 
@@ -44,6 +44,12 @@ export default async  function BlogLayout({
         { name: "api", path: "/tools/api", },
         { name: "mdx", path: "/tools/mdx",  },
         { name: "decode", path: "/tools/decode" },
+      ]
+    },
+    {name: 'Demo', type: 'button', path: '/demo',
+      items: [
+        {name: 'Globe', type: 'link', path: '/demo/globe'},
+        {name: 'demo2', type: 'link', path: '/demo/demo2'},
       ]
     },
   ]

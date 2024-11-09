@@ -21,11 +21,11 @@ const Info: FC<InfoProps> = ({ url_path, metadata }) => {
             <div className="flex items-center space-x-2">
               <h3 className="text-lg font-semibold">
                 <Link href={`/${url_path}`} className="hover:underline glow-cyan">
-                  {metadata.title}
+                  {metadata?.title}
                 </Link>
               </h3>
               <Badge variant="outline">
-                {metadata.private===true?'Private':'Public'}
+                {metadata?.private===true?'Private':'Public'}
               </Badge>
             </div>
             {/* 左侧第二行 */}
@@ -38,9 +38,9 @@ const Info: FC<InfoProps> = ({ url_path, metadata }) => {
               </p>
             )} */}
             {/* 左侧第三行(不过内容可能较多, 导致显示多行, 暂时不管) */}
-            <p className="text-sm text-muted-foreground">{metadata.description}</p>
+            <p className="text-sm text-muted-foreground">{metadata?.description}</p>
             <div className="flex flex-wrap gap-2">
-              {metadata.tags?.map((tag) => (
+              {metadata?.tags?.map((tag) => (
                 <Link
                   key={tag}
                   href={`/tags/${tag}`}
@@ -79,8 +79,8 @@ const Info: FC<InfoProps> = ({ url_path, metadata }) => {
                   {license.name} License
                 </span>
               )} */}
-              <span title={new Date(metadata.updated_at).toLocaleString()}>
-                Updated on {new Date(metadata.updated_at).toLocaleDateString()}
+              <span title={new Date(metadata?.updated_at).toLocaleString()}>
+                Updated on {new Date(metadata?.updated_at).toLocaleDateString()}
               </span>
               <HistoryIco size={16} />
             </div>

@@ -3,7 +3,7 @@ import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import MonacoEditor, { loader } from '@monaco-editor/react';
 import * as monaco_editor from 'monaco-editor';
 import { registerJsoncLanguage } from '@/lib/vscode/monaco/addLang/addJsonc';
-import { languageMap } from '@/lib/vscode/monaco/addLang/languageMap';
+import { languageMap } from '@/lib/vscode/monaco/addLang/languageMap'
 import { Copy, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import aaThemeConfig from '@/lib/vscode/monaco/theme/aaTheme';

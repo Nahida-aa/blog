@@ -1,5 +1,5 @@
 "use client"
-import { ChevronDown, Check, ChevronsUpDown,PanelLeft,Sparkles,X } from "lucide-react"
+import { ChevronDown, Check, ChevronsUpDown,PanelLeft,Sparkles,X, FileText, File as FileIcon } from "lucide-react"
 import {
   SidebarHeader,
   SidebarMenu,
@@ -37,34 +37,23 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { useState } from "react"
 
 const side_head_selects = [
   {
-    value: "/",
+    value: "nav",
     label: "Blog",
-    type: "page",
   },
+  { value: 'fileTree', label: 'File Tree', icon: FileIcon },
   {
-    value: "/admin",
+    value: "admin",
     label: "Admin",
-    type: "page",
   },
-  {
-    value: "https://stat.Nahida-aa.us.kg",
-    label: "Dashboard",
-    type: "link",
-  }
 ]
 
-export function ComboboxSidebarHeader() {
-  const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState("")
-  const router = useRouter()
-  React.useEffect(() => {
-    const currentPath = window.location.pathname
-    const initialValue = currentPath.startsWith("/admin") ? "/admin" : "/"
-    setValue(initialValue)
-  }, [])
+export function ComboboxSidebarHeader({ onSelect }: { onSelect: (value: string) => void }) {
+  const [open, setOpen] =useState(false)
+  const [selected, setSelected] = useState('nav');
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -73,8 +62,8 @@ export function ComboboxSidebarHeader() {
           aria-expanded={open}
           className="w-full min-w-0 justify-between group-data-[collapsible=icon]:!size-0 group-data-[collapsible=icon]:!p-0"
         >
-          <span className="">{value
-            ? side_head_selects.find((side_head_select) => side_head_select.value === value)?.label
+          <span className="">{selected
+            ? side_head_selects.find((side_head_select) => side_head_select.value === selected)?.label
             : ""}</span>
           <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 " />
         </SidebarMenuButton>
@@ -86,18 +75,14 @@ export function ComboboxSidebarHeader() {
             <CommandEmpty>No side_head_select found.</CommandEmpty>
             <CommandGroup>
               {side_head_selects.map((side_head_select) => (
-                <Link href={side_head_select.value} key={side_head_select.value}>
+                // <Link href={side_head_select.value} key={side_head_select.value}>
                 <CommandItem
                   key={side_head_select.value}
                   value={side_head_select.value}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue)
+                    setSelected(currentValue === selected ? "" : currentValue)
+                    onSelect(currentValue)
                     setOpen(false)
-                    if (side_head_select.type === "page") {
-                      router.push(currentValue)
-                    } else if (side_head_select.type === "link") {
-                      window.location.href = currentValue
-                    }
                   }}
                 >
                   
@@ -106,11 +91,11 @@ export function ComboboxSidebarHeader() {
                   <Check
                     className={cn(
                       "ml-auto h-4 w-4",
-                      value === side_head_select.value ? "opacity-100" : "opacity-0"
+                      selected === side_head_select.value ? "opacity-100" : "opacity-0"
                     )}
                   />
                 </CommandItem>
-                </Link>
+                // </Link>
               ))}
             </CommandGroup>
           </CommandList>
@@ -121,7 +106,7 @@ export function ComboboxSidebarHeader() {
 }
 
 
-export default function SidebarHeaderA() {
+export default function SidebarHeaderA({ onSelect }: { onSelect: (value: string) => void }) {
   const { isMobile } = useSidebar()
   const trigger_icon = isMobile ? <X /> : <PanelLeft />
   return (<SidebarHeader className="">
@@ -133,7 +118,7 @@ export default function SidebarHeaderA() {
       <div className="flex-1 mr-8">
         <SidebarMenu>
           <SidebarMenuItem>
-            <ComboboxSidebarHeader />
+            <ComboboxSidebarHeader onSelect={onSelect} />
           </SidebarMenuItem>
         </SidebarMenu>
       </div>

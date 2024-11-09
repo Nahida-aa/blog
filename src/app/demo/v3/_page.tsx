@@ -3,7 +3,7 @@
 // import { motion } from 'framer-motion'
 // import { Card, CardContent } from "@/components/ui/card"
 // import { ExternalLink } from 'lucide-react'
-// import { Friend } from '@/app/blog/blog/types/friends'
+// import { Friend } from '@/app/(blog)/blog/blog/types/friends'
 
 // const testFriend = {
 //   number: 1,

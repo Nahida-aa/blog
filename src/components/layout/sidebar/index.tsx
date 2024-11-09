@@ -26,39 +26,16 @@ import React from "react"
 import { usePathname } from 'next/navigation'
 
 import { MenuGroup, MenuItem, TreeMenuNode } from './tree/TreeMenuNode'
+import NavContent from './NavContent'
+import FileTreeContent from './FileTreeContent'
+import AdminNavContent from './content/Admin'
 
 interface AppSidebarProps {
   menu_groups?: MenuGroup[]
   menu_items?: MenuItem[]
   grouped?: boolean
 }
-export const AppSidebar: React.FC<AppSidebarProps> = ({ menu_groups = [], menu_items = [], grouped = true }) => {
-  // const [sidebarWidth, setSidebarWidth] = useState(232)
-  // const [isResizing, setIsResizing] = useState(false)
-  // const startResizing = useCallback((e: React.MouseEvent) => {
-  //   console.log('startResizing')
-  //   e.preventDefault()
-  //   setIsResizing(true)
-  // }, [])
-  // const stopResizing = useCallback(() => {
-  //   setIsResizing(false)
-  // }, [])
-  // const resize = useCallback((e: MouseEvent) => {
-  //   if (isResizing) {
-  //     const newWidth = e.clientX
-  //     setSidebarWidth(newWidth < 128 ? 128 : newWidth > 960 ? 960 : newWidth)
-  //   }
-  // }, [isResizing])
-  // React.useEffect(() => {
-  //   window.addEventListener('mousemove', resize)
-  //   window.addEventListener('mouseup', stopResizing)
-  //   return () => {
-  //     window.removeEventListener('mousemove', resize)
-  //     window.removeEventListener('mouseup', stopResizing)
-  //   }
-  // }, [resize, stopResizing])
-
-
+export const AppSidebar: React.FC<AppSidebarProps> = ({ menu_groups = [], menu_items, grouped }) => {
   const {
     state,
     open,
@@ -68,22 +45,25 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ menu_groups = [], menu_i
     isMobile,
     toggleSidebar,
   } = useSidebar()
-  // 如果没有传入 grouped 参数，则 自动根据 menu_groups 和 menu_items 判断是否分组
-  // console.log(`AppSidebar: state=${state}, open=${open}, openMobile=${openMobile}, isMobile=${isMobile}, toggleSidebar=${toggleSidebar}, menu_groups=${JSON.stringify(menu_groups, null, 2)}, menu_items=${JSON.stringify(menu_items[0].items[0].items[2], null, 2)}, grouped=${grouped}`)
-  const isGrouped = grouped !== undefined ? grouped : menu_groups.length > 0
+
+  const isGrouped = grouped !== undefined ? grouped : menu_groups.length > 1
+  console.log(`AppSidebar:isGrouped=${isGrouped}, menu_groups.length=${menu_groups.length}`)
+  const [selectedContent, setSelectedContent] = useState('nav');
+  const renderContent = () => {
+    switch (selectedContent) {
+      case 'nav':
+        return <NavContent menu_groups={menu_groups} menu_items={menu_items} />;
+      case 'fileTree':
+        return <FileTreeContent menu_groups={menu_groups} menu_items={menu_items} />;
+      case 'admin':
+        return <AdminNavContent menu_groups={menu_groups} />;
+      default:
+        return <NavContent />
+    }
+  };
 
   // 自动展开对应的节点，需要根据当前路径判断
   const pathname = usePathname()
-  // 拿到 localStorage 中保存的展开节点
-  // const [expandedNodes, setExpandedNodes] = useState<string[]>(() => {
-  //   if (typeof window !== 'undefined') {
-  //     const savedNodes = localStorage.getItem('tree-menu-expanded-nodes')
-  //     // console.log(`expandedNodes 由于有window 所以返回 ${savedNodes}`)
-  //     return savedNodes ? JSON.parse(savedNodes) : []
-  //   }
-  //   // console.log(`expandedNodes 由于没有window 所以返回 {}`)
-  //   return []
-  // })
 
   const [expandedPaths, setExpandedPaths] = useState<Set<string>>(new Set())
   const [isClient, setIsClient] = useState(false)
@@ -111,56 +91,15 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ menu_groups = [], menu_i
     })
   }
   console.log(`AppSidebar:传给 MenuItem 的 expandedPaths=${JSON.stringify(Array.from(expandedPaths), null, 2)}`)
+  
   return (
     <Sidebar side="left" variant="sidebar" collapsible="icon" className='  md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:!hidden Sidebar '
-    // style={{ 
-    //   width: state === 'expanded' ? `${sidebarWidth}px` : undefined, 
-    //   '--sidebar-width': state === 'expanded' ? `${sidebarWidth}px` : undefined 
-    // } as React.CSSProperties}
     >
-      <SidebarHeader />
+      <SidebarHeader 
+      onSelect={setSelectedContent}
+      />
       <SidebarContent className="side-cont gap-0">
-        {isGrouped ? (
-          menu_groups.map((group, groupIndex) => (
-            <Collapsible defaultOpen className="group/collapsible" key={group.name || groupIndex}>
-              <SidebarGroup key={group.name || groupIndex} className="side-group p-0 ">
-                <div className="flex items-center justify-between w-full">
-                  <SidebarGroupLabel asChild className="px-0 group-data-[collapsible=icon]:hidden buttonSideGroupLabel">
-                    <CollapsibleTrigger className='gap-1'>
-                      <ChevronRight className="transition-transform group-data-[state=open]/collapsible:rotate-90" />
-                      {group.name}
-                    </CollapsibleTrigger>
-                  </SidebarGroupLabel>
-
-                  <SidebarGroupAction title="Add Project" className='!static mr-1  sideGroupActionButton'>
-                    <Plus />
-                  </SidebarGroupAction>
-                </div>
-                <CollapsibleContent>
-                  <SidebarGroupContent className="px-2">
-                    <SidebarMenu className="gap-0">
-                      {group.items.map((item, index) => (
-                        <TreeMenuNode key={index} item={item} currentPath={pathname}  expandedPaths={expandedPaths}
-                        togglePath={togglePath}
-                        isClient={isClient}
-                        />
-                      ))}
-                    </SidebarMenu>
-                  </SidebarGroupContent>
-                </CollapsibleContent>
-              </SidebarGroup>
-            </Collapsible>
-          ))
-        ) : (
-          <SidebarMenu className="gap-0 px-2">
-            {menu_items.map((item, index) => (
-              <TreeMenuNode key={index} item={item} currentPath={pathname}                   expandedPaths={expandedPaths}
-              togglePath={togglePath}
-              isClient={isClient}
-              />
-            ))}
-          </SidebarMenu>
-        )}
+        {renderContent()}
       </SidebarContent>
       <SidebarFooter />
       <SidebarRail />

@@ -12,7 +12,7 @@ export const getMetadataTrees = (): JsonDocMetadataTree => {
 
 export const getFile = (file_path: string) => {
   // console.log(`getFile: ${file_path}`)
-  const postsDirectory = path.join(process.cwd(), 'src', 'app', '(blog)', 'md', 'blog');
+  const postsDirectory = path.join(process.cwd(), 'src', 'app', '(blog)', 'blog');
   const filePath = path.join(postsDirectory, `${file_path}`)
   let rawContent = '';
 
@@ -38,6 +38,7 @@ interface TocEntry {
   children: TocEntry[];
 }
 
+import {constants} from '@/app/config/constants'
 export const getToc_from_tocsJson = (blog_path: string): FileTreeToc => {
   const tocFilePath = path.join(process.cwd(), 'public', 'data', 'toc.json');
   const tocData: TocEntry[] = JSON.parse(fs.readFileSync(tocFilePath, 'utf8'));
@@ -62,8 +63,7 @@ export const getToc_from_tocsJson = (blog_path: string): FileTreeToc => {
 }
 export const getToc_from_md = (filePath: string): FileTreeToc => {
   const format = filePath.split('.').pop() as 'md' | 'mdx';
-  const postsDirectory = path.join(process.cwd(), 'src', 'app', '(blog)', 'md', 'blog');
-  const absFilePath = path.join(postsDirectory, `${filePath}`)
+  const absFilePath = path.join(constants.APP_DIR, `${filePath}`)
   let fileContent = '';
 
   if (!fs.existsSync(absFilePath)) {
