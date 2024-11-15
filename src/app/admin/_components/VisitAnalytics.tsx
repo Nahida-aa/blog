@@ -70,11 +70,10 @@ const VisitAnalytics: React.FC<VisitAnalyticsProps> = ({ visits }) => {
       return acc;
     }, {} as Record<string, number>);
     setBrowserData(Object.entries(browserCounts).map(([name, value]) => ({ name, value })));
-
-
   };
 
-  const getBrowserFromUserAgent = (userAgent: string): string => {
+  const getBrowserFromUserAgent = (userAgent: string | undefined) => {
+    if (!userAgent) return 'Unknown';
     if (userAgent.includes('Firefox')) return 'Firefox';
     if (userAgent.includes('Chrome')) return 'Chrome';
     if (userAgent.includes('Safari')) return 'Safari';

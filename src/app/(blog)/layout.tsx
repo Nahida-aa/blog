@@ -11,6 +11,7 @@ import { CSSProperties } from "react";
 import path from "path"
 import { getFileTree } from "@/lib/file/getTree"
 import { headers } from 'next/headers'
+import { ParticleBackground } from "@/components/3d/ParticleBackground";
 
 
 export default async  function BlogLayout({
@@ -65,5 +66,6 @@ export default async  function BlogLayout({
           </main>
     </SidebarProvider>
     <BackgroundImage />
+    <ParticleBackground />
   </BackgroundProvider>)
 }

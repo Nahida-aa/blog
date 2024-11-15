@@ -63,23 +63,23 @@ export const getToc_from_tocsJson = (blog_path: string): FileTreeToc => {
 }
 export const getToc_from_md = (filePath: string): FileTreeToc => {
   const format = filePath.split('.').pop() as 'md' | 'mdx';
-  const absFilePath = path.join(constants.APP_DIR, `${filePath}`)
+  const absFilePath = path.join(constants.BLOG_DIR, `${filePath}`)
   let fileContent = '';
 
   if (!fs.existsSync(absFilePath)) {
-    console.error(`File not found: ${absFilePath}`);
+    console.error(`getToc_from_md:File not found: ${absFilePath}`);
     return []
   }
 
   try {
     fileContent = fs.readFileSync(absFilePath, 'utf8');
   } catch (err) {
-    console.error(`Failed to read file: ${absFilePath}`, err);
+    console.error(`getToc_from_md: Failed to read file: ${absFilePath}`, err);
     return [];
   }
   // console.log(`generateTreeToc-前`)
   const toc = generateTreeToc(fileContent,format);
-  // console.log(`generateTreeToc-后`)
+  console.log(`generateTreeToc-后:${JSON.stringify(toc)}`)
   return toc;
 };
 export const getToc = getToc_from_md

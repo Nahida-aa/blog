@@ -95,6 +95,7 @@ const config: Config = {
 	plugins: [
 		require("tailwindcss-animate"),
 		require('@tailwindcss/aspect-ratio'),
+		require('@tailwindcss/line-clamp'),
     plugin(function({ addUtilities }) {
       addUtilities({
         '.text-glow-cyan': {

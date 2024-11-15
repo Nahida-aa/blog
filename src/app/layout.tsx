@@ -75,7 +75,7 @@ export default function RootLayout({
             
             {children}
             {/* <SpeedInsights /> */}
-          <ParticleBackground />
+          {/* <ParticleBackground /> */}
           </main>
           </SessionProvider>
         </ThemeProvider>

@@ -38,6 +38,24 @@ const OnlyReadEditor = ({ value, language,
     loader.init().then(monaco => {
       registerJsoncLanguage(monaco);
       monaco.editor.defineTheme('aaTheme', aaThemeConfig);
+      monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
+        jsx: monaco.languages.typescript.JsxEmit.React,
+        allowNonTsExtensions: true, // 允许非ts文件扩展名
+        allowJs: true,
+        checkJs: true,
+        target: monaco.languages.typescript.ScriptTarget.ESNext,
+        module: monaco.languages.typescript.ModuleKind.ESNext,
+        moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
+        allowSyntheticDefaultImports: true,
+        esModuleInterop: true,
+        noEmit: true,
+        strict: true,
+        skipLibCheck: true,
+        resolveJsonModule: true,
+        isolatedModules: true,
+        jsxFactory: 'React.createElement',
+        jsxFragmentFactory: 'React.Fragment'
+      });
     });
   }, []);
 

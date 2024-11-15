@@ -26,8 +26,8 @@
     "slogan": "保持自己的热情 珍惜每一份情谊\n
                好好的做出计划 陪伴着彼此生长",
     // 创建时间,更新时间
-    "createdAt": "2023-10-01T12:00:00Z",
-    "updatedAt": "2023-10-01T12:00:00Z",
+    "created_at": "2023-10-01T12:00:00Z",
+    "updated_at": "2023-10-01T12:00:00Z",
     // 是否选用
     "selected": true
   }
@@ -57,8 +57,8 @@ e.g. GET /announcements/1
   "slogan": "保持自己的热情 珍惜每一份情谊\n
               好好的做出计划 陪伴着彼此生长",
   // 创建时间,更新时间
-  "createdAt": "2023-10-01T12:00:00Z",
-  "updatedAt": "2023-10-01T12:00:00Z",
+  "created_at": "2023-10-01T12:00:00Z",
+  "updated_at": "2023-10-01T12:00:00Z",
   // 是否选用
   "selected": true
 }
@@ -100,8 +100,8 @@ e.g. GET /announcements/1
   "slogan": "保持自己的热情 珍惜每一份情谊\n
              好好的做出计划 陪伴着彼此生长",
   // 创建时间,更新时间
-  "createdAt": "2023-10-01T12:00:00Z",
-  "updatedAt": "2023-10-01T12:00:00Z",
+  "created_at": "2023-10-01T12:00:00Z",
+  "updated_at": "2023-10-01T12:00:00Z",
   // 是否选用
   "selected": true
 }
@@ -139,8 +139,8 @@ e.g. GET /announcements/1
   "slogan": "保持自己的热情 珍惜每一份情谊\n
              好好的做出计划 陪伴着彼此生长",
   // 创建时间,更新时间
-  "createdAt": "2023-10-01T12:00:00Z",
-  "updatedAt": "2023-10-01T12:00:00Z",
+  "created_at": "2023-10-01T12:00:00Z",
+  "updated_at": "2023-10-01T12:00:00Z",
   // 是否选用
   "selected": true
 }
@@ -179,8 +179,8 @@ e.g. GET /announcements/1
   "slogan": "保持自己的热情 珍惜每一份情谊\n
              好好的做出计划 陪伴着彼此生长",
   // 创建时间,更新时间
-  "createdAt": "2023-10-01T12:00:00Z",
-  "updatedAt": "2023-10-01T12:00:00Z",
+  "created_at": "2023-10-01T12:00:00Z",
+  "updated_at": "2023-10-01T12:00:00Z",
   // 是否选用
   "selected": false
 }
@@ -205,20 +205,20 @@ e.g. GET /announcements/1
     "id": 1,
     "title": "用户协议",
     "url": "xxx", // 用于 直接拿到 通过 base64 编码的md内容 的api
-    "download_md_url": "xxx.md",
-    "download_pdf_url": "xxx.pdf",
-    "createdAt": "2023-10-01T12:00:00Z",
-    "updatedAt": "2023-10-01T12:00:00Z",
+    "md_url": "xxx.md",
+    "pdf_url": "xxx.pdf",
+    "created_at": "2023-10-01T12:00:00Z",
+    "updated_at": "2023-10-01T12:00:00Z",
     "selected": true
   },
   {
     "id": 2,
     "title": "介绍资料",
     "url": "xxx",
-    "download_md_url": "xxx.md",
-    "download_pdf_url": "xxx.pdf",
-    "createdAt": "2023-10-01T12:00:00Z",
-    "updatedAt": "2023-10-01T12:00:00Z",
+    "md_url": "xxx.md",
+    "pdf_url": "xxx.pdf",
+    "created_at": "2023-10-01T12:00:00Z",
+    "updated_at": "2023-10-01T12:00:00Z",
     "selected": true
   }
 ]
@@ -226,3 +226,29 @@ e.g. GET /announcements/1
 
 ### 平台寄语
 /announcements/message
+
+## 项目&团队宣传板块
+- 个人
+- 团队
+  - 筹备阶段
+  - 成立后阶段
+- 项目
+  - 筹备阶段
+  - 进行中阶段 (没写这部分要在 此板块展示, 我认为两种设计，一种是不展示，一种是展示但是降低搜索指数)
+  - 完成阶段 (完成后应该不是一定变成一个资源对吧, 就是项目的目的不一定是资源)(如果目的是资源就变成资源，如果不是就变成项目的完成阶段，可以参考上面的设计，不展示或降低搜索指数展示)
+- 资源
+```json
+[{
+  "type": "user",
+  "user": {},
+},{
+  "type": "resource",
+  "resource": {},
+},{
+  "type": "org",
+  "org": {},
+},{
+  "type": "proj",
+  "proj": {},
+}]
+```

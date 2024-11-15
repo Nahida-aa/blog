@@ -13,7 +13,7 @@ export const GET = async () => {
     // Return the result in the response
     return new NextResponse(JSON.stringify({ visits }), { status: 200 });
   }catch (error) {
-    console.error(error)
+    console.error(`src/app/api/visits/route.ts : ${error}`)
     return new NextResponse(JSON.stringify({ error }), { status: 500 });
   }
 };

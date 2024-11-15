@@ -1,3 +1,4 @@
 {
-  "liveServer.settings.root": "/public"
+  "liveServer.settings.root": "/public",
+  "python.analysis.typeCheckingMode": "off"
 }

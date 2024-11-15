@@ -26,6 +26,8 @@ export default function Component() {
     }
   }
 
+  let a = 1
+  const b = 2
   const filteredMessages = state.messages.filter(message =>
     message.content.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
     message.comments.some(comment => 

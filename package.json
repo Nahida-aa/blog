@@ -43,6 +43,7 @@
     "@react-three/drei": "^9.115.0",
     "@react-three/fiber": "^8.17.10",
     "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/line-clamp": "^0.4.4",
     "@upstash/redis": "^1.34.3",
     "@vercel/speed-insights": "^1.0.12",
     "acorn": "^8.13.0",
@@ -111,7 +112,7 @@
     "postcss": "^8.4.47",
     "prisma": "5.21.0",
     "remark-mark-highlight": "^0.1.1",
-    "tailwindcss": "^3.4.13",
+    "tailwindcss": "^3.4.14",
     "typescript": "^5.6.2"
   }
 }

@@ -1,0 +1,56 @@
+<!-- src/app/example.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Example</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* 内联 CSS */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+    .highlight {
+      color: #ff5733;
+    }
+  </style>
+</head>
+<body>
+  <!-- 注释 -->
+  <div id="app">
+    <h1 class="highlight">Hello, World!</h1>
+    <p>This is an example HTML file.</p>
+    <a href="https://www.example.com" target="_blank">Example Link</a>
+    <ul>
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ul>
+    <img src="example.jpg" alt="Example Image">
+    <form action="/submit" method="post">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name">
+      <input type="submit" value="Submit">
+    </form>
+    <table>
+      <tr>
+        <th>Header 1</th>
+        <th>Header 2</th>
+      </tr>
+      <tr>
+        <td>Data 1</td>
+        <td>Data 2</td>
+      </tr>
+    </table>
+  </div>
+  <script>
+    // 内联 JavaScript
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Document is ready');
+    });
+  </script>
+</body>
+</html>
