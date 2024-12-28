@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import type { Friend } from '@/app/(blog)/blog/blog/types/friends'
+import type { Friend } from '@/app/aa/blog/types/friends'
 import FriendLinkTemplate from './_components/FriendLinkTemplate'
 import FriendsList from './_components/FriendsList'
 

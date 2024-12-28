@@ -63,7 +63,7 @@ export const getToc_from_tocsJson = (blog_path: string): FileTreeToc => {
 }
 export const getToc_from_md = (filePath: string): FileTreeToc => {
   const format = filePath.split('.').pop() as 'md' | 'mdx';
-  const absFilePath = path.join(constants.BLOG_DIR, `${filePath}`)
+  const absFilePath = path.join(constants.APP_DIR, `${filePath}`)
   let fileContent = '';
 
   if (!fs.existsSync(absFilePath)) {

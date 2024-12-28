@@ -1,3 +1,4 @@
+import {FileCssIcon, FileHtmlIcon, FileJavascriptIcon, FileJsonIcon, FileMarkdownIcon, FileMdxIcon, FilePythonIcon, FileReact_tsIcon, FileReactIcon, FileTypescript_defIcon, FileTypescriptIcon, FolderAdminIcon, FolderAdminOpenIcon, FolderApiIcon, FolderApiOpenIcon, FolderConfigIcon, FolderConfigOpenIcon, FolderExamplesIcon, FolderExamplesOpenIcon, FolderGithubIcon, FolderGithubOpenIcon, FolderIcon, FolderJavaIcon, FolderJavaOpenIcon, FolderLogIcon, FolderLogOpenIcon, FolderMessagesIcon, FolderMessagesOpenIcon, FolderNextIcon, FolderNextOpenIcon, FolderNuxtIcon, FolderNuxtOpenIcon, FolderOpenIcon, FolderOtherIcon, FolderOtherOpenIcon, FolderPublicIcon, FolderPublicOpenIcon, FolderPythonIcon, FolderPythonOpenIcon, FolderTempIcon, FolderTempOpenIcon, FolderToolsIcon, FolderToolsOpenIcon, FolderTypescriptIcon, FolderTypescriptOpenIcon, FolderVscodeIcon, FolderVscodeOpenIcon} from '@/app/aa/web/svg'
 import { MenuItemType } from '@/components/layout/sidebar/tree/TreeMenuNode'
 import { FolderTree, Sigma, BookMarked, InfinityIcon, Github, BoxIcon, FileCode, MessageSquareText, Tags, Link as FriendLink, WandSparkles, Boxes, Wrench, SquareAsterisk, ChevronDown, Folder, FolderOpen, File as FileIcon, Sparkles } from 'lucide-react'
 
@@ -18,35 +19,52 @@ const iconMap: Record<string, React.ElementType> = {
 }
 const dirIconMap: Record<string, { default: React.ElementType, open: React.ElementType }> = {
   'algo': { default: Sigma, open: ChevronDown },
-  'math': { default: InfinityIcon, open: ChevronDown },
-  'github': { default: Github, open: ChevronDown },
-  'api': { default: BoxIcon, open: ChevronDown },
+  'admin': { default: FolderAdminIcon, open: FolderAdminOpenIcon },
+  'api': { default: FolderApiIcon, open: FolderApiOpenIcon },
   'Blog': { default: FolderTree, open: ChevronDown },
+  'config': { default: FolderConfigIcon, open: FolderConfigOpenIcon },
+  'chat': { default: FolderMessagesIcon, open: FolderMessagesOpenIcon },
   'Comments': { default: MessageSquareText, open: MessageSquareText },
-  'Tags': { default: Tags, open: Tags },
-  'Friends': { default: FriendLink, open: FriendLink },
-  'VSCode': { default: WandSparkles, open: WandSparkles },
-  'MC': { default: Boxes, open: Boxes },
-  'tools': { default: Wrench, open: ChevronDown },
   'decode': { default: SquareAsterisk, open: SquareAsterisk },
+  'demo': { default: FolderExamplesIcon, open: FolderExamplesOpenIcon },
+  'Friends': { default: FriendLink, open: FriendLink },
+  'github': { default: FolderGithubIcon, open: FolderGithubOpenIcon },
+  'java': { default: FolderJavaIcon, open: FolderJavaOpenIcon },
+  'math': { default: InfinityIcon, open: ChevronDown },
+  'MC': { default: Boxes, open: Boxes },
+  "next": { default: FolderNextIcon, open: FolderNextOpenIcon },
+  "nuxt": { default: FolderNuxtIcon, open: FolderNuxtOpenIcon },
+  "other": { default: FolderOtherIcon, open: FolderOtherOpenIcon },
+  'py': { default: FolderPythonIcon, open: FolderPythonOpenIcon },
+  'log': { default: FolderLogIcon, open: FolderLogOpenIcon },
+  'Tags': { default: Tags, open: Tags },
+  'temp': { default: FolderTempIcon, open: FolderTempOpenIcon },
+  'tools': { default: FolderToolsIcon, open: FolderToolsOpenIcon },
+  'ts': { default: FolderTypescriptIcon, open: FolderTypescriptOpenIcon },
+  'vscode': { default: FolderVscodeIcon, open: FolderVscodeOpenIcon },
+  'web': { default: FolderPublicIcon, open: FolderPublicOpenIcon },
 }
 // 特殊文件 先 通过文件名映射
 const iconFileMap: Record<string, React.ElementType> = {
-  'index.tsx': FileCode,
+  // 'index.tsx': FileCode,
 }
 // 文件后缀名映射
 const iconFileExtensionMap: Record<string, React.ElementType> = {
-  '.mdx': BookMarked,
-  '.tsx': FileCode,
-  '.ts': FileCode,
-  '.js': FileCode,
-  '.jsx': FileCode,
-  '.json': FileCode,
-  // 其他映射...
+  '.js': FileJavascriptIcon,
+  '.json': FileJsonIcon,
+  '.jsx': FileReactIcon,
+  '.mdx': FileMdxIcon,
+  '.md': FileMarkdownIcon,
+  '.tsx': FileReact_tsIcon,
+  '.d.ts': FileTypescript_defIcon,
+  '.ts': FileTypescriptIcon,
+  '.py': FilePythonIcon,
+  '.html': FileHtmlIcon,
+  '.css': FileCssIcon,
 }
 
 const getDirIconByNameAndStat = (name: string, open: boolean): React.ElementType => {
-  const icon = dirIconMap[name] || { default: Folder, open: FolderOpen }
+  const icon = dirIconMap[name] || { default: FolderIcon, open: FolderOpenIcon }
   return open ? icon.open : icon.default
 }
 const getFileIconByName = (name: string): React.ElementType => {

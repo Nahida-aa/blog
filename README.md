@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## todo tree
+
+- md/mdx: `![图 0](./comparison_log2_linear.png) `, 被渲染为 `<p><img src="./comparison_log2_linear.png" alt="图 0"></p>` 但是不能查看, 原因可能是 路径的资源被我修改了, 使得效果并不是像 `public` 文件夹那样
+
 ## Getting Started
 
 First, run the development server:

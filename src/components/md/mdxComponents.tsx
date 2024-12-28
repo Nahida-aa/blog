@@ -36,6 +36,7 @@ import Age from './other/Age';
 export const MdxComponents = {
   // 替换组件
   // p: mdxP,
+  // p: (props: any) => <p {...props} />,
   // strong: mdxStrong,
   // blockquote: mdxBlockquote,
   // ul: mdxUl,

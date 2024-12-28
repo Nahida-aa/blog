@@ -26,7 +26,7 @@ export default async  function BlogLayout({
   //   headerEntries.push(`${key}: ${value}`)
   // })
 
-  const dir = path.join(process.cwd(), 'src/app/(blog)/blog') // 假设你的文件在 app/content 目录下
+  const dir = path.join(process.cwd(), 'src/app/(blog)') // 假设你的文件在 app/content 目录下
   const fileTree = getFileTree(dir,'/aa')
   console.log(`fileTree`)
 

@@ -71,7 +71,7 @@ export const TreeMenuNode: React.FC<TreeMenuNodeProps> = ({
               // Link 有特殊功能, TODO: 有待进一步研究
               <a href={item.path} className="flex items-center !px-1">
                 {/* {item.icon && <item.icon />} */}
-                <IconComponent />
+                <IconComponent className="" />
                 <span className="truncate">{item.name}</span>
                 {hasChildren && (
                   <ChevronRight className={`ml-auto mr-0 transition-transform ${isOpen ? 'rotate-90' : ''}`} />
@@ -79,8 +79,8 @@ export const TreeMenuNode: React.FC<TreeMenuNodeProps> = ({
                 {!hasChildren && <div className="w-4 h-4" />}
               </a>
             ) : (
-              <div className="flex items-center !px-1 cursor-pointer">
-                <IconComponent />
+              <div className="flex items-center !px-1 cursor-pointer !gap-1.5">
+                <IconComponent className="" />
                 <span className="truncate">{item.name}</span>
                 {hasChildren && (
                   <ChevronRight className={`ml-auto mr-0 transition-transform ${isOpen ? 'rotate-90' : ''}`} />

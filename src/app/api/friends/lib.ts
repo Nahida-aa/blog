@@ -9,8 +9,8 @@
 //   }
 // }
 
-import {RestIssues_i} from '@/app/(blog)/blog/github/api/types/issues'
-import { Friend} from '@/app/(blog)/blog/blog/types/friends'
+import {RestIssues_i} from '@/app/aa/github/api/types/issues'
+import { Friend} from '@/app/aa/blog/types/friends'
 const issue2friend = (issue: RestIssues_i): Friend | null => {
   try {
     const { number, title, body, labels: issue_labels, state } = issue;

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Friend } from '@/app/(blog)/blog/blog/types/friends'
+import { Friend } from '@/app/aa/blog/types/friends'
 import { FriendCard } from './FriendCard'
 import { AddFriendCard } from './AddFriendCard'
 import { Input } from '@/components/ui/input'

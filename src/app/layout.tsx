@@ -40,6 +40,8 @@ export const metadata: Metadata = {
 };
 
 const cx = (...classes: string[]) => classes.filter(Boolean).join(' ');
+import { Toaster } from "@/components/ui/toaster"
+import { Toaster as SonnerToaster  } from "@/components/ui/sonner"
 
 export default function RootLayout({
   children,
@@ -65,18 +67,21 @@ export default function RootLayout({
       <body className="antialiased mio-scroll">
         <ThemeProvider
           attribute="class"
-          // defaultTheme="system"
-          enableSystem
+          defaultTheme="dark"
+          // defaultTheme="light"
+          enableSystem={false}
+          // enableSystem
           disableTransitionOnChange
         >
-      
           <SessionProvider>
-          <main>
-            
-            {children}
-            {/* <SpeedInsights /> */}
-          {/* <ParticleBackground /> */}
-          </main>
+            <main>
+              
+              {children}
+              {/* <SpeedInsights /> */}
+            {/* <ParticleBackground /> */}
+            </main>
+            <Toaster />
+            <SonnerToaster />
           </SessionProvider>
         </ThemeProvider>
         {process.env.GA_TRACKING_ID && <GoogleAnalytics gaId={process.env.GA_TRACKING_ID} />}

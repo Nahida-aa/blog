@@ -30,7 +30,8 @@ export default function SidebarFooterA() {
   //   console.log('status:', status);
   //   setIsAuthenticated(status === 'authenticated');
   // }, [status]);
-  return (<SidebarFooter className="p-0 gap-0">
+  return (
+  <SidebarFooter className="p-0 gap-0">
     <SidebarMenu className="p-2">
       <SidebarTrigger className='size-8 p-2 group-data-[collapsible=icon]:flex hidden' />
       </SidebarMenu>
