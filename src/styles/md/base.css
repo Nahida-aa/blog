@@ -73,6 +73,11 @@
 }
 
 
+.prose table th,
+.prose table td {
+  @apply border-2;
+}
+
 .prose a {
   @apply underline;
   color: #f4edf7;
