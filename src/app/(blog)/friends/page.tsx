@@ -2,13 +2,16 @@ import { Suspense } from 'react'
 import type { Friend } from '@/app/aa/blog/types/friends'
 import FriendLinkTemplate from './_components/FriendLinkTemplate'
 import FriendsList from './_components/FriendsList'
+import { headers as nextHeaders } from "next/headers"
 
 export const metadata = {title: 'Friends'}
 
 async function getFriends(): Promise<Friend[]> {
-  console.log('process.env', process.env)
-  console.log('process.env.__NEXT_PRIVATE_ORIGIN', process.env.__NEXT_PRIVATE_ORIGIN)
-  const res = await fetch(`${process.env.__NEXT_PRIVATE_ORIGIN}/api/friends`, { cache: 'no-store' })
+  // const headers = new Headers(await nextHeaders())
+  // console.log('process.env', process.env)
+  const baseUrl = process.env.NODE_ENV === 'development' ? process.env.__NEXT_PRIVATE_ORIGIN : process.env.NEXT_PUBLIC_URL
+  // console.log('process.env.__NEXT_PRIVATE_ORIGIN', process.env.__NEXT_PRIVATE_ORIGIN)
+  const res = await fetch(`${baseUrl}/api/friends`, { cache: 'no-store' })
   if (!res.ok) throw new Error('Failed to fetch friends')
   const data = await res.json()
   if (!Array.isArray(data)) {
