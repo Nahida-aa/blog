@@ -66,7 +66,7 @@ export const ASidebarContentHead = ({ user }: { user?: UserMeta }) => {
           <SidebarMenuButton className='rounded-b-none justify-between'
             onClick={(e) => {
               e.preventDefault();
-              router.push('/sign-in');
+              router.push('/login');
             }}
           >
             <span className='flex items-center gap-2'><LogIn className='opacity-50 size-4' /><span className=''>Sign In</span></span><ChevronRight className='opacity-50' />

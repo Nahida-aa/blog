@@ -17,8 +17,8 @@ import { UIProvider } from "@/components/providers/HeroUIProvider";
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Nahida-aa's Blog",
-    template: "%s | Nahida-aa's Blog",
+    default: "aa's Blog",
+    template: "%s | aa's Blog",
   },
   description: 'This is my portfolio.',
   openGraph: {

@@ -115,9 +115,9 @@ export function HomeHeader({
           </Button>
         </BetterTooltip>  
 
-        {(windowWidth >= 768) && (
-        <ModeToggle className='bg-background/20' />
-        )}
+        <ModeToggle className={`bg-background/20 hidden md:inline-flex`} />
+        {/* {(windowWidth >= 768) && (
+        )} */}
 
         {/* {(!open || windowWidth < 768) && ( */}
         {/* add 已被我改装为 more */}

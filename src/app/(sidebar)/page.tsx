@@ -3,6 +3,7 @@ import { Loading } from '@/components/ui/loading/Loading';
 // import { Friend } from '../aa/blog/types/friends';
 import type { Friend } from '../api/friends/lib';
 import ResizableDemo from '../demo/Resizable/page';
+import NotFound from '../not-found';
 
 const IndexPage = () => {
   async function getFriends(): Promise<Friend[]> {
@@ -22,6 +23,7 @@ const IndexPage = () => {
       <h1>IndexPage</h1>
       <p>This is the IndexPage page.</p>
       <ResizableDemo />
+      <NotFound />
     </Suspense>
   );
 }

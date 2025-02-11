@@ -28,7 +28,7 @@ export default function BlogLayout({
       <AppSidebar menu_items={fileTree} grouped={false} />
       {/* <Navbar /> */}
       {/* <SidebarInset className="flex-grow overflow-hidden"> */}
-        <main className="flex flex-1 flex-col px-4 pb-4 w-full flex-grow overflow-hidden">
+        <main className="flex flex-1 flex-col px-4 pb-4 w-full flex-grow overflow-hidden ">
           <AppHeader />
           {children}
         </main>

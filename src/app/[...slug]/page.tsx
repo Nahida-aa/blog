@@ -6,6 +6,7 @@ import FileToc from "./_comp/FileToc";
 import { getToc } from '@/lib/mdx/get'
 import File from './_comp/File'
 import { TocProvider } from "@/context/TocContext";
+import NotFound from "../not-found";
 
 export interface FileProps {
   params: Promise<{ slug: string[] }>;
@@ -19,6 +20,7 @@ export default async function FilePage(props:FileProps) {
   file_path = decodeURI(file_path)
   const fileFormat = file_path.split('.').pop() || 'md'
   const { metadata, content, rawContent } = getFile(file_path)
+  if (!content) return <NotFound />;
   const isAuthenticated = (await cookies()).get('authenticated')?.value === 'true'
   const toc = getToc(file_path)
 

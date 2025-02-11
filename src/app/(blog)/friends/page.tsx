@@ -20,7 +20,7 @@ export default async function FriendLinks() {
   // console.log('friends', friends)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br w-full">
+    <div className=" bg-gradient-to-br w-full">
       <div className="max-w-6xl mx-auto mb-8 w-full flex-grow-0">
         <FriendLinkTemplate />
         <Suspense fallback={<div>Loading...</div>}>

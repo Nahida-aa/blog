@@ -25,22 +25,12 @@ export default async function Layout({
   return (
     <SidebarProvider defaultOpen={!isCollapsed} className='min-h-screen SidebarProvider  '> 
     {/* 模糊背景 */}
-      <ResizablePanelGroup
-        direction="horizontal"
-      >
-        <ResizablePanel defaultSize={50}>
-          
         <AppSidebar user={session?.user} />
-        </ResizablePanel>
-        <ResizableHandle />
-        <ResizablePanel defaultSize={50}>
-        {/* <SidebarInset className='min-h-screen bg-opacity SidebarInset'> */}
+        <SidebarInset className='min-h-screen bg-opacity SidebarInset'>
           <HomeHeader user={session?.user} className='bg-card/80'  />
           <div className='min-h-12'></div>
           {children}
-        {/* </SidebarInset> */}
-        </ResizablePanel>
-      </ResizablePanelGroup>
+        </SidebarInset>
     </SidebarProvider>
   );
 }

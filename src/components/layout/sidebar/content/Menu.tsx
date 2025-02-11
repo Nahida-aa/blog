@@ -1,6 +1,6 @@
 import {Button as UIButton} from "@heroui/react";
 import { useRouter } from "next/navigation";
-import { Box, ChevronDown, ChevronRight, House, Link as LinkIcon, LogIn, PencilLine, QrCode, Settings, Star, UserRound, X } from 'lucide-react';
+import { BookMarked, Box, ChevronDown, ChevronRight, House, Link as LinkIcon, LogIn, PencilLine, QrCode, Settings, Star, UserRound, X } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -17,6 +17,7 @@ import {
 export const SidebarContentMenuComponent = () => {
   const router = useRouter();
   const menuItems = [
+    { label: 'Docs', icon: BookMarked, path: '/docs',},
     { label: 'Friend link', icon: LinkIcon, path: '/friends',},
     { label: 'My home', icon: House, path: '/user/home',},
     {label: 'My friends',icon: UserRound,path: '/user/friend',},
