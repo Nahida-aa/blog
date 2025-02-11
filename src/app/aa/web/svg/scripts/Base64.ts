@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+import * as fs from 'fs';
+import * as path from 'path';
 
 const svgFilePath = path.join(__dirname, '../icons/folder-typescript.svg');
 const svgContent = fs.readFileSync(svgFilePath, 'utf8');
