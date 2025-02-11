@@ -2,11 +2,9 @@
   "liveServer.settings.root": "/public",
   "python.analysis.typeCheckingMode": "off",
   "files.associations": {
+    "*.mdx": "markdown",
     "*.page-template": "vue",
     "*.layout-template": "vue",
-    "*.vue": "vue",
-    "*.py": "python",
-    "*.html": "html",
     "*.json": "jsonc",
     "*.schema.json": "jsonc",
     "any": "cpp",

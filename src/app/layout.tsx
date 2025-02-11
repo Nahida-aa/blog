@@ -4,12 +4,15 @@ import "@/styles/globals.css";
 // import { SpeedInsights } from '@vercel/speed-insights/next'
 // import Footer from '@/components/layout/footer';
 import { baseUrl } from '@/lib/sitemap';
-import { ThemeProvider } from "@/components/provider/theme-provider";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 import { GoogleAnalytics
   // , GoogleTagManager 
 } from "@next/third-parties/google"
 import { SessionProvider } from "next-auth/react";
 import { ParticleBackground } from "@/components/3d/ParticleBackground";
+import { Toaster } from "@/components/ui/toaster"
+import { Toaster as SonnerToaster  } from "@/components/ui/sonner"
+import { UIProvider } from "@/components/providers/HeroUIProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -40,10 +43,8 @@ export const metadata: Metadata = {
 };
 
 const cx = (...classes: string[]) => classes.filter(Boolean).join(' ');
-import { Toaster } from "@/components/ui/toaster"
-import { Toaster as SonnerToaster  } from "@/components/ui/sonner"
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode,
@@ -73,16 +74,17 @@ export default function RootLayout({
           // enableSystem
           disableTransitionOnChange
         >
-          <SessionProvider>
-            <main>
-              
-              {children}
-              {/* <SpeedInsights /> */}
-            {/* <ParticleBackground /> */}
-            </main>
-            <Toaster />
-            <SonnerToaster />
-          </SessionProvider>
+          <UIProvider>
+            <SessionProvider>
+              <main>
+                {children}
+                {/* <SpeedInsights /> */}
+              {/* <ParticleBackground /> */}
+              </main>
+              <Toaster />
+              <SonnerToaster />
+            </SessionProvider>
+          </UIProvider>
         </ThemeProvider>
         {process.env.GA_TRACKING_ID && <GoogleAnalytics gaId={process.env.GA_TRACKING_ID} />}
       </body>

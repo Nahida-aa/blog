@@ -10,7 +10,7 @@ const UserProfile = async ({ params, searchParams }: { params: { username: strin
   console.log('tab:', tab);
 
   // 从 cookies 中获取当前用户的信息
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const currentUsername = cookieStore.get('dotcom_user')?.value || '';
   return (
     <main className="">

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -14,7 +14,8 @@ interface User {
   is_active: boolean
 }
 
-export default function EditUser({ params }: { params: { id: string } }) {
+export default function EditUser(props: { params: Promise<{ id: string }> }) {
+  const params = use(props.params);
   const [user, setUser] = useState<User | null>(null)
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()

@@ -10,7 +10,7 @@ import { reducer, initialState, State, Action } from './_comp/reducer'
 import AddCommentForm from './_comp/AddCommentForm'
 import AddReplyForm from './_comp/AddReplyForm'
 import { Card } from '@/components/ui/card'
-import MessageGalaxyWithCtrl from './_comp/galaxy/MessageGalaxyWithCtrl'
+// import MessageGalaxyWithCtrl from './_comp/galaxy/MessageGalaxyWithCtrl'
 // import type { Metadata } from 'next'
 
 // export const metadata: Metadata = {title: 'Comment'}
@@ -67,7 +67,7 @@ export default function Component() {
           </div>
         </div>
 
-        <MessageGalaxyWithCtrl messages={filteredMessages} />
+        {/* <MessageGalaxyWithCtrl messages={filteredMessages} /> */}
 
         <div className="mt-6">
           <h2 className="text-2xl font-semibold mb-4 dark:text-white">Messages and Comments</h2>

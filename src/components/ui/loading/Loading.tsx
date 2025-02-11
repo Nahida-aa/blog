@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Loading() {
+export function Loading() {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 backdrop-blur-sm z-50">
       <div className="relative w-40 h-40">

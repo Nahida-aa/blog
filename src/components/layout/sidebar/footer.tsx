@@ -1,4 +1,4 @@
-import { ChevronsUpDown, User2 } from "lucide-react"
+import { ChevronsUpDown, Settings, User2 } from "lucide-react"
 import {
   SidebarFooter,
   SidebarMenu,
@@ -16,9 +16,11 @@ import {
 import  ClientUser  from "@/components/aa/User/client"
 import { Button } from "@/components/ui/button"
 // import AuthButtonWithSessionProvider from "@/components/aa/auth/github/button/client"
+import { ModeToggle } from "@/components/common/ModeToggle";
 import { useSession, signIn, signOut, SessionProvider } from 'next-auth/react'
 import { AuthModal } from "@/components/auth/AuthModal"
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 
 export default function SidebarFooterA() {
   // const session = await auth()
@@ -70,4 +72,31 @@ export default function SidebarFooterA() {
       </SidebarMenu>
   </SidebarFooter>
   )
+}
+
+export const ASidebarFooter = () => {
+  const { setOpen, setOpenMobile, isMobile, toggleSidebar } = useSidebar();
+  
+  const router = useRouter();
+  return <SidebarFooter>
+  <SidebarMenu className='flex-row'>
+    <SidebarMenuItem>
+      <SidebarMenuButton asChild onClick={() => {
+          // toggleSidebar()
+          router.push('/setting');
+          setOpenMobile(false);
+        }}
+      >
+        <Button variant='ghost' size='icon' className='size-10'>
+        <Settings />
+        </Button>
+      </SidebarMenuButton>
+    </SidebarMenuItem>
+    <SidebarMenuItem>
+      <SidebarMenuButton asChild>
+        <ModeToggle variant={'ghost'} className='size-10 active:bg-sidebar-accent' />
+      </SidebarMenuButton>
+    </SidebarMenuItem>
+  </SidebarMenu>
+</SidebarFooter>
 }

@@ -15,7 +15,7 @@ import { constants } from "@/app/config/constants"
 
 export interface LayoutProps {
   children: ReactNode
-  params: { slug: string[] }
+  params: Promise<{ slug: string[] }>
   // searchParams?: { [key: string]: string | undefined }
 }
 export default async function FileLayout({

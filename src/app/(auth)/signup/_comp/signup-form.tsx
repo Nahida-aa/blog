@@ -1,10 +1,11 @@
 'use client'
- 
-import { useFormState, useFormStatus } from 'react-dom'
+import { useActionState } from "react";
+
+import { useFormStatus } from 'react-dom';
 import { signup } from '@/actions/auth'
 
 export function SignupForm() {
-  const [state, action] = useFormState(signup, undefined)
+  const [state, action] = useActionState(signup, undefined)
 
   return (
     <form action={action}>
@@ -38,10 +39,10 @@ export function SignupForm() {
     </form>
   )
 }
- 
+
 function SubmitButton() {
   const { pending } = useFormStatus()
- 
+
   return (
     <button disabled={pending} type="submit">
       Sign Up

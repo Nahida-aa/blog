@@ -1,5 +1,5 @@
 "use client"
-import { ChevronDown, Check, ChevronsUpDown,PanelLeft,Sparkles,X, FileText, File as FileIcon } from "lucide-react"
+import { ChevronDown, Check, ChevronsUpDown,PanelLeft,Sparkles,X, FileText, File as FileIcon, Milestone, MessageCircle, FileUser, ShipWheel } from "lucide-react"
 import {
   SidebarHeader,
   SidebarMenu,
@@ -155,3 +155,79 @@ export default function SidebarHeaderA({ onSelect }: { onSelect: (value: string)
 //   </DropdownMenu>
 //   )
 // }
+
+export const ASidebarHeader = () => {
+  const { setOpen, setOpenMobile, isMobile, toggleSidebar } = useSidebar();
+  const sideHeadSelects = [
+    {value: "nav",label: "Navigate list",icon: Milestone},
+    { value: 'chat', label: 'Chat list', icon: MessageCircle },
+    {value: "me",label: "Profile",icon: FileUser,},
+  ]
+  const [selected, setSelected] = useState('nav');
+  
+  const router = useRouter();
+  return <SidebarHeader>
+  <SidebarMenu>
+    <SidebarMenuItem className='flex'>
+      <Button 
+        // onClick={() => {router.push('/')}}
+        className='w-9 h-9 min-w-9' variant="ghost" asChild>
+        <Link href={"/"}>
+          <ShipWheel size={20} /> 
+        </Link>
+      </Button>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <SidebarMenuButton className='[&_svg]:size-5 h-9'>
+            Select Workspace
+            <ChevronDown className="ml-auto" />
+          </SidebarMenuButton>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
+        {sideHeadSelects.map((sideHeadSelect) => (
+          <DropdownMenuItem key={sideHeadSelect.value}
+          >
+            <SidebarMenuButton
+              className="flex items-center gap-2"
+              onClick={() => setSelected(sideHeadSelect.value)}
+            >
+              <sideHeadSelect.icon className="size-5" />
+              <span>{sideHeadSelect.label}</span>
+              <Check
+                className={cn(
+                  "ml-auto h-4 w-4",
+                  selected === sideHeadSelect.value ? "opacity-100" : "opacity-0"
+                )}
+              />
+            </SidebarMenuButton>
+          </DropdownMenuItem>
+        ))}
+          <DropdownMenuItem>
+
+            <span>
+              Navigate list
+            </span>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <span>Chat list</span>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu> 
+      <Button
+        variant="ghost"
+        type="button"
+        className="p-2 h-fit [&>svg]:size-5 [&_svg]:size-5"
+        onClick={() => {
+          toggleSidebar()
+          // setOpen(false);
+          // setOpenMobile(false);
+          // router.push('/');
+          // router.refresh();
+        }}
+      >
+        <X />
+      </Button>
+    </SidebarMenuItem>
+  </SidebarMenu>
+</SidebarHeader>
+}

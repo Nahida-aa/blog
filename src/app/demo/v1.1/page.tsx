@@ -16,7 +16,7 @@ const testFriend = {
 const use3DEffect = (isHovering: boolean) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const cardRef = useRef<HTMLDivElement>(null)
-  const frameRef = useRef<number>()
+  const frameRef = useRef<number>(undefined)
 
   useEffect(() => {
     const card = cardRef.current

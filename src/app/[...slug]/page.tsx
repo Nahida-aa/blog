@@ -8,18 +8,20 @@ import File from './_comp/File'
 import { TocProvider } from "@/context/TocContext";
 
 export interface FileProps {
-  params: { slug: string[] };
-  searchParams: { plain?: string };
+  params: Promise<{ slug: string[] }>;
+  searchParams: Promise<{ plain?: string }>;
 }
-export default function FilePage({ params, searchParams }:FileProps) {
+export default async function FilePage(props:FileProps) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   let file_path = params.slug.join('/')
   // /%E5%BB%BA%E8%AE%AE 转中文
   file_path = decodeURI(file_path)
   const fileFormat = file_path.split('.').pop() || 'md'
   const { metadata, content, rawContent } = getFile(file_path)
-  const isAuthenticated = cookies().get('authenticated')?.value === 'true'
+  const isAuthenticated = (await cookies()).get('authenticated')?.value === 'true'
   const toc = getToc(file_path)
-  
+
   return (
     <TocProvider>
     <main className="flex">

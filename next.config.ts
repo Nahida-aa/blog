@@ -2,9 +2,23 @@ import createMDX from '@next/mdx'
 import withBundleAnalyzer from '@next/bundle-analyzer';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import type { NextConfig } from 'next';
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
+  images: {
+		remotePatterns: [
+		  {
+		    hostname: 'avatar.vercel.sh',
+		  },
+		  {
+			  hostname: 'avatars.githubusercontent.com',
+		  },
+      {
+			  hostname: 'raw.githubusercontent.com',
+		  },
+		],
+	},
   // Configure `pageExtensions` to include markdown and MDX files
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   // Optionally, add any other Next.js config below

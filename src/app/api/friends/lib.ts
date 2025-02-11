@@ -10,7 +10,19 @@
 // }
 
 import {RestIssues_i} from '@/app/aa/github/api/types/issues'
-import { Friend} from '@/app/aa/blog/types/friends'
+export type Friend = {
+  id: number
+  title?: string
+
+  name: string
+  url: string
+  avatar: string
+  description: string
+
+  labels?: string[] // [lost, not added]
+
+  state?: string // open | closed
+}
 const issue2friend = (issue: RestIssues_i): Friend | null => {
   try {
     const { number, title, body, labels: issue_labels, state } = issue;
@@ -112,3 +124,12 @@ export const fetch_friends = async (fetch_options: FetchOptions) => {
     throw error;
   }
 }
+
+// export {
+//   //   zh: {
+//   //     lost: '失联',
+//   //     not_added: '未添加'
+//   //   }
+//   // }
+//   // Friend
+// };

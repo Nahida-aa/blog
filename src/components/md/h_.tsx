@@ -11,11 +11,9 @@ function createHeading(level: number) {
     const convertChildrenToString = (children: React.ReactNode): string => {
       if (typeof children === 'string') {
         return children;
-      }
-      if (React.isValidElement(children)) {
-        return convertChildrenToString(children.props.children);
-      }
-      if (Array.isArray(children)) {
+      } else if (React.isValidElement(children) && 'children' in (children.props as { children?: React.ReactNode })) {
+        return convertChildrenToString((children.props as { children?: React.ReactNode }).children);
+      } else if (Array.isArray(children)) {
         return children.map(convertChildrenToString).join('');
       }
       return '';

@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 interface Message {
   /**
 A unique identifier for the message.

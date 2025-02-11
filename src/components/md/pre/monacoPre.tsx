@@ -14,7 +14,7 @@ interface OnlyReadEditorProps {
   // path: string;
   initialHeight: number;
   loadingComponent?: ReactNode;
-  containerRef: React.RefObject<HTMLPreElement>;
+  containerRef: React.RefObject<HTMLPreElement | null>;
 }
 
 const OnlyReadEditor = ({ value, language, 
@@ -128,7 +128,7 @@ const OnlyReadEditor = ({ value, language,
 };
 
 interface CodeBlockProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLPreElement>, HTMLPreElement> {
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
   name?: string;
   path?: string;
   filename?: string;

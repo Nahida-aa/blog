@@ -14,7 +14,8 @@ let announcements = [
   }
 ];
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const announcement = announcements.find(a => a.id === parseInt(params.id))
   if (!announcement) {
     return NextResponse.json({ message: 'Announcement not found' }, { status: 404 })
@@ -22,7 +23,8 @@ export async function GET(request: Request, { params }: { params: { id: string }
   return NextResponse.json(announcement)
 }
 
-export async function PATCH(request: Request, { params }: { params: { id: string } }) {
+export async function PATCH(request: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const body = await request.json()
   const announcement = announcements.find(a => a.id === parseInt(params.id))
   if (!announcement) {
@@ -32,7 +34,8 @@ export async function PATCH(request: Request, { params }: { params: { id: string
   return NextResponse.json(announcement)
 }
 
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
+export async function PUT(request: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const body = await request.json()
   const index = announcements.findIndex(a => a.id === parseInt(params.id))
   if (index === -1) {
@@ -48,7 +51,8 @@ export async function PUT(request: Request, { params }: { params: { id: string }
   return NextResponse.json(updatedAnnouncement)
 }
 
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+export async function DELETE(request: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const index = announcements.findIndex(a => a.id === parseInt(params.id))
   if (index === -1) {
     return NextResponse.json({ message: 'Announcement not found' }, { status: 404 })

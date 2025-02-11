@@ -16,7 +16,8 @@ import fs from 'fs'
 import PasswordPrompt from './_components/PasswordPrompt'
 import { cookies,headers  } from 'next/headers'
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+  const params = await props.params;
   // console.log(`params:`,JSON.stringify(params, null, 2))
   return {
     title: `aa/${decodeURI(params.slug.join('/'))}`
@@ -31,14 +32,16 @@ export async function generateStaticParams() {
 }
 
 interface FilePageProps {
-  params: {
+  params: Promise<{
     slug: string[]
-  },
-  searchParams: {
+  }>,
+  searchParams: Promise<{
     plain?: string
-  }
+  }>
 }
-export default async function FilePage({ params, searchParams }: FilePageProps) {
+export default async function FilePage(props: FilePageProps) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   // console.log(`params: ${JSON.stringify({ params, searchParams }, null, 2)}`)
   // const headersList =  headers()
   // const headerKeys = headersList.keys()
@@ -59,7 +62,7 @@ export default async function FilePage({ params, searchParams }: FilePageProps) 
   const { metadata, content, rawContent } = getFile(file_path)
   // console.log(`getFileED`)
 
-  const isAuthenticated = cookies().get('authenticated')?.value === 'true'
+  const isAuthenticated = (await cookies()).get('authenticated')?.value === 'true'
 
   // console.log(`metadata, content:${JSON.stringify({ metadata, content }, null, 2)}`)
   const toc = getToc(file_path)

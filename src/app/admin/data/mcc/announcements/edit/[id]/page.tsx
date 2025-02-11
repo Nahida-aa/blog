@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -17,7 +17,8 @@ interface Announcement {
   selected: boolean
 }
 
-export default function EditAnnouncementPage({ params }: { params: { id: string } }) {
+export default function EditAnnouncementPage(props: { params: Promise<{ id: string }> }) {
+  const params = use(props.params);
   const [announcement, setAnnouncement] = useState<Announcement | null>(null)
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
   const router = useRouter()
