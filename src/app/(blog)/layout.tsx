@@ -26,15 +26,15 @@ export default async  function BlogLayout({
   //   headerEntries.push(`${key}: ${value}`)
   // })
 
-  const dirPath = process.env.NODE_ENV === 'development' ? 'src/app' : 'app'
-  const dir = path.join(process.cwd(), dirPath) // 假设你的文件在 app/content 目录下
-  const fileTree = getFileTree(dir,'/aa')
-  console.log(`fileTree`)
+  // const dirPath = process.env.NODE_ENV === 'development' ? 'src/app' : 'app'
+  // const dir = path.join(process.cwd(), dirPath) // 假设你的文件在 app/content 目录下
+  // const fileTree = getFileTree(dir,'/aa')
+  // console.log(`fileTree`)
 
 
   const blog_ContentMenuItems: MenuItem[] = [
     {name: "Blog", path: "/aa", type: "button",
-      items: fileTree
+      items: []
     },
     {name: "Comments", path: "/comment/test", },
     {name: "Tags", path: "/tags", },
