@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { Loading } from '@/components/ui/loading/Loading';
 // import { Friend } from '../aa/blog/types/friends';
 import type { Friend } from '../api/friends/lib';
-import ResizableDemo from '../demo/Resizable/page';
+// import ResizableDemo from '../demo/Resizable/page_';
 import NotFound from '../not-found';
 
 const IndexPage = () => {
@@ -22,7 +22,7 @@ const IndexPage = () => {
     <Suspense fallback={<Loading />}>
       <h1>IndexPage</h1>
       <p>This is the IndexPage page.</p>
-      <ResizableDemo />
+      {/* <ResizableDemo /> */}
       <NotFound />
     </Suspense>
   );
