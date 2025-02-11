@@ -71,4 +71,6 @@ const generatePostsData = () => {
   fs.writeFileSync(staticParamsFilePath, JSON.stringify(staticParams));
 };
 
+console.log('Generating posts data...');
 generatePostsData();
+console.log('Posts data generated successfully!');
