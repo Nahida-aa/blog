@@ -1,5 +1,5 @@
+import { signUp } from '@/lib/db/q/user';
 import { NextResponse } from 'next/server';
-import { signUp } from '@/auth';
 
 export async function POST(request: Request) {
   try {

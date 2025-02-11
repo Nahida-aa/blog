@@ -4,7 +4,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import type { NextConfig } from 'next';
 
-/** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
   images: {
 		remotePatterns: [

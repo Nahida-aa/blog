@@ -49,14 +49,15 @@ const updateMetadata = (filePath: string, currentDate: string) => {
     }
   }
 
-  // 如果 title 为空，从内容中提取第一个一级标题并设置为 title
-  if (!data.title) {
-    const firstHeading = extractFirstHeading(fileContent);
-    if (firstHeading) {
-      data.title = firstHeading;
-    }
-  }
+  // 将数组转换为单行格式
+  const stringifyArray = (arr: any[]) => `[${arr.join(', ')}]`;
 
+  // 遍历 data 对象，将数组转换为单行格式
+  for (const key in data) {
+    if (Array.isArray(data[key])) {
+      data[key] = stringifyArray(data[key]);
+    }
+  }  
   // 将更新后的元数据转换回字符串
   const updatedContent = matter.stringify(fileContent, data);
 
