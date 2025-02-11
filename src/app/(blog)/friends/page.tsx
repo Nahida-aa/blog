@@ -6,6 +6,8 @@ import FriendsList from './_components/FriendsList'
 export const metadata = {title: 'Friends'}
 
 async function getFriends(): Promise<Friend[]> {
+  console.log('process.env', process.env)
+  console.log('process.env.__NEXT_PRIVATE_ORIGIN', process.env.__NEXT_PRIVATE_ORIGIN)
   const res = await fetch(`${process.env.__NEXT_PRIVATE_ORIGIN}/api/friends`, { cache: 'no-store' })
   if (!res.ok) throw new Error('Failed to fetch friends')
   const data = await res.json()
