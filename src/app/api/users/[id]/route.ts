@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { prisma } from "@/lib/db"
+// import { prisma } from "@/lib/db"
 import { auth } from "@/auth"
 
 export async function GET(request: Request, props: { params: Promise<{ id: string }> }) {
@@ -9,19 +9,20 @@ export async function GET(request: Request, props: { params: Promise<{ id: strin
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  const user = await prisma.user.findUnique({
-    where: { id: params.id },
-    select: {
-      id: true,
-      name: true,
-      username: true,
-      email: true,
-      role: true,
-      created_at: true,
-      last_login: true,
-      is_active: true,
-    }
-  })
+  // const user = await prisma.user.findUnique({
+  //   where: { id: params.id },
+  //   select: {
+  //     id: true,
+  //     name: true,
+  //     username: true,
+  //     email: true,
+  //     role: true,
+  //     created_at: true,
+  //     last_login: true,
+  //     is_active: true,
+  //   }
+  // })
+  const user = null
 
   if (!user) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 })
@@ -40,16 +41,17 @@ export async function PATCH(request: Request, props: { params: Promise<{ id: str
   const body = await request.json()
   const { name, username, email, role, is_active } = body
 
-  const user = await prisma.user.update({
-    where: { id: params.id },
-    data: {
-      name,
-      username,
-      email,
-      role,
-      is_active,
-    }
-  })
+  // const user = await prisma.user.update({
+  //   where: { id: params.id },
+  //   data: {
+  //     name,
+  //     username,
+  //     email,
+  //     role,
+  //     is_active,
+  //   }
+  // })
+  const user = null
 
   return NextResponse.json(user)
 }
@@ -61,9 +63,9 @@ export async function DELETE(request: Request, props: { params: Promise<{ id: st
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  await prisma.user.delete({
-    where: { id: params.id }
-  })
+  // await prisma.user.delete({
+  //   where: { id: params.id }
+  // })
 
   return NextResponse.json({ message: 'User deleted successfully' })
 }

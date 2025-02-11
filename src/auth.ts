@@ -7,7 +7,7 @@ import { NextResponse } from "next/server"
 import Credentials from "next-auth/providers/credentials"
 import { z } from "zod"
 import { compare } from "bcrypt-ts"
-import { get_user_by_usernameOrEmail } from "./lib/db/q/user"
+// import { get_user_by_usernameOrEmail } from "./lib/db/q/user"
 
 
 
@@ -32,7 +32,8 @@ const providers: Provider[] = [
       if (parsedLogin.success) {
         const { usernameOrEmail, password } = parsedLogin.data;
 
-        const user = await get_user_by_usernameOrEmail(usernameOrEmail);
+        // const user = await get_user_by_usernameOrEmail(usernameOrEmail);
+        const user =  null
         if (!user) return null
         const passwordsMatch = await compare(password, user.password)
         if (passwordsMatch) {

@@ -58,7 +58,7 @@
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 28.57% 97.25%;
+    --muted: 210 40% 96.1%;
     /* #f6f8fa */
     --muted-foreground: 215.4 16.3% 46.9%;
     --accent: 210 40% 96.1%;
@@ -85,25 +85,25 @@
   }
 
   .dark {
-	--background: 216 27.78% 7.06%;
+	--background: 222.2 84% 4.9%;
 	--foreground: 210 40% 98%;
 	--AppHeader-bg: 217.5 80% 1.96%;
-	--card: 216 27.78% 7.06%;
+	--card: 222.2 84% 4.9%;
 	--card-foreground: 210 40% 98%;
-	--popover: 259 38% 15%;
+	--popover: 222.2 84% 4.9%;
   --popover-var: hsl(259, 38%, 15%);
 	--popover-foreground: 210 40% 98%;
 	--primary: 210 40% 98%;
 	--primary-foreground: 222.2 47.4% 11.2%;
-	--secondary: 210 28.57% 97.25%;
+	--secondary: 217.2 32.6% 17.5%;
 	--secondary-foreground: 210 40% 98%;
-	--muted: 214.29 25% 10.98%;
+	--muted: 217.2 32.6% 17.5%;
 	--muted-foreground: 215 20.2% 65.1%;
-	--accent: 262 31% 30%;
+	--accent: 217.2 32.6% 17.5%;
 	--accent-foreground: 210 40% 98%;
 	--destructive: 0 62.8% 30.6%;
 	--destructive-foreground: 210 40% 98%;
-	--border: 321 18% 85%;
+	--border: 217.2 32.6% 17.5%;
   --border-var: hsla(319, 22%, 75%, 0.843);
 	--input: 217.2 32.6% 17.5%;
 	--ring: 212.7 26.8% 83.9%;
@@ -167,5 +167,16 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
