@@ -10,11 +10,11 @@ import { Button } from "@/components/ui/button"
 export const  ModeToggle = ({
   variant = "outline",
   className = "",
-}:{ variant?: "link" | "default" | "destructive" | "outline" | "secondary" | "ghost" | null | undefined
-  className?: string | undefined
+}:{ variant?: "link" | "default" | "destructive" | "outline" | "secondary" | "ghost" | null 
+  className?: string 
 }) => {
   const { theme, setTheme } = useTheme()
-  // const useThemeProps = useTheme()
+
   const onClick = () => {
     theme === "dark" ? setTheme("light") : setTheme("dark")
   }
