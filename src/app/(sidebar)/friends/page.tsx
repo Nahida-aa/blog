@@ -9,7 +9,9 @@ export const metadata = {title: 'Friends'}
 async function getFriends(): Promise<Friend[]> {
   // const headers = new Headers(await nextHeaders())
   // console.log('process.env', process.env)
+  
   const baseUrl = process.env.NODE_ENV === 'development' ? process.env.__NEXT_PRIVATE_ORIGIN : process.env.NEXT_PUBLIC_URL
+
   // console.log('process.env.__NEXT_PRIVATE_ORIGIN', process.env.__NEXT_PRIVATE_ORIGIN)
   const res = await fetch(`${baseUrl}/api/friends`, { cache: 'no-store' })
   if (!res.ok) throw new Error('Failed to fetch friends')
