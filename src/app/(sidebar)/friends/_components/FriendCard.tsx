@@ -5,7 +5,7 @@ import { ExternalLink, Tag } from 'lucide-react'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
 import { Card3DEffect } from './Card3DEffect'
-import { Friend } from '@/app/aa/blog/types/friends'
+import { Friend } from '@/app/aa/web/blog/types/friends'
 
 export interface FriendCardProps {
   friend: Friend

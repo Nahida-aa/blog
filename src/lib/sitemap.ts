@@ -1,6 +1,6 @@
 import { getBlogPosts } from '@/lib/mdx/utils'
 
-export const baseUrl = 'http://localhost:3000'
+export const baseUrl = process.env.NEXT_PUBLIC_URL
 
 export default async function sitemap() {
   const blogs = getBlogPosts().map((post) => ({

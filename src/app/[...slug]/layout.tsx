@@ -39,7 +39,7 @@ export default async function FileLayout({
     <SidebarProvider 
     >
         <AppSidebar menu_groups={menu_groups} />
-          <main className="flex flex-1 flex-col px-4 pb-4 w-full flex-grow overflow-hidden">
+          <main className="flex flex-1 flex-col px-4 pb-4 w-full flex-grow overflow-hidden bg-opacity-0">
             <AppHeader />
             {children}
           </main>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "@/styles/globals.css";
+import "@/css/globals.css";
 // import localFont from "next/font/local";
 // import { SpeedInsights } from '@vercel/speed-insights/next'
 // import Footer from '@/components/layout/footer';

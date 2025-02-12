@@ -1,0 +1,97 @@
+---
+title: 生成 RSS 订阅
+description: 使用 Next.js 生成 RSS 订阅
+image: 
+created_at: 2025-02-12T15:12:05Z
+pushed_at: 
+updated_at: 2025-02-12T15:12:05Z
+tags: [RSS, Next.js, 订阅]
+private: false
+draft: false
+---
+
+## 使用 Next.js 生成 RSS 订阅
+
+RSS（Really Simple Syndication）是一种用于发布频繁更新内容的Web订阅格式。它允许用户和应用程序订阅网站的更新，例如博客文章、新闻文章等。通过RSS订阅，用户可以在一个地方集中查看多个网站的更新，而不需要逐个访问这些网站。
+
+### RSS 的用途
+
+1. **内容聚合**：用户可以通过RSS阅读器订阅多个网站的RSS源，集中查看所有订阅网站的最新内容。
+2. **自动更新**：RSS阅读器会定期检查订阅的RSS源，并自动获取最新的内容。
+3. **简化访问**：用户不需要逐个访问网站，只需在RSS阅读器中查看更新。
+
+### 示例 RSS 文件
+
+以下是一个简单的RSS文件示例：
+
+```xml highlight={1-5}
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>My Blog</title>
+    <link>https://example.com</link>
+    <description>This is my blog where I share my thoughts and experiences.</description>
+    <item>
+      <title>First Blog Post</title>
+      <link>https://example.com/first-blog-post</link>
+      <description>This is the description of my first blog post.</description>
+      <pubDate>Wed, 12 Feb 2025 16:30:43 GMT</pubDate>
+    </item>
+    <item>
+      <title>Second Blog Post</title>
+      <link>https://example.com/second-blog-post</link>
+      <description>This is the description of my second blog post.</description>
+      <pubDate>Thu, 13 Feb 2025 10:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>
+```
+
+### Nextjs 示例
+
+#### Nextjs 示例1
+
+```ts filename="app/feed.xml/route.ts" highlight={1,3}
+import { baseUrl } from 'app/sitemap'
+import { getBlogPosts } from 'app/blog/utils'
+
+export async function GET() {
+  let allBlogs = await getBlogPosts()
+
+  const itemsXml = allBlogs
+    .sort((a, b) => {
+      if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
+        return -1
+      }
+      return 1
+    })
+    .map(
+      (post) =>
+        `<item>
+          <title>${post.metadata.title}</title>
+          <link>${baseUrl}/blog/${post.slug}</link>
+          <description>${post.metadata.summary || ''}</description>
+          <pubDate>${new Date(
+            post.metadata.publishedAt
+          ).toUTCString()}</pubDate>
+        </item>`
+    )
+    .join('\n')
+
+  const rssFeed = `<?xml version="1.0" encoding="UTF-8" ?>
+  <rss version="2.0">
+    <channel>
+        <title>My Portfolio</title>
+        <link>${baseUrl}</link>
+        <description>This is my portfolio RSS feed</description>
+        ${itemsXml}
+    </channel>
+  </rss>`
+
+  return new Response(rssFeed, {
+    headers: {
+      'Content-Type': 'text/xml',
+    },
+  })
+}
+```

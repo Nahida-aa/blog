@@ -1,6 +1,6 @@
 // src/app/api/friends/route.ts
 import { NextRequest,NextResponse } from 'next/server';
-import { Friend } from '@/app/aa/blog/types/friends'
+import { Friend } from '@/app/aa/web/blog/types/friends'
 import { fetch_friends } from './lib';
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 let cachedFriends: Friend[] | null = null

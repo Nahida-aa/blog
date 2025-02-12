@@ -25,7 +25,7 @@ export default async function FileLayout({
 }: LayoutProps) {
 
   const fileTree = getFileTree(constants.APP_DIR,'/')
-  console.log(`fileTree`)
+  console.log(`fileTree:` + JSON.stringify(fileTree, null, 2))
   const menu_groups = [
     {
       name: '',
@@ -41,9 +41,11 @@ export default async function FileLayout({
         <AppSidebar menu_groups={menu_groups} />
           <main className="flex flex-1 flex-col px-4 pb-4 w-full flex-grow overflow-hidden">
             <AppHeader />
-            {children}
+            <article className="prose max-w-[1012px] mx-auto">
+              {children}
+            </article>
           </main>
-    </SidebarProvider>
     <BackgroundImage />
+    </SidebarProvider>
   </BackgroundProvider>)
 }

@@ -1,10 +1,10 @@
 import { Suspense } from 'react'
-import type { Friend } from '@/app/aa/blog/types/friends'
+import type { Friend } from '@/app/aa/web/blog/types/friends'
 import FriendLinkTemplate from './_components/FriendLinkTemplate'
 import FriendsList from './_components/FriendsList'
 import { headers as nextHeaders } from "next/headers"
 
-export const metadata = {title: 'Friends'}
+export const metadata = {title: 'Friends 🎀'}
 
 async function getFriends(): Promise<Friend[]> {
   // const headers = new Headers(await nextHeaders())
