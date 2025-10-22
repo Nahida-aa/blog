@@ -1,45 +1,39 @@
-import createMDX from '@next/mdx'
-import withBundleAnalyzer from '@next/bundle-analyzer';
-import path from 'path';
-import { fileURLToPath } from 'url';
+// import withBundleAnalyzer from '@next/bundle-analyzer';
+// import { fileURLToPath } from 'url';
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   images: {
-		remotePatterns: [
-		  {
-		    hostname: 'avatar.vercel.sh',
-		  },
-		  {
-			  hostname: 'avatars.githubusercontent.com',
-		  },
+    remotePatterns: [
       {
-			  hostname: 'raw.githubusercontent.com',
-		  },
-		],
-	},
-  // Configure `pageExtensions` to include markdown and MDX files
-  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
-  // Optionally, add any other Next.js config below
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      const __filename = fileURLToPath(import.meta.url);
-      config.cache = {
-        type: 'filesystem',
-        buildDependencies: {
-          config: [__filename],
-        },
-      };
-    }
-    return config;
+        hostname: 'avatar.vercel.sh',
+      },
+      {
+        hostname: 'avatars.githubusercontent.com',
+      },
+      {
+        hostname: 'raw.githubusercontent.com',
+      },
+    ],
   },
+  // Optionally, add any other Next.js config below
+  // webpack: (config, { isServer }) => {
+  //   if (!isServer) {
+  //     const __filename = fileURLToPath(import.meta.url);
+  //     config.cache = {
+  //       type: 'filesystem',
+  //       buildDependencies: {
+  //         config: [__filename],
+  //       },
+  //     };
+  //   }
+  //   return config;
+  // },
 }
 
-const withMDX = createMDX({
-  // Add markdown plugins here, as desired
-})
-const withBundleAnalyzerConfig = withBundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true',
-});
-// Merge MDX config with Next.js config
-export default withBundleAnalyzerConfig(withMDX(nextConfig));
+
+// const withBundleAnalyzerConfig = withBundleAnalyzer({
+//   enabled: process.env.ANALYZE === 'true',
+// });
+export default nextConfig
+// export default withBundleAnalyzerConfig(nextConfig)
